@@ -1,0 +1,706 @@
+<!-- <ng-container *ngIf="loadingFeeShip == true; else loadedFeeShip">
+    <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+  </ng-container>
+  <ng-template  #loadedFeeShip> -->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<section class="main_page_order" xmlns="http://www.w3.org/1999/html">
+  <div class="container">
+    <div class="wrapper_main_page_order">
+      <div class="list-title box-order p-3">
+        <div *ngIf="!isOder" class="row m-0 align-items-center">
+          <div
+            style="font-weight: 550"
+            class="col-md-5 d-flex align-items-center pl-0"
+          >
+            <input
+              type="checkbox"
+              name="checkbox"
+              [(ngModel)]="selectedAll"
+              (ngModelChange)="clickSelected(true)"
+            />
+            <span></span>Sản phẩm
+          </div>
+          <div style="font-weight: 550; text-align: end" class="col-md-2">
+            Đơn giá
+          </div>
+          <div style="font-weight: 550; text-align: end" class="col-md-2">
+            Số lượng
+          </div>
+          <div style="font-weight: 550; text-align: end" class="col-md-2">
+            Thành tiền
+          </div>
+          <div style="font-weight: 550; text-align: center" class="col-md-1">
+            Thao tác
+          </div>
+        </div>
+        <div *ngIf="isOder" class="row m-0 align-items-center">
+          <div class="col-md-12 d-flex pl-0 mb-2 address-order">
+            <img loading="lazy" src="assets/images/imgs/address.png" />
+            <span></span>Địa chỉ nhận hàng
+          </div>
+          <div class="col-md-8">
+            <span class="customer-info font-weight-bold"
+              >{{ selectedAdress?.receiver }} {{ selectedAdress?.phone }}</span
+            >
+            <span class="customer-address font-weight-bold">
+              {{ selectedAdress?.address }}, {{ selectedAdress?.ward_name }},
+              {{ selectedAdress?.district_name }},
+              {{ selectedAdress?.province_name }}
+            </span>
+          </div>
+          <div class="col-md-2 d-flex justify-content-end">
+            <span *ngIf="selectedAdress?.is_default" class="address-default"
+              >Mặc định</span
+            >
+            <span *ngIf="!selectedAdress?.is_default" class="address-default"
+              >Địa chỉ nhận hàng</span
+            >
+          </div>
+          <div
+            class="col-md-2 d-flex justify-content-end text-uppercase text-green"
+          >
+            <span class="address-button cursor-pointer" (click)="chooseAdress()"
+              >Thay đổi</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="order-content">
+        <div *ngFor="let item of listItemOder" class="box-order order-shop p-0">
+          <!-- <div>{{item | json}}</div> -->
+          <div class="row m-0">
+            <div class="col-md-6 p-3">
+              <label class="d-flex align-items-center m-0">
+                <input
+                  *ngIf="!isOder"
+                  type="checkbox"
+                  name="checkbox"
+                  [(ngModel)]="item.selected"
+                  (change)="shopSelected($event, item)"
+                />
+                <img
+                  loading="lazy"
+                  class="logo-shop"
+                  [src]="item.products[0].shop_avatar | imageUrl"
+                  alt=""
+                />
+                <span
+                  ><strong>{{ item.shop_name }}</strong>
+                </span>
+              </label>
+            </div>
+            <div
+              *ngIf="isOder && !mobileStatus"
+              class="col-md-2 d-flex align-items-center justify-content-end"
+            >
+              Đơn giá
+            </div>
+            <div
+              *ngIf="isOder && !mobileStatus"
+              class="col-md-2 d-flex align-items-center justify-content-end"
+            >
+              Số lượng
+            </div>
+            <div
+              *ngIf="isOder && !mobileStatus"
+              class="col-md-2 d-flex align-items-center justify-content-end"
+            >
+              Thành tiền
+            </div>
+            <div *ngFor="let product of item.products" class="col-md-12 p-0">
+              <div class="box-order order-product p-3">
+                <div class="row align-items-center">
+                  <div
+                    style="margin-bottom: 10px"
+                    [class]="!isOder ? 'col-12 col-md-5' : 'col-12 col-md-6'"
+                  >
+                    <div class="d-flex align-items-center">
+                      <input
+                        *ngIf="!isOder"
+                        type="checkbox"
+                        name="checkbox"
+                        [(ngModel)]="product.selected"
+                        (change)="productSelected(item)"
+                      />
+                      <span></span>
+                      <img
+                        loading="lazy"
+                        class="cursor-pointer"
+                        [src]="product.product_avatar | imageUrl"
+                        alt=""
+                        (click)="navigateProduct(product)"
+                      />
+                      <div class="p-2">
+                        <div
+                          class="cursor-pointer"
+                          (click)="navigateProduct(product)"
+                        >
+                          {{ product.product_name }} - {{
+                            product.sale_quantity ? '( flashsale ' + product.sale_quantity + ' sản phẩm)' : ""
+                          }}
+                        </div>
+                        <div class="quatification-text">
+                          Loại: ({{ product.product_quantification_name }})
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-6"
+                    style="padding-left: 2.4rem"
+                    *ngIf="mobileStatus"
+                  >
+                    Giá tiền:
+                  </div>
+                  <div
+                    class="col-6 col-md-2 price"
+                    style="flex-wrap: wrap"
+                    [ngClass]="{
+                      'd-flex align-items-center justify-content-end': true
+                    }"
+                  >
+                    <p class="col-12" *ngIf="product.base_price" style="text-decoration: line-through; color: gray; text-align: end">{{product.base_price | numberFormat}}đ</p>
+                    <p class="col-12" style="text-align: end">
+                      {{
+                        product.price == 0
+                          ? "Số lượng sản phẩm không cho phép"
+                          : (product.price | numberFormat) + "đ"
+                      }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-6"
+                    style="padding-left: 2.4rem"
+                    *ngIf="mobileStatus"
+                  >
+                    Số lượng:
+                  </div>
+                  <div
+                    class="col-6 col-md-2"
+                    [ngClass]="{
+                      'd-flex align-items-center justify-content-end': true
+                    }"
+                  >
+                    <div
+                      *ngIf="!isOder"
+                      class="btn-group btn-group-quantity"
+                      role="group"
+                      aria-label="quantity"
+                    >
+                      <button
+                        type="button"
+                        class="btn-quantity"
+                        (click)="productMinus(product, item)"
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        name="quantity"
+                        [min]="0"
+                        [value]="product.quantity"
+                        (change)="changeQuantity($event, product, item)"
+                      />
+                      <button
+                        type="button"
+                        class="btn-quantity"
+                        (click)="productPlus(product, item)"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <ng-container
+                      *ngIf="isOder"
+                      class="col-6 col-md-2 btn-group btn-group-quantity"
+                      role="group"
+                      aria-label="quantity"
+                    >
+                      {{ product.quantity }}
+                    </ng-container>
+                    <!--  -->
+                  </div>
+                  <div
+                    class="col-6"
+                    style="padding-left: 2.4rem"
+                    *ngIf="mobileStatus"
+                  >
+                    Tổng giá tiền:
+                  </div>
+                  <div
+                    class="col-6 col-md-2 quantity"
+                    [ngClass]="{
+                      'd-flex align-items-center justify-content-end': true
+                    }"
+                  >
+                    {{
+                      product.totalPrice == 0
+                        ? "Số lượng sản phẩm không cho phép"
+                        : (product.totalPrice ? (product.totalPrice | numberFormat) + "đ" : "---")
+                    }}
+                  </div>
+                  <div *ngIf="!isOder" class="col-md-1 col-12 delete">
+                    <span
+                      class="order-action"
+                      (click)="deleteProductFromCart(product, item)"
+                      >Xóa</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="!isOder"
+              class="col-12 col-md-12 p-3 d-flex align-items-center m-0 cursor-pointer shop-voucher"
+              (click)="openVocherDialog(item)"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div class="voucher-label">
+                <div>
+                  <img
+                    loading="lazy"
+                    class=""
+                    src="./assets/images/customer/voucher.svg"
+                  />
+                  <span class="pl-3">Thêm mã giảm giá</span>
+                </div>
+                <div>
+                  <span
+                    *ngIf="item.shop_voucher"
+                    class="voucher-discount"
+                    [ngClass]="{ 'invalid-voucher': !item.shop_voucher.valid }"
+                    >{{ item.shop_voucher.name }}</span
+                  >
+                  <span
+                    *ngIf="item.smartgap_voucher"
+                    class="voucher-discount"
+                    [ngClass]="{
+                      'invalid-voucher': !item.smartgap_voucher.valid
+                    }"
+                    >{{ item.smartgap_voucher.name }}</span
+                  >
+                </div>
+              </div>
+              <div class="voucher-info">
+                <div class="pr-3" *ngIf="item.shop_voucher">
+                  Giảm giá người bán:
+                  {{
+                    (item.shop_voucher.valid ? item.shop_voucher?.discount : 0)
+                      | numberFormat
+                  }}
+                  đ
+                </div>
+                <div class="pr-3" *ngIf="item.smartgap_voucher">
+                  Giảm giá Smartgap:
+                  {{
+                    (item.smartgap_voucher.valid
+                      ? item.smartgap_voucher?.discount
+                      : 0
+                    ) | numberFormat
+                  }}
+                  đ
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="isOder"
+              class="col-12 col-md-12 p-3 d-flex align-items-center m-0 cursor-pointer shop-voucher"
+              (click)="openVocherDialog(item)"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div class="voucher-label">
+                <div>
+                  <img
+                    loading="lazy"
+                    class=""
+                    src="./assets/images/customer/voucher.svg"
+                  />
+                  <span class="pl-3">Thêm mã giảm giá</span>
+                </div>
+                <div>
+                  <span
+                    *ngIf="item.shop_voucher"
+                    class="voucher-discount"
+                    [ngClass]="{ 'invalid-voucher': !item.shop_voucher.valid }"
+                    >{{ item.shop_voucher.name }}</span
+                  >
+                  <span
+                    *ngIf="item.smartgap_voucher"
+                    class="voucher-discount"
+                    [ngClass]="{
+                      'invalid-voucher': !item.smartgap_voucher.valid
+                    }"
+                    >{{ item.smartgap_voucher.name }}</span
+                  >
+                </div>
+              </div>
+              <div class="voucher-info">
+                <div class="pr-3" *ngIf="item.shop_voucher">
+                  Giảm giá người bán:
+                  {{
+                    (item.shop_voucher.valid ? item.shop_voucher?.discount : 0)
+                      | numberFormat
+                  }}
+                  đ
+                </div>
+                <div class="pr-3" *ngIf="item.smartgap_voucher">
+                  Giảm giá Smartgap:
+                  {{
+                    (item.smartgap_voucher.valid
+                      ? item.smartgap_voucher?.discount
+                      : 0
+                    ) | numberFormat
+                  }}
+                  đ
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="isOder"
+              class="row col-md-12 d-flex align-items-center m-0 order-ship-detail"
+            >
+              <div class="col-12 col-md-4 order-description">
+                <span class="">Lời nhắn:</span>
+                <input
+                  class="w-75 h-50"
+                  type="text"
+                  placeholder="Lưu ý cho người bán"
+                  [(ngModel)]="item.description"
+                />
+              </div>
+              <div class="col-12 col-md-5 d-flex d-flex-x order-shipment">
+                <div class="shiping-text">Đơn vị vận chuyển:</div>
+                <div class="pl-3">
+                  <div class="text-uppercase">{{ item.shipping_company }}</div>
+                  <!-- <div class="small-text">
+                    Nhận hàng vào {{ item.estimated_pickup_date }}
+                  </div> -->
+                </div>
+              </div>
+              <div class="ship-info col-12 col-md-3">
+                <span class="text-center"
+                  >Phí ship:
+                  {{ item?.shipInfo?.fee || 0 | numberFormat }} đ</span
+                >
+                <span
+                  class="col-md-5 text-green change-shipp pl-5 cursor-pointer"
+                  (click)="openShippingDialog(item)"
+                  >Thay đổi</span
+                >
+              </div>
+              <hr class="w-100" />
+              <div
+                class="col-12 col-md-12 d-flex d-flex-x align-items-center justify-content-end total-payment"
+              >
+                <div class="col-7 col-md-3 text-left">
+                  Tổng số tiền ({{ item.products.length }} sản phẩm)
+                </div>
+                <div
+                  class="col-5 col-md-3 text-green text-right total-price-order order-step"
+                >
+                  <span
+                    *ngIf="
+                      (item.shop_voucher && item.shop_voucher.valid) ||
+                      (item.smartgap_voucher &&
+                        item.smartgap_voucher.valid &&
+                        item.smartgap_voucher.type == voucherType.price)
+                    "
+                    class="discounted"
+                  >
+                    {{
+                      item.total_order_price + (item.shipping_cost || 0)
+                        | numberFormat
+                    }}
+                  </span>
+                  <span
+                    >{{
+                      item.total_order_price +
+                        (item.shipping_cost || 0) -
+                        (item.shop_voucher && item.shop_voucher.valid
+                          ? item.shop_voucher.discount
+                          : 0) -
+                        (item.smartgap_voucher &&
+                        item.smartgap_voucher.valid &&
+                        item.smartgap_voucher.type == voucherType.price
+                          ? item.smartgap_voucher.discount
+                          : 0) | numberFormat
+                    }}
+                    đ
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="order-content"
+        style="display: flex; justify-content: flex-start; flex-wrap: wrap"
+        *ngIf="!isBuy && listShopProductDisable.length > 0"
+      >
+        <div class="col-md-12" style="padding: 0; margin-top: 20px">
+          <h6 style="font-weight: 600">Danh sách sản phẩm ngừng kinh doanh</h6>
+        </div>
+        <div class="col-md-12 wrap-order-item" style="padding: 0">
+          <div class="disable"></div>
+          <div
+            *ngFor="let item of listShopProductDisable"
+            class="col-md-12 box-order p-0"
+          >
+            <div class="row m-0">
+              <div class="col-md-6 p-3">
+                <label class="d-flex align-items-center m-0">
+                  <img
+                    loading="lazy"
+                    class="logo-shop"
+                    [src]="item.products[0].shop_avatar | imageUrl"
+                    alt=""
+                  />
+                  <span
+                    ><strong>{{ item.shop_name }}</strong></span
+                  >
+                </label>
+              </div>
+              <div *ngFor="let product of item.products" class="col-md-12 p-0">
+                <div class="box-order order-product p-3">
+                  <div
+                    class="row align-items-center"
+                    style="position: relative"
+                  >
+                    <div
+                      [class]="!isOder ? 'col-12 col-md-5' : 'col-12 col-md-6'"
+                    >
+                      <div class="d-flex align-items-center">
+                        <span></span>
+                        <img
+                          loading="lazy"
+                          class="cursor-pointer"
+                          [src]="product.product_avatar | imageUrl"
+                          alt=""
+                        />
+                        <div class="p-2">
+                          <div class="cursor-pointer">
+                            {{ product.product_name }}
+                          </div>
+                          <div class="quatification-text">
+                            Loại: ({{ product.product_quantification_name }})
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="col-md-2 col-12 price"
+                      [ngClass]="{
+                        'd-flex align-items-center justify-content-center':
+                          isOder
+                      }"
+                    >
+                      {{
+                        product.price == 0
+                          ? "Số lượng sản phẩm không cho phép"
+                          : (product.price | numberFormat) + "đ"
+                      }}
+                    </div>
+                    <div
+                      class="col-md-2 quantity"
+                      [ngClass]="{
+                        'd-flex align-items-center justify-content-center':
+                          isOder
+                      }"
+                    >
+                      <div
+                        *ngIf="!isOder"
+                        class="btn-group btn-group-quantity"
+                        role="group"
+                        aria-label="quantity"
+                      >
+                        <button type="button" class="btn-quantity">-</button>
+                        <input
+                          type="number"
+                          name="quantity"
+                          [min]="0"
+                          [value]="product.quantity"
+                        />
+                        <button type="button" class="btn-quantity">+</button>
+                      </div>
+                      <div
+                        *ngIf="isOder"
+                        class="btn-group btn-group-quantity"
+                        role="group"
+                        aria-label="quantity"
+                      >
+                        <span>{{ product.quantity }}</span>
+                      </div>
+                      <!--  -->
+                    </div>
+                    <div
+                      class="col-md-2 col-12"
+                      [ngClass]="{
+                        'd-flex align-items-center justify-content-center':
+                          isOder
+                      }"
+                    >
+                      {{
+                        product.price == 0
+                          ? "Số lượng sản phẩm không cho phép"
+                          : (product.price | numberFormat) + "đ"
+                      }}
+                    </div>
+                    <div
+                      *ngIf="!isOder"
+                      class="col-md-1 col-12 delete highlight"
+                    >
+                      <span
+                        class="order-action"
+                        (click)="deleteProductFromCart(product, item)"
+                        >Xóa</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-order p-3 mt-3" [class.wrap-order]="!isBuy">
+        <div *ngIf="!isOder" class="row m-0 align-items-center">
+          <div class="col-md-5 d-flex align-items-center pl-0">
+            <input
+              [(ngModel)]="selectedAll"
+              type="checkbox"
+              name="checkbox"
+              (ngModelChange)="clickSelected(true)"
+            />
+            <span></span>Chọn tất cả ({{
+              selectedAll ? listCartItem.length : total_product || "0"
+            }})
+          </div>
+          <div
+            class="col-12 col-md-5 d-flex align-items-center justify-content-end"
+            style="padding: 0 !important"
+          >
+            <div class="price-payment">
+              <div>
+                <span>Tổng thanh toán ({{ total_product }} sản phẩm):</span>
+                <span
+                  *ngIf="total_voucher_discount"
+                  class="total-price-order discounted"
+                  style="padding: 0 !important"
+                  >{{ total_pay | numberFormat }} đ</span
+                >
+                <span class="total-price-order" style="padding: 0 !important">
+                  {{ total_pay - total_voucher_discount | numberFormat }} đ
+                </span>
+              </div>
+              <div class="voucher-discount-text">
+                <span>Tiết kiệm:</span>
+                <span class="text-green"
+                  >{{ total_voucher_discount | numberFormat }} đ</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-2 p-0">
+            <button class="buy-button" (click)="Buy()">Mua Hàng</button>
+          </div>
+        </div>
+
+        <!-- Đặt hàng -->
+        <div *ngIf="isOder" class="row m-0 align-items-center">
+          <div
+            class="col-md-12 row m-0 d-flex align-items-center justify-content-between p-2"
+          >
+            <div class="col-md-6 payment-title">Phương thức thanh toán</div>
+            <div class="col-md-6 d-flex justify-content-between">
+              <div class="pr-5">{{ selectedPayment.name }}</div>
+              <div
+                class="cursor-pointer text-green"
+                (click)="openPaymentMethodDialog()"
+              >
+                Thay đổi
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-12 d-flex align-items-center justify-content-end p-2 mobile"
+          >
+            <div class="col-md-6 d-flex justify-content-between mobile">
+              <div class="text-nowrap">Tổng tiền hàng:</div>
+              <div class="text-right mw-12">
+                {{ total_pay | numberFormat }} đ
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-12 d-flex align-items-center justify-content-end p-2 mobile"
+          >
+            <div class="col-md-6 d-flex justify-content-between">
+              <div class="text-nowrap">Phí vận chuyển:</div>
+              <div class="text-right mw-12">
+                {{ total_ship || 0 | numberFormat }} đ
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-12 d-flex align-items-center justify-content-end p-2 mobile"
+          >
+            <div class="col-md-6 d-flex justify-content-between">
+              <div class="text-nowrap">Tổng mã giảm giá:</div>
+              <div class="text-right mw-12">
+                {{ total_voucher_discount == 0 ? "" : "-" }}
+                {{ total_voucher_discount | numberFormat }} đ
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-12 d-flex align-items-center justify-content-end p-2 mobile"
+          >
+            <div class="col-md-6 d-flex justify-content-between">
+              <div class="d-flex text-nowrap align-items-center">
+                Tổng thanh toán:
+              </div>
+              <div class="total-price-order text-right mw-12">
+                {{
+                  total_pay +
+                    (total_ship ? total_ship : 0) -
+                    (total_voucher_discount || 0) | numberFormat
+                }}
+                đ
+              </div>
+            </div>
+          </div>
+          <hr class="w-100" />
+          <div class="col-md-9 d-flex p-0">
+            <span
+              >Nhấn “Đặt hàng” đồng nghĩa với việc bạn đồng ý tuân theo
+              <a class="text-blue" (click)="openPolicyTab()"
+                >Điều khoản Smartgap</a
+              ></span
+            >
+          </div>
+          <div class="col-md-3 d-flex justify-content-end p-0 pr-3">
+            <button
+              class="buy-button"
+              [disabled]="!selectedAdress || disableButton"
+              (click)="confirmOrder()"
+            >
+              Đặt hàng
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--      end thanh toán-->
+    </div>
+  </div>
+</section>
+<!-- </ng-template> -->

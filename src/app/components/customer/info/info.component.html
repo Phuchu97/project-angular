@@ -1,0 +1,58 @@
+<div class="header_content_taikhoan">
+    <h2>Hồ Sơ Của Tôi</h2>
+    <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+</div>
+<div class="content_my_profile">
+    <div class="form_my_profile">
+        <form [formGroup]="userForm">
+            <div class="row_form_my_profile">
+                <label>Tên đăng nhập</label>
+                <span>{{userInfo?.username}}</span>
+            </div>
+            <div class="row_form_my_profile">
+                <label>Tên</label>
+                <input type="text" name="" class="form-control" formControlName="full_name">
+              <span class="error-mess" *ngIf="submited && userForm.controls['full_name'].errors && userForm.controls['full_name'].errors['required']">Tên không được để trống!</span>
+              <span class="error-mess" *ngIf="submited && userForm.controls['full_name'].errors && userForm.controls['full_name'].errors['pattern']">Tên không đúng định dạng!</span>
+            </div>
+            <div class="row_form_my_profile">
+                <label>Email</label>
+                <input *ngIf="isShowEmail" type="email" [email]="true" name="" class="form-control" formControlName="email">
+                <span *ngIf="!isShowEmail">{{userInfo?.email | censor : "email"}}</span> <a *ngIf="!isShowEmail" href="javascript:void(0)" (click)="isShowEmail = true">Thay đổi</a>
+                <span class="error-mess" *ngIf="submited && userForm.controls['email'].errors && userForm.controls['email'].errors['pattern']">Email không đúng định dạng!</span>
+                <span class="error-mess" *ngIf="submited && userForm.controls['email'].errors && userForm.controls['email'].errors['required']">Email không được để trống!</span>
+            </div>
+            <div class="row_form_my_profile">
+                <label>Số Điện Thoại</label>
+                <input *ngIf="isShowPhone" type="text" name="" class="form-control" formControlName="phone">
+                <span *ngIf="!isShowPhone">{{userInfo?.phone | censor : "phone"}}</span> <a *ngIf="!isShowPhone" href="javascript:void(0)" (click)="isShowPhone = true">Thay đổi</a>
+                <span class="error-mess" *ngIf="submited && userForm.controls['phone'].errors && userForm.controls['phone'].errors['required']">Số điện thoại không được để trống!</span>
+                <span class="error-mess" *ngIf="submited && userForm.controls['phone'].errors && userForm.controls['phone'].errors['pattern']">Số điện thoại không đúng định dạng!</span>
+            </div>
+            <div class="row_form_my_profile gioitinh_my_profile">
+                <label>Giới tính</label>
+                <div><input name="sex" type="radio" formControlName="sex" [value]="1" />Nam</div>
+                <div><input name="sex" type="radio" formControlName="sex" [value]="2" />Nữ</div>
+                <div><input name="sex" type="radio"  formControlName="sex" [value]="3" />Khác</div>
+            </div>
+            <div class="row_form_my_profile">
+              <label>Ngày sinh</label>
+              <input class="form-control bg-white" readonly type="text" formControlName="birtday" (keyup)="false" placeholder="" bsDatepicker
+                     [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY', initCurrentTime: true }" [maxDate]="maxData">
+              <span class="error-mess" *ngIf="submited && userForm.controls['birtday'].errors && userForm.controls['birtday'].errors['required']">Ngày sinh không được để trống!</span>
+              <span class="error-mess" *ngIf="submited && userForm.controls['birtday'].errors && userForm.controls['birtday'].errors['pattern']">Ngày sinh không đúng định dạng!</span>
+            </div>
+            <div class="btn_gui_form">
+                <button (click)="save()">Lưu</button>
+            </div>
+        </form>
+    </div>
+    <div class="upload_img_profile">
+        <img loading="lazy" [src]="userInfo?.avatar && !pathAvatar ? (userInfo.avatar.path | imageUrl) : pathAvatar" alt="">
+        <label for="upload-file">Chọn ảnh</label>
+        <input type="file" id="upload-file" #fileAvatar (change)="onSelectFile($event)">
+        <div class="text_upload_img_profile">
+            Dung lượng file tối đa 1 MB<br> Định dạng: .JPEG, .PNG, .SVG, .JPG
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+.content_my_address {
+}
+
+.address_title {
+  display: contents;
+}
+
+.my-address {
+  padding: 1rem;
+  border-bottom: 1px solid #E2E2E2;
+
+  &.selected {
+    background-color: #F6FFF1;
+  }
+}
+
+.row_my_address {
+  margin: 0;
+  padding: 0.2rem;
+}
+
+.default_address {
+  background-color: #6DB746;
+  color: #FFFFFF;
+  padding: 0.3rem;
+  border-radius: 0.1rem;
+  height: max-content;
+}
+
+.non_default_address {
+  background-color: #F6FFF1;
+  color: #6DB746;
+  padding: 0.3rem;
+  height: max-content;
+  border: 1px solid #6DB746;
+  border-radius: 0.1rem;
+}
+
+.address-action-group {
+button {
+  height: max-content;
+  background: #FFFFFF;
+  border: 1px solid #CBCBCB;
+  box-sizing: border-box;
+  border-radius: 0.1rem;
+  line-height: 2rem;
+
+&:enabled:hover {
+   background: #6DB746;
+   color: #FFFFFF;
+ }
+}
+}
+
+.address-action {
+  text-decoration-line: underline;
+  color: #5A6B6A;
+}
+
+.close-button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: none;
+  float: right;
+}

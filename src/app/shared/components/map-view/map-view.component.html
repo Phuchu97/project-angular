@@ -1,0 +1,26 @@
+<div class="modal-content">
+  <div class="modal-header d-block">
+    <h4 class="modal-title w-100"> {{!addressIO ? 'Vị trí trên bản đồ': 'Chọn địa chỉ trên bản đồ'}}</h4>
+    <h5 *ngIf="addressInfo"> {{addressInfo.wards_name}} - {{addressInfo.district_name}} - {{addressInfo.province_name}}</h5>
+    <button *ngIf="isShowButton" type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="coords">
+      <input disabled class="form-control coord-selected" #coords id="selectCoords" [(ngModel)]="selectCoords"
+             name="selectCoords">
+    </div>
+
+    <div class="w-100 h-100">
+      <iframe *ngIf="!dataObject?.addressString" #htmliFrameElement [id]="idIframe" class="border-0" src="assets/map.html" title="select map"></iframe>
+      <app-map *ngIf="dataObject?.addressString" [address]="addressString" (coordinate)="setCoordinate($event)"></app-map>
+    </div>
+
+  </div>
+  <div *ngIf="addressIO" class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="close()">Hủy</button>
+    <button type="submit" class="btn btn-primary blue" (click)="selectCoords = coords.value;onClick()">
+      <span>Chọn</span></button>
+  </div>
+</div>

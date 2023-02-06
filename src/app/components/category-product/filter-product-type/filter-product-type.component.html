@@ -1,0 +1,10 @@
+<div class="shop_one_page">
+    <h3>{{"CategoryProduct.ProductType" | translate}}</h3>
+    <ul class="listform_filter">
+        <li *ngFor="let item of listFilter">
+            <label>
+            <input type="checkbox" [checked]="productTypeId === item.id" name="checkbox" (change)="onClick($event, item)" [value]="item.id">
+            <span></span>{{item.name}}
+        </label>
+    </ul>
+</div>

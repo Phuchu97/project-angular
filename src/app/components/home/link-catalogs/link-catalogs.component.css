@@ -1,0 +1,32 @@
+/* .name_ncc{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+.item_category-catalog  {
+  padding: 15px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+.item_category-catalog {
+    padding: 10px;
+}
+}
+
+@media (max-width: 767px)
+{
+  .name_ncc a {
+    font-size: 0.8rem;
+  }
+  .list_ncc {
+    text-align: center;
+
+  }
+  .list_ncc li {
+  }
+  .logo_ncc img {
+    max-width: 71% !important;
+  }
+}

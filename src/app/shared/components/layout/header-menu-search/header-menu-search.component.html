@@ -1,0 +1,180 @@
+<div class="menu_header">
+  <div class="container">
+    <div class="wrapper_menu_header" style="justify-content: space-between">
+      <div class="wp-menu-mobile">
+        <div id="trigger-mobile" (click)="toggleMenuClick()">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+      </div>
+
+
+      <div class="logo_page">
+        <a href="/"
+          ><img  loading="lazy" src="/assets/images/logos/logo-smartgap2.svg" alt=""
+        /></a>
+
+
+      </div>
+      <div class="dropdown danhmuc_page">
+        <!-- <button class="btn_danhmuc dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-bars" aria-hidden="true"></i> <span> {{'Home.Category' | translate }}</span>
+    </button> -->
+        <!-- <div class="dropdown-menu list-menu" aria-labelledby="dropdownMenuButton">
+          <ul *ngFor="let item of categoryProduct">
+              <li>
+                  <a class="dropdown-item" routerLink="/chuyen-muc/{{item.id}}">{{item.name}}</a>
+                  <ul class="dropdown-menu">
+                      <li>
+                          <a href="#" class="dropdown-item">Item 1</a>
+                      </li>
+                      <li>
+                          <a href="#" class="dropdown-item">Item 2</a>
+                      </li>
+                      <li>
+                          <a href="#" class="dropdown-item">Item 3</a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </div> -->
+
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a
+              href="javascript:void(0)"
+              id="menu"
+              data-bs-toggle="dropdown"
+              class="btn_danhmuc nav-link dropdown-toggle"
+              data-bs-display="static"
+              ><i class="fa fa-bars" aria-hidden="true"></i>
+              <span style="font-size: 14px"> {{ "Home.Category" | translate }}</span></a
+            >
+            <ul class="dropdown-menu drop-menu-p" style="top: 42px">
+              <li
+                class="dropdown-submenu list-menu"
+                *ngFor="let item of categoryProduct"
+              >
+                <a
+                  (click)="navigateItem(item)"
+                  data-bs-toggle="dropdown"
+                  class="dropdown-item"
+                  [ngClass]="
+                    item.products.length == 0
+                      ? 'dropdown-submenu-no-parent'
+                      : ''
+                  "
+                  >{{ item.name }}</a
+                >
+                <ng-template #name [ngIf]="item.products.length > 0">
+                  <ul class="dropdown-menu drop-menu">
+                    <li *ngFor="let child of item.products">
+                      <a (click)="navigateItem(child)" class="dropdown-item">{{
+                        child.name
+                      }}</a>
+                    </li>
+                  </ul>
+                </ng-template>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="search_header">
+        <div class="search_relative">
+          <input
+            (keyup.enter)="searchProduct(Search.value)"
+            type="text"
+            name="Search"
+            #Search="ngModel"
+            [(ngModel)]="search"
+            placeholder="{{ searchSuggesstion }}"
+          />
+          <button (click)="searchProduct(Search.value)">
+            <img loading="lazy" src="./assets/images/imgs/btn_search.png" alt="" />
+          </button>
+        </div>
+      </div>
+      <!-- end -->
+      <div style="margin-left: 30px;" class="cart_shopping popover__wrapper" (click)="navigateToCart()">
+        <a class="mobile-css-icon-buy" href="javascript:"
+          ><img loading="lazy" src="./assets/images/imgs/cart.png" alt="" />
+          <ng-template #name [ngIf]="totalProductInCart != undefined">
+            <span>{{ totalProductInCart }}</span>
+          </ng-template>
+        </a>
+        <b class="cart-title" style="font-size: 12px">Giỏ hàng</b>
+      </div>
+      <div class="login_page" style="margin-left: 60px !important;">
+        <img loading="lazy" src="./assets/images/imgs/user_icon.png" alt="" />
+        <div class="link_login" *ngIf="!username">
+          <a href="javascript:" (click)="modalLoginCustomer.showPopup(1)"
+            >Đăng ký</a
+          >
+          |
+          <a href="javascript:void(0)" (click)="modalLoginCustomer.showPopup(2)"
+            >Đăng nhập</a
+          >
+        </div>
+        <div class="login" *ngIf="username">
+          <div class="dropdown">
+            <a
+              href="javascript:"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <p>Tài khoản</p>
+              {{ username }}
+            </a>
+            <div
+              class="dropdown-menu list-menu"
+              style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 4px 0px;"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <ul>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:void(0)"
+                    (click)="userInfo()"
+                    style="display: flex; align-items: center !important; padding: 7px 10px"
+                  >
+                    <i class="fa fa-user-circle" style="color:rgb(50, 132, 204); font-size: 14px; margin-right: 5px" aria-hidden="true"></i>
+                    <p>Thông tin cá nhân</p>
+                  </a>
+                  <a
+                  class="dropdown-item"
+                  href="javascript:void(0)"
+                  (click)="purchase_order()"
+                  style="display: flex; align-items: center !important; padding: 7px 10px"
+                >
+                  <i class="fa fa-cart-plus" style="color:rgb(50, 132, 204); font-size: 14px; margin-right: 5px" aria-hidden="true"></i>
+                  <p>Đơn mua</p>
+                </a>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:void(0)"
+                    (click)="logOut()"
+                    style="display: flex; align-items: center; padding: 7px 10px"
+                  >
+                    <i class="fa fa-power-off" style="color: #6db746; font-size: 14px; margin-right: 5px" aria-hidden="true"></i> Thoát
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-menu-mobile
+  [listMenu]="categoryProduct"
+  (signIn)="modalLoginCustomer.showPopup(2)"
+  (signUp)="modalLoginCustomer.showPopup(1)"
+></app-menu-mobile>
+<app-modal-login-customer #modalLoginCustomer></app-modal-login-customer>
+<!-- <app-modal-regis-customer #modalRegisCustomer></app-modal-regis-customer> -->
+<!-- <app-forgot-password #modalForgotPassword></app-forgot-password> -->

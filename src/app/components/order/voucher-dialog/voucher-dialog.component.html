@@ -1,0 +1,199 @@
+<div class="row m-0 px-3" [class.hide]="!show">
+  <div class="col-12 dialog-header pt-3 px-0">
+    <h2>Mã giảm giá</h2>
+  </div>
+  <div class="col-12 search-content">
+    <label class="col-12 col-md-12 col-lg-4 col-xl-2">Mã giảm giá</label>
+    <input
+      class="col-8 col-md-12 col-lg-4 col-xl-6"
+      type="text"
+      placeholder="Nhập mã Voucher tại đây"
+      [(ngModel)]="searchVoucherWithName"
+      (keyup)="searchVoucher(searchVoucherWithName)"
+    />
+    <button class="col-4 col-md-12 col-lg-4 col-xl-3" (click)="applyVoucherName(searchVoucherWithName)">
+      Sử dụng
+    </button>
+  </div>
+  <div class="col-12 p-0">
+    <div class="tab-wrapper-des">
+      <ul class="nav nav-tabs tab-des">
+        <li (click)="switchTab('smartgap')">
+          <a
+            id="tabsmartgap"
+            class="tab-items active"
+            data-toggle="tab"
+            href="#smartgapvoucher"
+            >Smartgap</a
+          >
+        </li>
+        <li (click)="switchTab('shop')">
+          <a
+            id="tabshop"
+            class="tab-items"
+            data-toggle="tab"
+            href="#shopvoucher"
+            >Shop</a
+          >
+        </li>
+      </ul>
+      <div class="tab-content tab-content-des p-0">
+        <div id="smartgapvoucher" class="tab-pane active">
+          <div class="row m-0 tab-content-container">
+            <ng-container
+              *ngIf="listSmartGapVoucher.length > 0; else noSmartGapVoucher"
+            >
+              <div
+                *ngFor="let item of listSmartGapVoucher"
+                class="col-12 col-md-12 col-lg-6 col-xl-6 tab-content-items"
+              >
+                <div class="info-img" (click)="selectItem(item, 2)">
+                  <img
+                  loading="lazy"
+                    *ngIf="item.type == 1"
+                    [src]="
+                      item.avatar && item.avatar?.path
+                        ? (item.avatar?.path | imageUrl)
+                        : 'assets/images/smart-gap.png'
+                    "
+                    alt=""
+                  />
+                  <img
+                  loading="lazy"
+                    *ngIf="item.type == 0"
+                    [src]="'assets/images/imgs/Group 351.png'"
+                    alt=""
+                  />
+                  <div *ngIf="item.quantity" class="tag_vocher">
+                    Số lượng có hạn
+                  </div>
+                </div>
+                <div
+                  class="main-info"
+                  (click)="selectItem(item, 2)"
+                  [ngClass]="{ active: item.selected }"
+                >
+                  <div class="action" (click)="dbClickItem(item, 2, $event)">
+                    Dùng ngay >
+                  </div>
+                  <div class="title">{{ item.name }}</div>
+                  <div class="d-flex">
+                    <span class="subtitle mr-2"
+                      >Đơn tối thiểu:
+                      {{ item.min_apply_value | numberFormat }}đ</span
+                    >
+                    <span *ngIf="item.maxium_reduction" class="subtitle"
+                      >Tối đa: {{ item.maxium_reduction | numberFormat }}đ</span
+                    >
+                  </div>
+                  <div class="date">
+                    {{ item.active_date | date : "dd-MM-yyyy hh:mm" }}
+                  </div>
+                  <div
+                    class="condition"
+                    (click)="showCondition(item, null, $event)"
+                    [class.disable-condition]="item.disable"
+                  >
+                    Điều kiện
+                  </div>
+                  <div
+                    class="condition-disable"
+                    (click)="showCondition(item, null, $event)"
+                    [hidden]="!item.disable"
+                  >
+                    Điều kiện
+                  </div>
+                </div>
+                <div class="disable" *ngIf="item.disable"></div>
+              </div>
+            </ng-container>
+            <ng-template #noSmartGapVoucher>
+              <div style="display: flex; justify-content: center; width: 100%">
+                <h3>Không có mã giảm giá</h3>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <div id="shopvoucher" class="tab-pane">
+          <div class="row m-0 tab-content-container">
+            <ng-container *ngIf="listShopVocher.length > 0; else noShopVoucher">
+              <div
+                *ngFor="let item of listShopVocher"
+                class="col-12 col-md-12 col-lg-6 col-xl-6 tab-content-items"
+              >
+                <div class="info-img" (click)="selectItem(item, 1)">
+                  <img
+                  loading="lazy"
+                    *ngIf="item.type == 1"
+                    style="object-fit: cover; border-radius: 50%"
+                    [src]="
+                      shopInfo?.avatar?.path
+                        ? (shopInfo?.avatar?.path | imageUrl)
+                        : 'assets/images/smart-gap.png'
+                    "
+                    alt=""
+                  />
+                  <img
+                  loading="lazy"
+                    *ngIf="item.type == 0"
+                    [src]="'assets/images/imgs/Group 351.png'"
+                    alt=""
+                  />
+                  <div class="shop-name">{{ shopInfo?.name }}</div>
+                  <div *ngIf="item.quantity" class="tag_vocher">
+                    Số lượng có hạn
+                  </div>
+                </div>
+                <div
+                  class="main-info"
+                  (click)="selectItem(item, 1)"
+                  [ngClass]="{ active: item.selected }"
+                >
+                  <div class="action" (dblclick)="dbClickItem(item, 1, $event)">
+                    Dùng ngay >
+                  </div>
+                  <div class="title">{{ item.name }}</div>
+                  <div class="d-flex">
+                    <span class="subtitle mr-2"
+                      >Đơn tối thiểu:
+                      {{ item.min_apply_value | numberFormat }}đ</span
+                    >
+                    <span class="subtitle" *ngIf="item.maxium_reduction"
+                      >Tối đa: {{ item.maxium_reduction | numberFormat }}đ</span
+                    >
+                  </div>
+                  <div class="date">
+                    {{ item.active_date | date : "dd-MM-yyyy hh:mm" }}
+                  </div>
+                  <div
+                    class="condition"
+                    (click)="showCondition(item, shopInfo, $event)"
+                  >
+                    Điều kiện
+                  </div>
+                  <div
+                    class="condition-disable"
+                    (click)="showCondition(item, shopInfo, $event)"
+                    [hidden]="!item.disable"
+                  >
+                    Điều kiện
+                  </div>
+                </div>
+                <div class="disable" *ngIf="item.disable"></div>
+              </div>
+            </ng-container>
+            <ng-template #noShopVoucher>
+              <div style="display: flex; justify-content: center; width: 100%">
+                <h3>Không có mã giảm giá</h3>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 dialog-button">
+    <button class="cancel-button" (click)="close()">Trở lại</button>
+    <button class="confirm-button" (click)="confirm()">Chọn</button>
+  </div>
+</div>

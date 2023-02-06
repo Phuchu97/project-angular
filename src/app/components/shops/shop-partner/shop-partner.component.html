@@ -1,0 +1,17 @@
+<div class="wrapper_main_page_production_diagram">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let item of this.productionDiagram">
+            <span style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">{{item.name}}</span>
+            <p style="padding-top: 0.4rem;"><span class="diagram-name">Địa chỉ: </span>{{item.address}}</p>
+            <p><span class="diagram-name">Người đại diện: </span>{{item.contact}}</p>
+            <p><span class="diagram-name">Điện thoại: </span>{{item.phonenumber}}</p>
+            <p><span class="diagram-name">Mã sơ đồ sản xuất: </span>{{item.schematic}}</p>
+            <p><span class="diagram-name">Diện tích: </span>{{item.acreage}}</p>
+            <!-- <p><span class="diagram-name">Sản lượng :</span> {{item.schematic}}</p> -->
+            <!-- <p><span class="diagram-name"></span>Mô tả: {{item.note}}</p> -->
+            <p *ngIf="item.files !=null && item.files !='' && item.files.length>0">
+                <img loading="lazy" src="{{imageUrlBase+item.files[0].path}}">
+            </p>
+        </div>
+    </div>
+</div>

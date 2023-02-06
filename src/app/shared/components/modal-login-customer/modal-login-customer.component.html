@@ -1,0 +1,60 @@
+<div bsModal #modalLoginCustomer="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg modal-regis-shop" role="document">
+        <div class="modal-content">
+            <button type="button" class="close reg-close" (click)="close()" aria-label="Close">
+          <span aria-hidden="true" >&times;</span>
+      </button>
+            <form *ngIf="is_login" id="form_login_customer" [formGroup]="loginForm">
+                <div class="col-md-7">
+
+                    <div class="modal-body">
+                        <!-- <div class="col-md-12 row-left">
+                            <i class="fa fa-angle-double-left "></i>
+                        </div> -->
+                        <div class="col-md-12">
+                            <div class="form-group regis-shop login-customer">
+                                <h5 class="title-regis-shop">Đăng nhập bằng email hoặc số điện thoại</h5>
+                                <p>Nhập email hoặc số điện thoại và mật khẩu tài khoản SmartGap</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group regis-shop">
+                                <input formControlName="username" name="username" id="username" type="text" placeholder="Email hoặc số điện thoại" class="form-control input-regis-shop" autofocus required />
+                            </div>
+                            <div class="form-group regis-shop">
+
+                                <input name="Password" formControlName="password" #pass autocomplete="on" id="Password" type="password" placeholder="Mật khẩu" class="form-control input-regis-shop" />
+                                <span (click)="showPass(pass)" [ngClass]="
+                                pass.type == 'password'
+                                    ? 'fa fa-fw fa-eye field-icon'
+                                    : 'fa fa-eye fa-eye-slash field-icon'
+                            "></span>
+                            </div>
+
+                            <div class="form-group regis-shop-button">
+                                <div *ngIf="isLoginFailed" class="w-100 help-block mt-1 text-danger">{{resMessageLogin}}</div>
+                                <button (click)="onSubmit()" class="form-control btn-smartgap">Đăng nhập</button>
+
+                            </div>
+                            <div class="form-group regis-shop">
+                                <p><a href="javascript:void(0)" (click)="showForgotPass()"> Quên mật khẩu?</a></p>
+                                <p>Chưa có tài khoản?<a href="javascript:void(0)" (click)="showRegis()">Tạo tài khoản</a> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 hidden-sx" style="background-image:url(./assets/images/reg-right.png);height:500px;border-bottom-right-radius: 4px;border-top-right-radius: 4px;float:right">
+                </div>
+            </form>
+            <!-- Quên mật khẩu -->
+            <div id="quenmatkhau" *ngIf="is_forgotpass">
+                <app-modal-forgot-pass (closeModal)="clickCloseModal()" #modalForgotPass></app-modal-forgot-pass>
+            </div>
+            <div id="dangky" *ngIf="is_regis">
+                <app-modal-regis-customer (closeModal)="clickCloseModal()"></app-modal-regis-customer>
+            </div>
+        </div>
+
+    </div>
+</div>

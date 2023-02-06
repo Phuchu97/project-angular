@@ -1,0 +1,30 @@
+<site-header></site-header>
+<main class="main_page">
+  <section class="page_taikhoan">
+    <div class="container">
+      <div class="wrapper_taikhoan">
+        <app-customer-menu-left class="menu-left"></app-customer-menu-left>
+        <div class="content_taikhoan">
+          <div class="wrapper_content_taikhoan">
+            <router-outlet></router-outlet>
+          </div>
+          <div class="plugin_support_page_tk">
+            <div>
+              <a href="#" class="plugin_support_page_tk_bg_gray"><img loading="lazy" src="./assets/images/customer/email.svg"></a>
+            </div>
+            <div>
+              <a href="#" class="plugin_support_page_tk_bg_gray"><img loading="lazy" src="./assets/images/customer/phone.svg"></a>
+            </div>
+            <div>
+              <a href="#" class="plugin_support_page_tk_bg_chat"><img loading="lazy" src="./assets/images/customer/chat.svg">
+                Chat</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+<!-- danh mục -->
+<app-menu-mobile></app-menu-mobile>

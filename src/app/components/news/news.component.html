@@ -1,0 +1,54 @@
+<section class="bread_crumb_page">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">SmartGap </a></li>
+                <!-- <li class="breadcrumb-item"><a href="#">Library</a></li> -->
+                <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- end -->
+<section class="main_page_product">
+    <div class="container">
+        <div class="wrapper_main_page_product">
+            <div class="bg_wrappe">
+                <div class="dropdown danhmuc_page row">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item dropdown">
+                            <a href="javascript:void(0)" id="menu" data-bs-toggle="dropdown"
+                                class="btn_danhmuc nav-link dropdown-toggle" data-bs-display="static"><i class="fa fa-bars"
+                                    aria-hidden="true"></i>
+                                <span> Loại tin tức</span></a>
+                            <ul class="dropdown-menu drop-menu-p">
+                                <li class="list-menu" *ngFor="let item of categoryProduct">
+                                    <!--  -->
+                                    <a data-bs-toggle="dropdown" class="dropdown-item"
+                                        (click)="navigateItem(item)">{{item.name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list_product_page_category p-3">
+                    <div class="form-group row">
+                        <div class="col-6 col-sm-6 col-md-2 col-xs-6 news_index" *ngFor="let item of news">
+                            <div class="card1">
+                                <div class="new_item" *ngFor="let file of item.files">
+                                    <img loading="lazy" class="card-img-top" src="{{file!=null?imageUrlBase+file.path: ''}}"
+                                        alt="{{item.name}}" >
+                                    <!-- src="{{file!=null?fileImageUrl.fileImageUrl+file .path: ''}}" -->
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="card-title" (click)="newsDetail(item.id)">{{item.name}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

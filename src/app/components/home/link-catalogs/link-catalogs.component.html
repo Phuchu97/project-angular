@@ -1,0 +1,40 @@
+<section class="sec_NCC">
+    <div style="background-color: #e5e5e5;">
+        <div class="container"  style="background-color: #f6fff1;border-radius: 5px;">
+            <swiper [config]="configSwiper">
+                <div class="swiper-wrapper">
+                    <ng-container *ngFor="let item of linkCatalogs; let i = index">
+                        <div class="item_category-catalog swiper-slide">
+                            <div class="logo_ncc mb-2">
+                                <a routerLink="product-standard/{{item.id}}">
+                                    <img *ngIf="item.order == 1" loading="lazy" style="max-width: 80px; height: auto;" src="../../../../assets/css/svgicon/order1-Organic.svg" alt="">
+                                    <img *ngIf="item.order == 2" loading="lazy" style="max-width: 80px; height: auto;" src="../../../../assets/css/svgicon/order2-smartmall.svg" alt="">
+                                    <img *ngIf="item.order == 3" loading="lazy" style="max-width: 80px; height: auto;" src="../../../../assets/css/svgicon/order3-globalgap.svg" alt="">
+                                    <img *ngIf="item.order == 4" loading="lazy" style="max-width: 80px; height: auto;" src="../../../../assets/css/svgicon/order4-vietgap.svg" alt="">
+                                    <img *ngIf="item.order == 5" loading="lazy" style="max-width: 80px; height: auto;" src="../../../../assets/css/svgicon/order5-haccp.svg" alt="">
+                                    <img *ngIf="item.order == 6" loading="lazy" style="max-width: 80px; height: auto;" src="../../../../assets/css/svgicon/order6-ocop.svg" alt="">
+                                    <img *ngIf="item.order == 7" loading="lazy" style="max-width: 80px; height: auto;" src="../../../../assets/css/svgicon/order7-truyxuat.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="name_ncc">
+                                <a routerLink="product-standard/{{item.id}}">{{item.name}}</a>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container>
+                        <div class="item_category-catalog swiper-slide">
+                            <div class="logo_ncc mb-2">
+                                <a routerLink="product-standard/{{1088}}">
+                                    <img loading="lazy" style="max-width: 80px; height: auto;" src="../../../../assets/css/svgicon/order8.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="name_ncc">
+                                <a routerLink="product-standard/{{1088}}">Flash sale</a>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </swiper>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,14 @@
+<div class="wrapper_main_page_production_diagram">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let item of shopMaterial">
+            <p class="diagram-name">{{item.name}}</p>
+            <p> <span class="diagram-name">Nơi cung cấp:</span>{{item.supplier}}</p>
+            <p> <span class="diagram-name">Người cung cấp:</span>{{item.supplier_user}}</p>
+            <p> <span class="diagram-name">Địa chỉ nơi cung cấp:</span>{{item.supplier_address}}</p>
+            <p> <span class="diagram-name">Mô tả:</span><span [innerHTML]="item.note"></span></p>
+            <p *ngIf="item.file !=null && item.file !=''">
+                <img loading="lazy" src="{{imageUrlBase+item.file.path}}">
+            </p>
+        </div>
+    </div>
+</div>

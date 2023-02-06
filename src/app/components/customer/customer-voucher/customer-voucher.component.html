@@ -1,0 +1,144 @@
+<div class="header_kho_vocher">
+    <div class="title_kho_vocher pl-4">
+        <h3>Ví Voucher</h3>
+    </div>
+    <!-- end -->
+    <div class="menu_header_vocher">
+        <ul>
+            <li><a href="javascript:void(0);" [routerLink]="'/' + routerConstants.voucher_shop">Tìm thêm Voucher</a></li>
+            <!-- <li><a href="#">Xem lịch sử Voucher</a></li>
+            <li><a href="#">Tìm hiểu thêm</a></li> -->
+        </ul>
+    </div>
+</div>
+<!-- end -->
+<div class="content_kho_vocher">
+    <div class="search_vocher">
+        <div class="title_search_vocher">
+            <h3>Mã Voucher</h3>
+        </div>
+        <div class="input_search_vocher">
+            <input type="text" name="" placeholder="Nhập mã Voucher tại đây">
+        </div>
+        <div class="btn_luu_vocher">
+            <button>Lưu</button>
+        </div>
+    </div>
+    <div class="wrapper_content_vocher">
+        <div class="tab-wrapper-vocher">
+            <ul class="nav nav-tabs tab-vocher">
+                <li>
+                    <a class="nav-link active" data-toggle="tab" href="#tab1">Tất cả</a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#tab2">Smartgap</a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#tab3">Shop</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active show tab-item-vocher" id="tab1">
+                    <!-- <div class="status_vocher">
+                        <ul>
+                            <li><a href="javascript:void(0)" class="active">Mới nhất</a></li>
+                            <li><a href="javascript:void(0)">Phổ biến</a></li>
+                            <li><a href="javascript:void(0)">Sắp hết hạn</a></li>
+                        </ul>
+                    </div> -->
+                    <div class="list_vocher">
+                        <div *ngFor="let voucher of allVoucher" class="box_vocher">
+                            <div class="left_box_vocher">
+                                <img loading="lazy" [src]="voucher.avatar?.path | imageUrl" alt="">
+                                <div *ngIf="voucher.limited" class="tag_vocher">
+                                    Số lượng có hạn
+                                </div>
+                            </div>
+                            <div class="right_box_vocher">
+                                <div class="dung_vocher">
+                                    <a href="#">Dùng ngay <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="content_right_box_vocher">
+                                    <h3>{{voucher.name}} từ {{voucher.min_apply_value | numberFormat}}k</h3>
+                                    <p class="max_vocher">Tối đa {{voucher.maxium_reduction | numberFormat}}k</p>
+                                    <p class="hieuluc_vocher">Có hiệu lực từ: {{voucher.active_date | date : 'dd-MM-yyyy hh:mm'}}</p>
+                                </div>
+                                <div class="dk_vocher">
+                                    <a href="#">Điều kiện</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane container fade" id="tab2">
+                    <!-- <div class="status_vocher">
+                        <ul>
+                            <li><a href="javascript:void(0)" class="active">Mới nhất</a></li>
+                            <li><a href="javascript:void(0)">Phổ biến</a></li>
+                            <li><a href="javascript:void(0)">Sắp hết hạn</a></li>
+                        </ul>
+                    </div> -->
+                    <div class="list_vocher">
+                        <div *ngFor="let voucher of listSmartVoucher" class="box_vocher">
+                            <div class="left_box_vocher">
+                                <img loading="lazy" [src]="voucher.avatar?.path | imageUrl" alt="">
+                                <div *ngIf="voucher.limited" class="tag_vocher">
+                                    Số lượng có hạn
+                                </div>
+                            </div>
+                            <div class="right_box_vocher">
+                                <div class="dung_vocher">
+                                    <a href="javascript:void(0)">Dùng ngay <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="content_right_box_vocher">
+                                    <h3>{{voucher.name}} từ {{voucher.min_apply_value | numberFormat}}k</h3>
+                                    <p class="max_vocher">Tối đa {{voucher.maxium_reduction | numberFormat}}k</p>
+                                    <p class="hieuluc_vocher">Có hiệu lực từ: {{voucher.active_date | date : 'dd-MM-yyyy hh:mm'}}</p>
+                                </div>
+                                <div class="dk_vocher">
+                                    <a href="javascript:void(0)">Điều kiện</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="tab3">
+                    <!-- <div class="status_vocher">
+                        <ul>
+                            <li><a href="#" class="active">Mới nhất</a></li>
+                            <li><a href="#">Phổ biến</a></li>
+                            <li><a href="#">Sắp hết hạn</a></li>
+                        </ul>
+                    </div> -->
+                    <div class="list_vocher">
+                        <div *ngFor="let voucher of listShopVoucher" class="box_vocher">
+                            <div class="left_box_vocher">
+                                <img loading="lazy" [src]="voucher.avatar?.path | imageUrl" alt="">
+                                <div *ngIf="voucher.limited" class="tag_vocher">
+                                    Số lượng có hạn
+                                </div>
+                            </div>
+                            <div class="right_box_vocher">
+                                <div class="dung_vocher">
+                                    <a href="#">Dùng ngay <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="content_right_box_vocher">
+                                    <h3>{{voucher.name}} từ {{voucher.min_apply_value | numberFormat}}k</h3>
+                                    <p class="max_vocher">Tối đa {{voucher.maxium_reduction | numberFormat}}k</p>
+                                    <p class="hieuluc_vocher">Có hiệu lực từ: {{voucher.active_date | date : 'dd-MM-yyyy hh:mm'}}</p>
+                                </div>
+                                <div class="dk_vocher">
+                                    <a href="#">Điều kiện</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="tab4">Nạp thẻ và dịch vụ</div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

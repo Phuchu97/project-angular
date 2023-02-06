@@ -1,0 +1,6 @@
+.evaluate-star {
+  cursor: pointer;
+}
+.active-vote i {
+  color: #6db746;
+}

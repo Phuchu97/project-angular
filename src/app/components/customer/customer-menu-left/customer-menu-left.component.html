@@ -1,0 +1,45 @@
+<div class="drop_nav_tk_mb">
+    <button class="btn_nav_tk_mb"><i class="fa fa-bars" aria-hidden="true"></i></button>
+</div>
+<div class="side_bar_toggle"></div>
+<div class="nav_taikhoan">
+    <ul class="list_menu_nav">
+        <li class="item_list_menu_nav">
+            <a href="javascript:void(0)" (click)="toggleMenuCustomerClick($event)"><img loading="lazy" src="../../../../assets/images/customer/info.svg">Tài khoản của tôi</a>
+            <ul class="menu_child_nav">
+                <li> <a href="javascript:void(0)" [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.info" [routerLinkActive]="'active'">Hồ sơ</a></li>
+                <!-- <li> <a href="javascript:void(0)" [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.bank" [routerLinkActive]="'active'">Ngân hàng</a></li> -->
+                <li> <a href="javascript:void(0)" [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.address" [routerLinkActive]="'active'">Địa chỉ</a></li>
+                <li> <a href="javascript:void(0)" [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.change_password" [routerLinkActive]="'active'">Đổi mật khẩu</a></li>
+            </ul>
+        </li>
+        <li class="item_list_menu_nav">
+            <a href="javascript:void(0)" [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.customer_order" [routerLinkActive]="'active'">
+                <img loading="lazy" src="../../../../assets/images/customer/notebook.svg">Đơn mua</a>
+        </li>
+        <!-- <li class="item_list_menu_nav">
+            <a [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.notify_update_smartgap" href="javascript:void(0)"><img loading="lazy" src="../../../../assets/images/customer/thongbao.svg">Thông báo</a>
+            <ul class="menu_child_nav">
+                <li> <a [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.notify_update_order" href="javascript:void(0)" [routerLinkActive]="'active'">Cập nhật đơn hàng</a></li>
+                <li> <a [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.notify_promotion" href="javascript:void(0)" [routerLinkActive]="'active'">Khuyến mại</a></li>
+                <li> <a href="javascript:void(0)" [routerLinkActive]="'active'">Cập nhật nạp Smart xu</a></li>
+                <li> <a href="javascript:void(0)" [routerLinkActive]="'active'">Hoạt động</a></li>
+                <li> <a href="javascript:void(0)" [routerLinkActive]="'active'">Cập nhật đánh giá</a></li>
+                <li> <a [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.notify_update_smartgap" href="javascript:void(0)" [routerLinkActive]="'active'">Cập nhật SmartGap</a></li>
+            </ul>
+        </li> -->
+        <!-- <li class="item_list_menu_nav">
+            <a href="javascript:void(0)" [routerLink]="'/' + routerConstants.voucher_shop" [routerLinkActive]="'active'"><img loading="lazy" src="../../../../assets/images/customer/voucher.svg" >Kho Voucher</a>
+        </li> -->
+        <!-- <li class="item_list_menu_nav">
+            <a href="javascript:void(0)"><img loading="lazy" src="../../../../assets/images/customer/smartxu.svg" alt="" [routerLinkActive]="'active'">Smart Xu</a>
+
+        </li> -->
+        <!-- <li class="item_list_menu_nav">
+            <a [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.favouries_product" [routerLinkActive]="'active'"><img loading="lazy" src="../../../../assets/images/customer/cart.svg" alt="">Sản phẩm yêu thích</a>
+        </li>
+        <li class="item_list_menu_nav">
+            <a [routerLink]="'/' + routerConstants.customer + '/' + routerConstants.favouries_shop" [routerLinkActive]="'active'"><img loading="lazy" src="../../../../assets/images/customer/favorite.svg" alt="">Shop yêu thích</a>
+        </li> -->
+    </ul>
+</div>

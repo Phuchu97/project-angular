@@ -1,0 +1,40 @@
+<div class="row m-0 px-3">
+  <div class="col-12 dialog-header pt-3 px-0">
+    <h2>PHƯƠNG THỨC VẬN CHUYỂN</h2>
+    <span>Các kênh vận chuyển liên kết với SmartGAP</span>
+  </div>
+  <div class="col-12 p-3 wrap-ship">
+    <div class="row m-0">
+      <div
+        *ngFor="let item of listShippingMethod"
+        class="col-12 content-items"
+        [ngClass]="{ active: item.selected }"
+        (click)="selectItem(item)"
+      >
+        <div class="main-info">
+          <div class="item-name">
+            {{ item.name }}
+            <span class="item-fee">{{ item.fee | numberFormat }} đ</span>
+          </div>
+          <div class="item-pickup-date">
+            Ngày nhận hàng dự kiến:
+            {{
+              item.estimated_delivery_date
+                ? (item.estimated_delivery_date | date : "dd/MM/yyyy-HH:mm")
+                : "(Ngày nhận hàng chưa xác định)"
+            }}
+          </div>
+          <div class="description">Cho phép thanh toán khi nhận hàng</div>
+          <div class="description">
+            (Nhanh tay vào “Smartgap Voucher” để săn mã Miễn Phí Vận Chuyển
+            nhé!)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 dialog-button">
+      <button class="cancel-button" (click)="close()">Trở lại</button>
+      <button class="confirm-button" (click)="confirm()">Chọn</button>
+    </div>
+  </div>
+</div>

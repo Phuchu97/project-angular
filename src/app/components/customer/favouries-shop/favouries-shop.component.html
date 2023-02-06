@@ -1,0 +1,18 @@
+<div class="row m-0">
+  <div *ngFor="let shop of listFollowShop" class="row col-6 m-0 mb-3">
+    <div class="row w-100 m-0 p-3 shop-content">
+      <div class="">
+        <img loading="lazy" class="shop-img" [src]="shop.url | imageUrl" alt="">
+      </div>
+      <div class="pl-3">
+        <div class="shop-name">{{shop.shop_name}}</div>
+        <div class="list-btn-shop">
+          <a href="javascript:void(0)" (click)="routeToShop(shop)">
+            <img loading="lazy" src="./assets/images/imgs/find_shop_1.png" alt=""> Xem Shop</a>
+          <a href="javascript:void(0)" (click)="unfollowShop(shop)">
+            <i class="mr-1 fal fa-check"></i>Bỏ theo dõi</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

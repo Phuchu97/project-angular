@@ -1,0 +1,28 @@
+
+ .nametitle{
+    text-align: center;
+ }
+ .text-span{
+    font-weight: 700;
+}
+.text-span-date{
+    font-weight: 600;
+}
+@media (max-width: 767px) {
+    .nametitle{
+       
+        font-size: 24px !important;
+    }
+    h1 {
+        text-align: center;
+        font-weight: 700;
+        font-size: 24px !important;
+    }
+    .text-p{
+
+        text-align: left;
+        font-size: 18PX;;
+    }
+    }
+    
+   

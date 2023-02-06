@@ -1,0 +1,22 @@
+.title-text
+{
+font-size: 24px;
+text-align:center !important;
+}
+.span-text{
+font-weight: 600!important;
+}
+.p-text{
+    text-align: left;
+    font-size: 18px;
+    text-transform:lowercase;
+    text-decoration: capitalize;
+}
+.strong-text{
+    font-size: 20px;
+}
+
+@media (max-width: 767px) {
+
+
+}

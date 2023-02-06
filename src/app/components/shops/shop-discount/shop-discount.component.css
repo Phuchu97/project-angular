@@ -1,0 +1,60 @@
+/* .left_box_vocher:before {
+    content: "";
+    width: 6px;
+    height: calc(100% - 5px);
+    position: absolute;
+    top: 1.5px;
+    background-image: radial-gradient(#fff 2px, transparent 0);
+    background-size: 6px 6px;
+    background-position-x: -6px;
+    left: -3px;
+} */
+
+.left_box_vocher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.shop-name {
+  font-size: 10px;
+  width: 90%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.left_box_vocher img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.row-discount {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.voucher-shop {
+  background-image: url(../../../../assets/images/smart-gap.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.left_box_vocher {
+  background-color: #6db746 !important;
+}
+
+.voucher-text,
+.voucher-button {
+  padding-top: 10px;
+}
+
+.voucher-button {
+  align-items: center;
+  display: flex;
+}

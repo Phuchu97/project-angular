@@ -1,0 +1,36 @@
+<div class="top_header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-9 col-10">
+                <div class="left_top_header">
+                    <a href="javascript:" (click)="modalRequestShop.showPopup()" class="item_left_top_header">
+                        <img loading="lazy" src="./assets/images/imgs/dangki_truyxuat.png" alt="">
+                        <p> {{'Home.RegisShopTraceability' | translate }}</p>
+                    </a>
+                    <a href="{{urlWebShopAdmin}}" class="item_left_top_header">
+                        <img loading="lazy" src="./assets/images/imgs/Object.png" alt="">
+                        <p>Bán hàng cùng SmartGap</p>
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-3 col-2">
+                <div class="right_top_header">
+
+                    <!-- <button class="btn_language" (click)="dropDownLanguage()"> <img loading="lazy" src="{{flagLanguage}}" alt="">  <i class="fa fa-angle-down" aria-hidden="true"></i></button> -->
+                    <div class="list_language" *ngIf="Toggle">
+                        <ul *ngFor="let item of languageList">
+                            <li>
+                                <a href="javascript:;" (click)="switchLang(item.code)" data-language="en" class="dropdown-item">
+                                    <img loading="lazy" src="{{item.note}}" alt="flag" class="langimg mr-2">
+                                    <span class="font-small-3">{{item.name}}</span></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal-request-shop #modalRequestShop></app-modal-request-shop>

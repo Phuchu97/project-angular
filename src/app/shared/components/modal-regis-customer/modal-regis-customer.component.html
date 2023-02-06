@@ -1,0 +1,130 @@
+<!-- <div bsModal #modalRegisCustomer="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg modal-regis-shop" role="document">
+        <div class="modal-content">
+            <button type="button" class="close reg-close" (click)="close()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+  </button> -->
+<form id="form_regis_customer" #RegisForm="ngForm" method="post" novalidate>
+    <div class="col-md-7">
+
+        <div class="modal-body">
+            <!-- <div class="col-md-12 row-left">
+                <i class="fa fa-angle-double-left "></i>
+            </div> -->
+            <div id="step1" *ngIf="clickStep1">
+                <div class="col-md-12">
+                    <div class="form-group regis-shop login-customer">
+                        <h5 class="title-regis-shop">Xin chào</h5>
+                        <p>Nhập email hoặc số điện thoại để đăng ký tài khoản</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group regis-shop">
+                        <input #CustomerEmailOrPhone="ngModel" [(ngModel)]="EmailOrPhone" name="CustomerEmailOrPhone" id="CustomerEmailOrPhone" type="text" placeholder="Email hoặc số điện thoại" required pattern="^([0-9]{10}$)|([A-Za-z0-9._%\+\-]+@[a-z0-9.\-]+\.[a-z]{2,3})$"
+                            class="form-control input-regis-shop" />
+                        <div *ngIf="messageExistUser" class="text-error">
+                            Tên đăng nhập đã tồn tại.
+                        </div>
+
+                        <div *ngIf="CustomerEmailOrPhone.invalid && (CustomerEmailOrPhone.dirty || CustomerEmailOrPhone.touched)" class="text-error">
+
+                            <div *ngIf="CustomerEmailOrPhone.errors?.['required']">
+                                Email hoặc số điện thoại không được trống !
+                            </div>
+                            <div *ngIf="CustomerEmailOrPhone.errors?.['pattern']">
+                                Phải nhập email hoặc số điện thoại
+                            </div>
+
+                        </div>
+                        <!-- <div  *ngIf="!!orrmessger" class="text-error">
+                        <div>
+                           {{orrmessger}}
+                        </div>
+                        </div> -->
+                        <div  *ngIf="messageError" class="text-error">
+                            <div>
+                                Số tài khoản đã tồn tại, vui lòng kiểm tra lại!!!
+                            </div>
+                            </div>
+                    </div>
+                    <div class="form-group regis-shop-button">
+                        <button type="button" (click)="nextStep2()" [disabled]="!RegisForm.form.valid" class="form-control btn-smartgap">Tiếp tục</button>
+                    </div>
+
+                    <p class="allow-dksd">
+                        Bằng việc tiếp tục, bạn đã chấp nhận điều khoản sử dụng
+                    </p>
+                </div>
+            </div>
+            <!-- step 2 -->
+            <div id="step2" *ngIf="clickStep2">
+                <div class="col-md-12">
+                    <div class="form-group regis-shop login-customer">
+                        <h5 class="title-regis-shop">Nhập mã xác minh</h5>
+                        <p>Nhập mã xác minh đã gửi về số điện thoại hoặc email đã đăng ký</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 reg-input">
+                    <div class="form-group regis-shop">
+                        <div id="otp" class="inputs d-flex flex-row justify-content-center">
+                            <ng-otp-input  *ngIf="showOtpComponent" #ngOtpInput [config]="otpInputConfig" (onInputChange)="onInputChange($event) "></ng-otp-input>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group regis-shop" *ngIf="messageError">
+                        <div class="msg text-error">
+                            Mã OTP chưa đúng !
+                        </div>
+                    </div>
+                    <div class="form-group regis-shop reg-btn">
+                        <button type="button" [disabled]="disableOtp" id="btn_nextStep2" (click)="nextStep3()" class="btn btn-primary btn-smartgap form-control"> Xác minh </button>
+                    </div>
+                    <div class="form-group regis-shop">
+                        <p><a href="javascript:" (click)="sendOtp()">Gửi lại mã</a></p>
+                        <p> Mã xác minh sẽ hết hiêu lực trong vòng: <span id="count_down"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 3 -->
+            <div id="step3" *ngIf="clickStep3">
+                <div class="col-md-12">
+                    <div class="form-group regis-shop login-customer">
+                        <h5 class="title-regis-shop">Thiết lập mật khẩu</h5>
+                        <p>Bước cuối! Thiết lập mật khẩu để hoàn tất đăng ký</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 reg-input">
+                    <div class="form-group regis-shop regis-pass">
+                        <input class="form-control input-regis-shop" autocomplete="on" required maxlength="16" minlength="8" type="password" #password="ngModel" #pass [(ngModel)]="inputPassword" name="password_field" id="password_field" placeholder="Mật khẩu" />
+                        <span (click)="showPass(pass)" [ngClass]="
+                                      pass.type == 'password'
+                                          ? 'fa fa-eye fa-eye-slash field-icon'
+                                          : 'fa fa-fw fa-eye field-icon'
+                                  "></span>
+                        <p>8-16 ký tự</p>
+                        <!-- <p class="title-warning">Chỉ các chữ cái,số và ký tự phổ biến mới có thể được sử dụng.</p> -->
+                    </div>
+                </div>
+                <!-- <div class="form-group regis-shop" *ngIf="messageError">
+                                <div class="msg text-error">
+                                    <span *ngIf="password.errors?.['pattern']"></span>
+                                </div>
+                            </div> -->
+                <div class="form-group regis-shop reg-btn">
+                    <button type="button" [disabled]="!RegisForm.form.valid" id="btn_nextStep2" (click)="createCustomer()" class="btn btn-primary btn-smartgap form-control"> Đăng ký </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 hidden-sx" style="background-image:url(./assets/images/reg-right.png);height:500px;border-bottom-right-radius: 4px;border-top-right-radius: 4px;float:right">
+    </div>
+</form>
+<!-- </div>
+
+    </div>
+</div> -->
+<!-- <app-modal-login-customer #modalLoginCustomer></app-modal-login-customer> -->

@@ -1,0 +1,49 @@
+<div class="row m-0 start_list_product">
+  <ul class="w-100 d-flex m-0 p-2">
+    <li *ngFor="let item of listFollowProduct" class="col-3 m-0 p-2">
+      <div class="box_product w-100 h-100 m-0 p-0">
+        <div class="img_box_product">
+          <a (click)="routeToProduct(item)"> <img loading="lazy" src="{{item.url | imageUrl}}" alt=""></a>
+          <div class="logo_global" *ngIf="item.liststandard.length>0">
+            <img loading="lazy" *ngIf="item.liststandard[0].path !=null && item.liststandard[0].path != ''"
+                 [src]="item.liststandard[0].path | imageUrl" alt="">
+          </div>
+        </div>
+        <div class="content_box_product">
+          <div class="wrapper_content_box_product">
+            <div class="top_content_box_product">
+              <div class="logo_c_b_p_f_s">
+                <ng-container *ngFor="let st of item.liststandard; let i =index">
+                  <img loading="lazy" *ngIf="i>0 && st.path!=null && st.path!=''" [src]="st | imageUrl" alt="">
+                </ng-container>
+              </div>
+
+            </div>
+            <!-- end -->
+            <div class="name_product w-100">
+              <a (click)="routeToProduct(item)" title="{{item.product_name}}">{{item.product_name}}</a>
+            </div>
+            <div class="price_product">
+              <ng-container
+              *ngIf="item.from_price !== item.to_price; else showFromPrice"
+            >
+              <span class="pp_price_new"
+                >{{ item.from_price | numberFormat }}đ -
+                {{ item.to_price | numberFormat }}đ</span
+              >
+            </ng-container>
+            <ng-template #showFromPrice>
+              <span class="pp_price_new"
+                >{{ item.from_price | numberFormat }}đ</span
+              >
+            </ng-template>
+            </div>
+            <div class="like_pro_details float-right">
+              <a href="javascript:void(0)" (click)="unfollowProduct(item)"><i class="fa fa-heart" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

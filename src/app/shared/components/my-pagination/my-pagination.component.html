@@ -1,0 +1,6 @@
+<div class="pagination my-paging">
+  <pagination (numPages)="numPages = $event" [firstText]="paginationConstants.firstText" [previousText]="paginationConstants.previousText"
+              [nextText]="paginationConstants.nextText" [lastText]="paginationConstants.lastText"
+              [boundaryLinks]="true" [itemsPerPage]=" itemsPerPage ||paginationConstants.itemsPerPage" [totalItems]="totalItems"
+              [maxSize]="maxSize || paginationConstants.maxSize" (pageChanged)="change($event)" class="pull-right"></pagination>
+</div>

@@ -1,0 +1,65 @@
+.tab-des {
+  height: 5rem;
+  li {
+    width: calc(100% / 3);
+    background: #FFFFFF;
+    padding: 0.5rem;
+
+    .tab-items {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      border: 1px solid #999999;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      color: #5A6B6A;
+      padding: 0.5rem;
+
+      &.active {
+        border: 1px solid #6DB746;
+        color: #6DB746;
+      }
+
+      .payment-icon {
+        margin-right: 0.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}
+
+.tab-content-des {
+  padding: 3rem 0 0 0;
+  min-height: 15rem;
+  background: #FFFFFF;
+}
+
+.dialog-button {
+  margin: 1rem 0 1rem 0;
+  display: flex;
+  justify-content: end;
+  padding: 0;
+
+  button {
+    margin-left: 1rem;
+    padding: 0.4rem 2rem 0.4rem 2rem;
+    border: none;
+    &.cancel-button {
+      background: #EAEAEA;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #5A6B6A;
+    }
+    &.confirm-button {
+      background: #6DB746;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #FFFFFF;
+    }
+  }
+}
+
+

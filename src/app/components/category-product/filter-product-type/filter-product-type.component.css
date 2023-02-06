@@ -1,0 +1,4 @@
+.list-province {
+  max-height: 25rem;
+  overflow-x: auto;
+}

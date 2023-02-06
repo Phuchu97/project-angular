@@ -1,0 +1,8 @@
+<div class="row map-container">
+  <div *ngFor="let address of listAddress" class="col-12 pb-4">
+<!--    <app-map-view [isShowButton]="false" [addressInfo]="address"></app-map-view>-->
+    <span><strong>Địa chỉ: </strong>{{address.address}}</span>
+
+    <div class="mapview" [id]="address.id"></div>
+  </div>
+</div>

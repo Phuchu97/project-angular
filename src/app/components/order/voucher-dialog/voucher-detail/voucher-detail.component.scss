@@ -1,0 +1,227 @@
+.wrap-voucher{
+  padding: 50px 20px;
+  position: relative;
+  background: linear-gradient( #6DB746 20%, #FFFFFF 40%);
+
+  .getBack{
+    color:#f5fcf1;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left:10px;
+    z-index: 1;
+  }
+
+  .header{
+
+  }
+
+  .body{
+    margin-top: 10px;
+
+    .wrap-info{
+      margin: 10px 0;
+    }
+
+    .col-12{
+      padding: 0 !important;
+    }
+  }
+
+  .tab-content-container {
+    background: #FFFFFF;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      font-size: 0.9rem;
+      color: #6DB746;
+      cursor: pointer;
+    }
+  }
+
+  .search-content {
+    background: #F7F7F7;
+    padding: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    label {
+      margin: 0;
+      margin-right: 1rem;
+      font-size: 1rem;
+      color: #5A6B6A;
+    }
+    input {
+      width: 50%;
+      border: solid 1px #ddd;
+      padding: 0.7rem;
+      border-radius: 2px;
+      margin-right: 1rem;
+    }
+
+    button {
+      border: none;
+      background: #E5FFD7;
+      border-radius: 6px;
+      font-size: 1rem;
+      line-height: 29px;
+      color: #6DB746;
+      padding: 0.7rem 1rem 0.7rem 1rem;
+      font-weight: 600;
+    }
+  }
+
+  .info-img {
+    background-color: #6DB746;
+    width: 7rem;
+    height: 7rem;
+    min-width: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 60%;
+      height: 60%;
+      margin: 0;
+      max-width: unset;
+    }
+    .tag_vocher {
+      left: 0.5rem;
+      top: 1rem;
+      width: 7.5rem;
+      padding: 0 0 0 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .visibility{
+    visibility: hidden;
+  }
+
+  .tab-content-items {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    position: relative;
+
+    .disable{
+      position: absolute;
+      z-index: 1;
+      top:20px;
+      right:20px;
+      opacity: 0.7;
+      background-color: rgba(255, 255, 255, 0.575);
+      cursor: default;
+    }
+
+    .main-info {
+      padding-left: 0.5rem;
+      background: #FFFFFF;
+      border: 1px solid #CBCBCB;
+      border-radius: 0 2px 2px 0;
+      width: calc(100% - 7rem);
+
+      &.active {
+        background: #e8f9de;
+      }
+
+      div {
+        width: 100%;
+        padding: 0.2rem;
+      }
+
+      .action {
+        text-align: end;
+        font-weight: 400;
+        font-size: 0.7rem;
+        color: #6DB746;
+
+        &.disable{
+          color: #6eb746b0;
+        }
+      }
+
+      .title {
+        font-size: 1rem;
+        color: #5A6B6A;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .subtitle {
+        width: max-content;
+        background: #C7FFA9;
+        border: 1px solid #C7FFA9;
+        border-radius: 3px;
+        font-size: 0.5rem;
+        color: #6DB746;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .condition {
+        text-align: end;
+        font-weight: 400;
+        font-size: 0.6rem;
+        color: #6DB746;
+        visibility: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .date {
+        font-size: 0.6rem;
+      }
+    }
+  }
+
+  .tab-des {
+    li {
+      .tab-items {
+        color: #5A6B6A;
+        &.active {
+          color: #6DB746;
+        }
+      }
+    }
+  }
+
+  .dialog-button {
+    margin: 1rem 0 1rem 0;
+    display: flex;
+    justify-content: end;
+
+    button {
+      padding: 1rem 4rem;
+      border: none;
+      &.cancel-button {
+        background: #EAEAEA;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: #5A6B6A;
+      }
+      &.confirm-button {
+        width: 100%;
+        background: #6DB746;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: #FFFFFF;
+      }
+    }
+  }
+
+}

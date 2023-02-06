@@ -1,0 +1,64 @@
+<div class="header_content_taikhoan" xmlns="http://www.w3.org/1999/html">
+  <h2 class="address_title">Địa chỉ</h2>
+  <button class="add-button" (click)="addOrEditAdress()">
+    <i class="fas fa-plus mr-2"></i>Thêm mới địa chỉ
+  </button>
+</div>
+<div class="content_my_address">
+  <div
+    *ngFor="let item of listAddress"
+    class="my-address row"
+    [ngClass]="{ selected: item.selected }"
+  >
+    <div class="col-1">
+      <img loading="lazy" src="./assets/images/imgs/address.png" alt="" />
+    </div>
+    <div class="col-8">
+      <div class="row_form_my_profile row_my_address">
+        <label class="col-3">Họ & Tên</label>
+        <span class="col-9">{{ item.receiver }}</span>
+      </div>
+      <div class="row_form_my_profile row_my_address">
+        <label class="col-3">Địa chỉ</label>
+        <div class="col-9">
+          <span
+            >{{ item.address }}, <span> </span>{{ item.ward_name }}, <span> </span
+            >{{ item.district_name }}, <span> </span
+            >{{ item.province_name }}</span
+          >
+        </div>
+      </div>
+      <div class="row_form_my_profile row_my_address">
+        <label class="col-3">Số điện thoại</label>
+        <span class="col-9">{{ item.phone }}</span>
+      </div>
+    </div>
+    <div class="col-3 address-action-group d-flex">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <span class="address-action pr-3"
+            ><a href="javascript:void(0)" (click)="addOrEditAdress(item)"
+              >Sửa</a
+            ></span
+          >
+          <span class="address-action"
+            ><a href="javascript:void(0)" (click)="deleteAddress(item)"
+              >Xóa</a
+            ></span
+          >
+        </div>
+        <div class="col-12 d-flex justify-content-around" style="padding: 0 !important">
+          <button
+            [disabled]="item.is_default"
+            (click)="setDefaultAddress(item)"
+          >
+            Chọn địa chỉ nhận hàng
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button *ngIf="enablaSelect" class="close-button" (click)="close()">
+  <i class="fas fa-close"></i>
+</button>

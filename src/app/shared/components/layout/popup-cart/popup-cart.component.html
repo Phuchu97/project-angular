@@ -1,0 +1,52 @@
+<div class="popover__content" *ngIf="clickHideCart">
+  <div
+    style="
+      padding: 24px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
+    "
+  >
+    <ng-template #name [ngIf]="isShowCart">
+      <p style="font-size: 16px">Sản phẩm trong giỏ hàng</p>
+      <div
+        style="
+          max-height: 450px;
+          -webkit-overflow-scrolling: touch;
+          overflow: auto;
+        "
+      >
+        <ng-container *ngFor="let item of productCart">
+          <div class="row m-0 py-1">
+            <div class="img-product-box col-2">
+              <img
+              loading="lazy"
+                class="img-product"
+                src="{{ item.product_avatar | imageUrl }}"
+              />
+            </div>
+            <div class="col-5 product-name">
+              {{ item.product_name }}
+              <div class="small-text">
+                Loại: {{ item.product_quantification_name }}
+              </div>
+            </div>
+            <div class="col-2">x{{ item.quantity }}</div>
+            <div class="col-3 product-price-cart">
+              {{ item.price != 0 ? (item.price | numberFormat) + "đ" : "Giá chưa xác định" }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="row m-0">
+        <div class="col-12 text-right">
+          <button class="btn btn-smartgap" (click)="navigateToCart()">
+            Xem giỏ hàng
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #name [ngIf]="!isShowCart">
+      Chưa có sản phẩm nào trong giỏ
+    </ng-template>
+  </div>
+</div>

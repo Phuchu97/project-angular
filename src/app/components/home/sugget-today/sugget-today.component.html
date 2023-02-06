@@ -1,0 +1,104 @@
+<section class="sec_product">
+  <div style="background-color: #e5e5e5;">
+    <div class="container" style="background-color: #f6fff1;border-radius: 5px;">
+      <div class="title_sec_product">
+        <h3 class="home-title-css">{{ "Home.SuggetToday" | translate }}</h3>
+      </div>
+      <div class="list_product_home">
+        <div class="search-results" infiniteScroll [infiniteScrollDistance]="infiniteScrollDistance" [infiniteScrollThrottle]="infiniteScrollThrottle" (scrolled)="onScroll()">
+          <ul>
+            <ng-container *ngFor="let item of productSuggetToday">
+              <li class="box_product">
+                <div class="box_product-special">
+                  <div class="box_product-special-content" *ngIf="item.listCategoryStandard[0]?.order === smallOrder">
+                    <span>Smart Mall</span>
+                  </div>
+                  <div class="box_product-special-content" *ngIf="item.listCategoryStandard[0]?.order === smallTruyxuat" style="background-color: #f1293c !important">
+                    <span>Truy xuất</span>
+                  </div>
+                </div>
+                <div class="img_box_product">
+                  <a (click)="navigateItem(item)">
+                    <img
+                      loading="lazy"
+                      src="{{
+                        item.file != null
+                          ? imageUrlBase + item.file?.path
+                          : './assets/images/noimage.png'
+                      }}"
+                      alt=""
+                    />
+                  </a>
+                </div>
+                <div class="content_box_product">
+                  <div class="wrapper_content_box_product">
+                    <div class="top_content_box_product">
+                      <div class="logo_c_b_p_f_s">
+                          <ng-container
+                            *ngFor="
+                              let st of item.listCategoryStandard;
+                              let i = index
+                            "
+                          >
+                            <img
+                              loading="lazy"
+                              *ngIf="i > 0 && st?.path != null && st?.path != ''"
+                              src="{{ imageUrlBase + st?.path }}"
+                              alt=""
+                            />
+                          </ng-container>
+                      </div>
+
+                    </div>
+                    <div class="name_product">
+                      <a (click)="navigateItem(item)" title="{{ item.name }}">{{
+                        item.name
+                      }}</a>
+                    </div>
+                    <div class="price_product">
+                      <ng-container
+                        *ngIf="
+                          item.from_price !== item.to_price;
+                          else showFromPrice
+                        "
+                      >
+                        <span class="pp_price_new"
+                          >{{ item.from_price | numberFormat }}đ -
+                          {{ item.to_price | numberFormat }}đ</span
+                        >
+                      </ng-container>
+                      <ng-template #showFromPrice>
+                        <span class="pp_price_new"
+                          >{{ item.from_price | numberFormat }}đ</span
+                        >
+                      </ng-template>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div *ngIf="item.is_lock_order==true" class="is_lock_order">NGỪNG KINH DOANH</div>
+
+                    <div class="star_and_location">
+                      <div class="star_product">
+                        <ngb-rating
+                          [max]="5"
+                          [rate]="item.ratio"
+                          [readonly]="true"
+                        ></ngb-rating>
+                      </div>
+
+                      <div
+                        class="location_product"
+                        *ngIf="item.listProvinceOfSales.length > 0"
+                      >
+                        {{ item.listProvinceOfSales[0].province_name }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+.name-product-area a {
+    display: -webkit-box !important;
+    margin-right: 0 !important;
+    color: inherit !important;
+}
+.is_lock_order{
+
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    float: right;
+    color:#f98c3b ;
+}

@@ -1,0 +1,45 @@
+<div class="swapper-discount">
+  <div class="row row-discount">
+    <div
+      class="col-md-4"
+      style="margin: 10px 0"
+      *ngFor="let item of listVoucherShop"
+    >
+      <div class="box-discount">
+        <div class="row">
+          <div class="col-md-4 left_box_vocher">
+            <img
+            loading="lazy"
+              [src]="
+                shopInfo.avatar && shopInfo.avatar.path
+                  ? (shopInfo.avatar.path | imageUrl)
+                  : 'assets/images/smart-gap.png'
+              "
+              alt=""
+            />
+            <p class="shop-name">{{shopInfo.name}}</p>
+          </div>
+          <div class="col-md-6 voucher-text">
+            <p>{{ item.name }}</p>
+
+            <p *ngIf="item.maxium_reduction">
+              Giảm giá tối đa {{ item.maxium_reduction | numberFormat }}đ
+            </p>
+            <p class="discount-hsd">
+              HSD:{{ item.end_date | date: "dd/MM/yyyy" }}
+            </p>
+          </div>
+          <div class="col-md-2 voucher-button">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm btn-smartgap"
+              (click)="addVocher(item)"
+            >
+              Lưu
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

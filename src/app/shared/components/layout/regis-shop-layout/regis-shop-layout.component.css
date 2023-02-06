@@ -1,0 +1,115 @@
+.top_header_regis_shop {
+    background-color: #fff;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.right_top_header_regis button {
+    background: none;
+    line-height: 38px;
+    border: none;
+    color: #000;
+    outline: none;
+    text-align: right;
+}
+
+.main-regis-shop {
+    background-color: #6DB746;
+    padding-bottom: 50px;
+}
+
+.form-regis {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.regis-title {
+    color: #fff;
+    font-size: 22px;
+}
+
+.regis-body {
+    background: #fff;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.regis-body h3 {
+    text-align: left;
+}
+
+.row-regis {
+    margin-top: 2rem !important;
+}
+
+h4.reg_or {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #999;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    color: #999;
+}
+
+h4.reg_or span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+.btn-primary-smartgap {
+    background-color: #6DB746;
+    border-color: #6DB746;
+    color: #fff;
+    font-weight: 700;
+    width: 100%;
+}
+
+.btn-primary-smartgap:hover {
+    color: #fff;
+}
+
+#otp input {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0 !important;
+    height: 20px !important;
+}
+
+#otp input:focus {
+    box-shadow: none !important;
+}
+
+#body_step i.fa-chevron-left {
+    color: #6DB746 !important;
+}
+
+#body_step .error,
+.text-error {
+    text-align: left !important;
+    color: #ff0000;
+    width: 100%;
+}
+
+#body_step p {
+    text-align: left !important;
+    padding-top: 1rem;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.title-warning {
+    padding-top: 0 !important;
+}
+
+.field-icon {
+    float: right;
+    margin-right: 10px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+}
+
+.regis-image img {
+    max-width: 320px;
+}

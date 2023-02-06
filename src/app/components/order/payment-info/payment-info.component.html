@@ -1,0 +1,41 @@
+<ng-container *ngIf="statusPayment">
+  <div class="wrap">
+    <div class="container">
+      <div class="row">
+         <div class="col-md-6 mx-auto mt-5">
+            <div class="payment">
+               <div class="payment_header success">
+                  <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+               </div>
+               <div class="content">
+                  <h1>Thanh toán thành công !</h1>
+                  <p>Cảm ơn quý khách đã đồng hành cùng smartgap, chúc qúy khách sức khỏe luôn dồi dào, hạnh phúc và đạt được nhiều thành công trong cuộc sống</p>
+                  <a href="/">Về trang chủ</a>
+               </div>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!statusPayment">
+  <div class="wrap">
+    <div class="container">
+      <div class="row">
+         <div class="col-md-6 mx-auto mt-5">
+            <div class="payment">
+               <div class="payment_header error">
+                  <div class="check"><i class="fa fa-bug" aria-hidden="true"></i></div>
+               </div>
+               <div class="content">
+                  <h1>Thanh toán thất bại !</h1>
+                  <p>Quý khách vui lòng kiểm tra lại kết nối mạng lại hoặc số dư tài khoản</p>
+                  <a href="/order">Về giỏ hàng</a>
+               </div>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

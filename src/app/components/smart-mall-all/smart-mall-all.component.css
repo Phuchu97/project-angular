@@ -1,0 +1,10 @@
+.is_lock_order{
+
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    float: right;
+    color:#f98c3b ;
+}

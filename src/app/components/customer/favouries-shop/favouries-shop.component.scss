@@ -1,0 +1,20 @@
+.shop-content {
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  align-items: center;
+
+  .shop-img {
+    max-width: 10rem;
+    max-height: 10rem;
+  }
+  .shop-name {
+    padding-bottom: 0.3rem;
+  }
+  .list-btn-shop {
+    display: block;
+    a {
+      padding: 0.3rem 0;
+      display: block;
+    }
+  }
+}

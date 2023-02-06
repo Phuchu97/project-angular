@@ -1,0 +1,156 @@
+﻿body {
+}
+.top_header {
+    background: #fff;
+    height: 60px;
+    line-height: 40px;
+}
+.main_home {
+    background-color: #6DB746;
+    height:500px;
+}
+.logo_page {
+    width: 13%;
+}
+.right_top_header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+}
+.right_top_header button {
+    background: none;
+    line-height: 38px;
+    border: none;
+    color: #999;
+    outline: none;
+}
+
+.list_language {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: #fff;
+    min-width: 150px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+    display: none;
+    z-index: 999;
+}
+    .list_language ul li a {
+        display: flex;
+        align-items: center;
+        padding: 0 5px;
+        line-height: 40px;
+    }
+.form-regis
+{
+    padding-top:50px;
+    text-align:center;
+}
+.regis-title
+{
+    color:#fff;
+    font-size:22px;
+}
+.regis-body
+{
+    background:#fff;
+    border-radius:4px;
+    padding:15px;
+}
+.regis-body h3{
+    text-align:left;
+}
+.row-regis {
+    margin-top: 2rem !important;
+}
+h4.reg_or {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #999;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    color: #999;
+}
+
+    h4.reg_or span {
+        background: #fff;
+        padding: 0 10px;
+    }
+.btn-primary-smartgap {
+    background-color: #6DB746;
+    border-color: #6DB746;
+    color:#fff;
+    font-weight:700;
+    width:100%;
+}
+    .btn-primary-smartgap:hover {
+        color: #fff;
+    }
+
+#otp input {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0 !important;
+    height:20px !important;
+}
+    #otp input:focus {
+        box-shadow:none !important;
+    }
+#body_step i.fa-chevron-left {
+    color: #6DB746 !important;
+}
+#body_step .error, .text-error {
+    text-align: left !important;
+    color: #ff0000;
+    width:100%;
+}
+#body_step p {
+    text-align: left !important;
+    padding-top: 1rem;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+.title-warning{
+    padding-top:0 !important;
+}
+.field-icon {
+    float: right;
+    margin-right: 10px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+}
+
+.famfamfam-flags.us {
+    width: 16px;
+    height: 11px;
+    background-position: -160px -188px;
+}
+
+.famfamfam-flags.vn {
+    width: 16px;
+    height: 11px;
+    background-position: -208px -55px;
+}
+.famfamfam-flags {
+    background: url('/dist/img/famfamfam-flags.png') no-repeat;
+    background-size: 224px 199px;
+    display: inline-block;
+}
+.list_language ul li{
+    list-style: none !important;
+}
+.list_language ul{
+    margin:0;
+    padding:0;
+}
+.modal a {
+    color: #6DB746
+}

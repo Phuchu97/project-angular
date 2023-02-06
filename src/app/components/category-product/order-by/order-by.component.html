@@ -1,0 +1,15 @@
+<div class="sortPagiBar">
+  <div class="sort-cate-left">
+    <h3>Sắp xếp theo:</h3>
+    <ul>
+      <li
+        *ngFor="let item of orderByOption"
+        class="btn-quick-sort default"
+        [ngClass]=" orderByOptionKey == item.key || item.status ? 'active' : ''"
+        (click)="selectedOrder(item)"
+      >
+        <a href="javascript:void(0)" title="Mặc định"><i></i>{{ item.name }}</a>
+      </li>
+    </ul>
+  </div>
+</div>

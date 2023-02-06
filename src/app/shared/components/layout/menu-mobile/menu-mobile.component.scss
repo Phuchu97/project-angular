@@ -1,0 +1,21 @@
+.open {
+  display: block !important;
+}
+
+.text-no-transform {
+  text-transform: none !important;
+}
+
+@media (min-width: 993px) {
+  .menu_toggle {
+    &.active {
+      display: none;
+    }
+  }
+
+  .mobile-main-menu {
+    &.active {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.r-area {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: solid 1px #ccc;
+}
+
+.title-area {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.name-area {
+    font-weight: 500;
+}

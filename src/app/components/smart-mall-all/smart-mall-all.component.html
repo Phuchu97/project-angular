@@ -1,0 +1,107 @@
+<app-category-slide></app-category-slide>
+<!-- <section class="bread_crumb_page">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">SmartGap </a></li>
+                <li class="breadcrumb-item active" aria-current="page">Rau củ quả</li>
+            </ol>
+        </nav>
+    </div>
+</section> -->
+<!-- end -->
+<section class="main_page_product">
+    <div class="container">
+        <div class="wrapper_main_page_product">
+            <div class="btn_drop_side_bar_mobie">
+                <button class="btn_side_bar"><i class="fas fa-filter"></i></button>
+            </div>
+            <div class="side_bar_toggle"></div>
+            <div class="left_mpd">
+                <!-- <div class="top_left_mpd">
+                    <h3>{{"CategoryProduct.FilterTitle" | translate}}</h3>
+                    <p>{{"CategoryProduct.FilterSubTitle" | translate}}</p>
+                </div> -->
+                <app-filter-category (listCategory)="selectedCategory($event)"></app-filter-category>
+                <app-filter-regions (listRegion)="selectedRegion($event)"></app-filter-regions>
+                <!-- end -->
+                <app-filter-product-type (listProductType)="selectedProductType($event)"></app-filter-product-type>
+                <!-- end -->
+                <app-filter-province (listProvince)="selectedProvince($event)"></app-filter-province>
+                <!-- end -->
+                <app-filter-tranform (listTransform)="selectedTranform($event)"></app-filter-tranform>
+                <!-- end -->
+                <app-filter-evaluate (evaluate)="selectedEvaluate($event)"></app-filter-evaluate>
+                <!-- end -->
+                <app-filter-price (price)="selectedPrice($event)"></app-filter-price>
+                <!-- end -->
+            </div>
+            <!-- end -->
+            <div class="right_mpd">
+                <app-order-by (orderBySelected)="selectedOrderBy($event)"></app-order-by>
+                <!-- end -->
+                <div class="list_product_page_category">
+                    <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+                        <ul>
+                            <li *ngFor="let item of listProduct" class="box_product">
+                                <div class="img_box_product">
+                                    <a (click)="navigateItem(item)">
+                                        <img loading="lazy" src="{{item.file | imageUrl}}" alt="">
+                                    </a>
+                                    <div class="logo_global" *ngIf="item.listCategoryStandard.length>0">
+                                        <img  loading="lazy" *ngIf="item.listCategoryStandard[0]?.path!=null &&item.listCategoryStandard[0]?.path!=''" src="{{imageUrlBase+item.listCategoryStandard[0]?.path}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="content_box_product">
+                                    <div class="wrapper_content_box_product">
+                                        <div class="top_content_box_product">
+                                            <div class="logo_c_b_p_f_s">
+                                                <ng-container *ngFor="let st of item.listCategoryStandard; let i =index">
+                                                    <img  loading="lazy" *ngIf="i>0 && st?.path!=null && st?.path!=''" src="{{imageUrlBase+st?.path}}" alt="">
+                                                </ng-container>
+                                            </div>
+
+                                        </div>
+                                        <!-- end -->
+                                        <div class="name_product">
+                                            <a (click)="navigateItem(item)" title="{{item.name}}">{{item.name}}</a>
+                                        </div>
+                                        <div class="price_product">
+                                          <ng-container
+                                          *ngIf="item.from_price !== item.to_price; else showFromPrice"
+                                        >
+                                          <span class="pp_price_new"
+                                            >{{ item.from_price | numberFormat }}đ -
+                                            {{ item.to_price | numberFormat }}đ</span
+                                          >
+                                        </ng-container>
+                                        <ng-template #showFromPrice>
+                                          <span class="pp_price_new"
+                                            >{{ item.from_price | numberFormat }}đ</span
+                                          >
+                                        </ng-template>
+                                        </div>
+                                        <div *ngIf="item.is_lock_order==true" class="is_lock_order">NGỪNG KINH DOANH</div>
+
+                                        <div class="star_and_location">
+                                            <div class="star_product">
+                                                <ngb-rating [max]="5" [rate]="item.ratio" [readonly]="true"></ngb-rating>
+                                            </div>
+                                            <div class="location_product" *ngIf="item.listProvinceOfSales.length>0">
+                                                {{item.listProvinceOfSales[0].province_name}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <app-my-pagination [totalItems]="totalItems" (pageChanged)="pageChanged($event)"></app-my-pagination> -->
+            </div>
+            <!-- end -->
+        </div>
+    </div>
+</section>

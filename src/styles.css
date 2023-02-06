@@ -1,0 +1,127 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./assets/css/bootstrap.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css";
+@import "./assets/css/animate.css";
+@import "./assets/css/fontawesome.css";
+/* @import './assets/css/font-awesome.min.css'; */
+
+@import "./assets/css/owl.carousel.css";
+@import "./assets/css/swiper.css";
+@import "./assets/css/style.css";
+@import "./assets/css/reponsive.css";
+@import "./assets/css/bs-datepicker.css";
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~@angular/cdk/overlay-prebuilt.css";
+.toast-title-message {
+  color: brown;
+}
+
+@media (max-width: 480px) {
+  .details_product_truyxuat .container {
+    padding: 0 !important;
+  }
+
+  .productCertificate ngx-gallery {
+    height: 405px !important;
+  }
+
+  .des_product_truyxuat .container {
+    padding: 0 !important;
+  }
+
+  .sec_product_shop .container {
+    padding: 0 !important;
+  }
+}
+
+.product-detail img {
+  border: none;
+  height: auto;
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.home-title-css {
+  font-size: 1.1rem !important;
+  color: #73b64a !important;
+}
+
+.swiper-container {
+  border-radius: 5px;
+}
+
+.logo_c_b_p_f_s {
+  min-height: 40px;
+  width: 70%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.nav-tabs .nav-link.active {
+  color: #6db746;
+  border-bottom: 2px solid #6db746;
+  margin-top: -1px;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.wrapper_main_page_production_diagram {
+  background-color: #fff;
+  padding: 40px 30px 20px 30px;
+}
+
+.top-search .swiper-slide {
+  width: 211.667px !important;
+}
+
+.shop-logo img {
+  width: 80px !important;
+  max-width: none !important;
+  height: 50px;
+  object-fit: contain;
+  border: 1px solid rgb(77, 130, 50);
+}
+
+.wrapper_main_page_production_diagram p {
+  padding-bottom: 8px;
+}
+
+.diagram-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.ng-select .ng-select-container:after {
+  border: none !important;
+}
+/* them moi dia chi khach hang */
+.ng-dropdown-panel {
+  margin-top: 22px !important;
+}
+.ng-value {
+  padding-left: 10px;
+  top: 5px;
+}
+/* .ng-value-container {
+    margin-top: 15px;
+} */
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+  left: 18px;
+  /* top: 9px; */
+  padding-left: 10px;
+  bottom: 10px;
+}
+.dropdown-item {
+  font-size: 12px;
+}
+i.fa.fa-caret-right.icon-truysuat {
+  display: none;
+}

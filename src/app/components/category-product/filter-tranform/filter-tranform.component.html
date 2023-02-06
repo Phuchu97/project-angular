@@ -1,0 +1,19 @@
+<div class="shop_one_page">
+    <h3>{{"CategoryProduct.Tranform" | translate}}</h3>
+    <ul class="listform_filter">
+        <li *ngFor="let item of listFilter">
+            <label>
+            <input type="checkbox" name="checkbox" (change)="onClick($event, item)">
+            <span></span>{{item.name}}
+        </label>
+        </li>
+        <!-- end -->
+<!--        <li>-->
+<!--            <label>-->
+<!--            <input type="checkbox" name="checkbox">-->
+<!--            <span></span>Hỏa tốc-->
+<!--        </label>-->
+<!--        </li>-->
+        <!-- end -->
+    </ul>
+</div>

@@ -1,0 +1,172 @@
+<section class="banner_sale pc-css" style="padding: 0;" *ngIf="!loading">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding: 0px">
+        <div class="slider slider_home">
+          <swiper [config]="config">
+            <div class="swiper-wrapper">
+              <ng-container *ngFor="let item of bannerCenterHome.files">
+                <div class="swiper-slide">
+                  <div class="item_slider_home">
+                    <div class="container" style="padding-left: 0; padding-right: 0">
+                      <a routerLink="{{ url }}" class="item">
+                        <div class="content_banner_sale">
+                        </div>
+                        <div loading="lazy" class="wrap-image" style="background-color: #e5e5e5 !important;">
+                          <img src="{{
+                              item.path != null ? imageUrlBase + item.path : ''
+                            }}" alt="{{item.name}}" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </swiper>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding: 0px;">
+        <div class="slider slider_home">
+          <swiper [config]="config2">
+            <div class="swiper-wrapper">
+              <ng-container *ngFor="let item of bannerCenterHome2">
+                <div class="swiper-slide">
+                  <div class="item_slider_home">
+                    <div class="container" style="padding: 0 !important">
+                      <a routerLink="{{ url2 }}">
+                        <div class="wrap-image" style="background-color: #e5e5e5 !important; display: flex; justify-content: center;">
+                          <img loading="lazy"  style="width: 90%" src="{{
+                              item.path != null ? imageUrlBase + item.path : ''
+                            }}" alt="{{item.name}}" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div *ngIf="bannerCenterHome2.length>1">
+              <div class="swiper-button-next">
+                <i class="fa fa-angle-right" style="font-size: 30px" aria-hidden="true"></i>
+              </div>
+              <div class="swiper-button-prev">
+                <i class="fa fa-angle-left" style="font-size: 30px" aria-hidden="true"></i>
+              </div>
+            </div>
+          </swiper>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding: 0px">
+        <div class="slider slider_home">
+          <swiper [config]="config3">
+            <div class="swiper-wrapper">
+              <ng-container *ngFor="let item of bannerCenterHome3">
+                <div class="swiper-slide">
+                  <div class="item_slider_home">
+                    <div class="container" style="padding: 0 !important">
+                      <a routerLink="{{ url3 }}">
+                        <div class="wrap-image" style="background-color: #e5e5e5 !important;">
+                          <img loading="lazy"  style="width: 100%" src="{{
+                            item.path != null ? imageUrlBase + item.path : ''
+                          }}" alt="" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </swiper>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="banner_sale tablet-css" *ngIf="!loading" style="padding: 0;">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-md-6" style="padding: 0px">
+        <div class="slider slider_home">
+          <swiper [config]="config">
+            <div class="swiper-wrapper">
+              <ng-container *ngFor="let item of bannerCenterHome.files">
+                <div class="swiper-slide">
+                  <div class="item_slider_home">
+                    <div class="container" style="padding-left: 0; padding-right: 0">
+                      <a routerLink="{{ url }}" class="item">
+                        <div class="content_banner_sale">
+                        </div>
+                        <div loading="lazy" class="wrap-image" style="background-color: #e5e5e5 !important; display: flex; justify-content: center;">
+                          <img style="width: 95%" src="{{
+                              item.path != null ? imageUrlBase + item.path : ''
+                            }}" alt="{{item.name}}" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </swiper>
+        </div>
+      </div>
+
+      <div class="col-md-6" style="padding: 0px">
+        <div class="slider slider_home">
+          <swiper [config]="config3">
+            <div class="swiper-wrapper">
+              <ng-container *ngFor="let item of bannerCenterHome3">
+                <div class="swiper-slide">
+                  <div class="item_slider_home">
+                    <div class="container" style="padding: 0 !important">
+                      <a routerLink="{{ url3 }}">
+                        <div class="wrap-image" style="background-color: #e5e5e5 !important; display: flex; justify-content: center;">
+                          <img style="width: 95%"  loading="lazy" src="{{
+                            item.path != null ? imageUrlBase + item.path : ''
+                          }}" alt="" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </swiper>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="banner_sale mobile-css" style="padding: 0;" *ngIf="!loading">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-sm-12 col-xs-12" style="padding: 0px">
+        <div class="slider slider_home">
+          <swiper [config]="config3">
+            <div class="swiper-wrapper">
+              <ng-container *ngFor="let item of bannerCenterHome3">
+                <div class="swiper-slide">
+                  <div class="item_slider_home">
+                    <div class="container" style="padding: 0 !important">
+                      <a routerLink="{{ url3 }}">
+                        <div class="wrap-image" style="background-color: #e5e5e5 !important;">
+                          <img loading="lazy"  style="width: 100%" src="{{
+                            item.path != null ? imageUrlBase + item.path : ''
+                          }}" alt="" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </swiper>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

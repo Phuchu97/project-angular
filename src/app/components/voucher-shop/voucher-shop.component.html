@@ -1,0 +1,121 @@
+<div class="container">
+    <section class="section-flash-sale shop-voucher">
+
+        <!-- <div class="flash-sale"> -->
+        <div class="title_flash_sale">
+            <h3><img loading="lazy" src="./assets/images/discount-voucher.png" alt=""> SHOP VOUCHER</h3>
+        </div>
+
+        <!-- </div> -->
+    </section>
+    <section class="banner-flash-sale">
+        <div>
+            <img loading="lazy" src="../assets/images/flashsale/banner-flash-sale.png">
+        </div>
+    </section>
+    <section class="flash-sale-processing">
+        <div class="tab-content tab-flashsale-content tab-voucher-content">
+            <div id="f1" class="tab-pane active">
+                <ul class="nav nav-tabs nav-flashsale-child">
+                    <li>
+                        <a class="active" data-toggle="tab" href="#v_moinhat">
+                      Shop
+                      </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#v_smartgap">
+                     Smartgap
+                      </a>
+                    </li>
+
+                </ul>
+                <div class="tab-content tab-flashsale-child-content ">
+                    <div id="v_moinhat" class="tab-pane active">
+                        <div class="list_product_page_category">
+                            <div class="col-md-4" *ngFor="let item of ListShopVoucher">
+
+                                <div class="box_vocher">
+                                    <div class="left_box_vocher_shop">
+                                        <div class="voucher-avatar">
+                                            <img loading="lazy" *ngIf="item.avatar!=null" src="{{imageUrlBase+item.avatar.path}}" alt="">
+                                        </div><br>
+                                        <div>{{item.shop_name}}</div>
+                                    </div>
+                                    <div class="right_box_vocher">
+                                        <div class="content_right_box_vocher">
+                                            <h3>{{item.name}}</h3>
+                                            <p class="max_vocher_shop">Giảm giá tối đa {{item.maxium_reduction | numberFormat}}đ</p>
+                                            <p class="hieuluc_vocher">Có hiệu lực từ:{{item.active_date|date:'dd/MM/yyyy hh:MM'}}-{{item.end_date|date:'dd/MM/yyyy hh:MM'}}</p>
+                                        </div>
+                                        <div class="row process-sold">
+                                            <div class="sold_product col-md-7">
+                                                <div [ngStyle]="{'width':progessSold(item.quantity,item.used_quantity)}" class="sold_product_green">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 used-voucher">
+                                                Đã dùng {{progessSold(item.quantity,item.used_quantity)}}
+                                            </div>
+                                        </div>
+
+
+                                        <div class="box_button_save">
+                                            <button (click)="addVoucher(item, true)">Lưu</button>
+                                        </div>
+                                        <div class="dk_vocher">
+                                            <a href="#">Điều kiện</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="v_smartgap" class="tab-pane">
+                        <div class="list_product_page_category">
+                            <div class="col-md-4" *ngFor="let item of ListSmartGapVoucher">
+
+                                <div class="box_vocher">
+                                    <div class="left_box_vocher_shop">
+                                        <div class="voucher-avatar">
+                                            <img loading="lazy" *ngIf="item.avatar!=null" src="{{imageUrlBase+item.avatar.path}}" alt="">
+                                            <!-- <img loading="lazy" src="../assets/images/smg-voucher.png"> -->
+                                        </div><br>
+                                        <!-- <div>Rau sạch Hà Nội</div> -->
+                                    </div>
+                                    <div class="right_box_vocher">
+                                        <div class="content_right_box_vocher">
+                                            <h3>{{item.name}}</h3>
+                                            <p *ngIf="item.maxium_reduction" class="max_vocher_shop">Giảm giá tối đa {{item.maxium_reduction | numberFormat}}đ</p>
+                                            <p class="hieuluc_vocher">Có hiệu lực từ:{{item.active_date|date:'dd/MM/yyyy hh:MM'}}-{{item.end_date|date:'dd/MM/yyyy hh:MM'}}</p>
+                                        </div>
+                                        <div class="row process-sold">
+                                            <div class="sold_product col-md-7">
+                                                <div [ngStyle]="{'width':progessSold(item.quantity,item.used_quantity)}" class="sold_product_green">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 used-voucher">
+                                                Đã dùng {{progessSold(item.quantity,item.used_quantity)}}
+                                            </div>
+                                        </div>
+
+
+                                        <div class="box_button_save">
+                                            <button (click)="addVoucher(item, false)">Lưu</button>
+                                        </div>
+                                        <div class="dk_vocher">
+                                            <a href="#">Điều kiện</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>

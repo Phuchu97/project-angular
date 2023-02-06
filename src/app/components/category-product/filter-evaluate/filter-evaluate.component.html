@@ -1,0 +1,50 @@
+<div class="shop_one_page">
+    <h3>{{"CategoryProduct.Evaluate" | translate}}</h3>
+    <ul class="listform_filter listform_vote">
+        <li class="evaluate-star" [ngClass]="{'active-vote' : currentVote === voteConstans.Five}" (click)="onClick(voteConstans.Five)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <span>{{"CategoryProduct.From5Star" | translate}}</span>
+        </li>
+        <!-- end -->
+        <li class="evaluate-star" [ngClass]="{'active-vote' : currentVote === voteConstans.Four}"  (click)="onClick(voteConstans.Four)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          <span>{{"CategoryProduct.From4Star" | translate}}</span>
+        </li>
+        <!-- end -->
+        <li class="evaluate-star" [ngClass]="{'active-vote' : currentVote === voteConstans.Three}"  (click)="onClick(voteConstans.Three)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          <span>{{"CategoryProduct.From3Star" | translate}}</span>
+        </li>
+        <!-- end -->
+      <li class="evaluate-star" [ngClass]="{'active-vote' : currentVote === voteConstans.Two}" (click)="onClick(voteConstans.Two)">
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <span>{{"CategoryProduct.From2Star" | translate}}</span>
+      </li>
+      <!-- end -->
+      <li class="evaluate-star" [ngClass]="{'active-vote' : currentVote === voteConstans.One}"  (click)="onClick(voteConstans.One)">
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <span>{{"CategoryProduct.From1Star" | translate}}</span>
+      </li>
+      <!-- end -->
+    </ul>
+</div>

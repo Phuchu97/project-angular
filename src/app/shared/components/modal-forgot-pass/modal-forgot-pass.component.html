@@ -1,0 +1,110 @@
+<form  id="form_forgot_customer" #RegisFormForgotPass="ngForm" method="post" novalidate>
+    <div class="col-md-7">
+
+        <div class="modal-body">
+            <!-- <div class="col-md-12 row-left">
+                <i class="fa fa-angle-double-left "></i>
+            </div> -->
+            <div id="step1_ForgotPass" *ngIf="clickStep1_ForgotPass">
+                <div class="col-md-12">
+                    <div class="form-group regis-shop login-customer">
+                        <h5 class="title-regis-shop">Quên mật khẩu</h5>
+                        <p>Nhập email hoặc số điện thoại đã đăng ký lấy lại mật khẩu</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group regis-shop">
+                        <input #CustomerEmailOrPhone_ForgotPass="ngModel" [(ngModel)]="EmailOrPhone_ForgotPass" name="CustomerEmailOrPhone" id="CustomerEmailOrPhone" type="text" placeholder="Email hoặc số điện thoại" required pattern="^([0-9]{10}$)|([A-Za-z0-9._%\+\-]+@[a-z0-9.\-]+\.[a-z]{2,3})$"
+                            class="form-control input-regis-shop" />
+                        <div *ngIf="messageExistUser_ForgotPass" class="text-error">
+                            Tên đăng nhập không tồn tại !. Kiểm tra lại số điện thoại hoặc email đã đăng ký với SmartGap.
+                        </div>
+
+                        <div *ngIf="CustomerEmailOrPhone_ForgotPass.invalid && (CustomerEmailOrPhone_ForgotPass.dirty || CustomerEmailOrPhone_ForgotPass.touched)" class="text-error">
+
+                            <div *ngIf="CustomerEmailOrPhone_ForgotPass.errors?.['required']">
+                                Email hoặc số điện thoại không được trống !
+                            </div>
+                            <div *ngIf="CustomerEmailOrPhone_ForgotPass.errors?.['pattern']">
+                                Phải nhập email hoặc số điện thoại
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group regis-shop-button">
+                        <button type="button" (click)="nextStep2_ForgotPass()" [disabled]="!RegisFormForgotPass.form.valid" class="form-control btn-smartgap">Tiếp tục</button>
+                    </div>
+
+                    <div class="form-group regis-shop">
+
+                        <p><a href="javascript:void(0)" (click)="showlogin()"><span style="color: black;">Quay lại màn</span>  Đăng Nhập</a></p>                     
+
+                    </div>
+                </div>
+            </div>
+            <!-- step 2 -->
+            <div id="step2_FogotPass" *ngIf="clickStep2_ForgotPass">
+                <div class="col-md-12">
+                    <div class="form-group regis-shop login-customer">
+                        <h5 class="title-regis-shop">Nhập mã xác minh</h5>
+                        <p>Nhập mã xác minh đã gửi về số điện thoại hoặc email.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 reg-input">
+                    <div class="form-group regis-shop">
+                        <div id="otp" class="inputs d-flex flex-row justify-content-center">
+                            <ng-otp-input [config]="otpInputConfig_ForgotPass" (onInputChange)="onInputChange_ForgotPass($event)"></ng-otp-input>
+                        </div>
+                    </div>
+                    <div class="form-group regis-shop" *ngIf="messageError_ForgotPass">
+                        <div class="msg text-error">
+                            Mã OTP chưa đúng !
+                        </div>
+                    </div>
+                    <div class="form-group regis-shop reg-btn">
+                        <button type="button" [disabled]="disableOtp_ForgotPass" id="btn_nextStep2" (click)="nextStep3_ForgotPass()" class="btn btn-primary btn-smartgap form-control"> Xác minh OTP </button>
+                    </div>
+                    <div class="form-group regis-shop">
+                        <p><a href="javascript:" (click)="sendOtp_ForgotPass()">Gửi lại mã OTP</a></p>
+                        <p> Mã xác minh sẽ hết hiệu lực trong vòng: <span id="count_down"></span></p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 3 -->
+            <div id="step3_FogotPass" *ngIf="clickStep3_ForgotPass">
+                <div class="col-md-12">
+                    <div class="form-group regis-shop login-customer">
+                        <h5 class="title-regis-shop">Thiết lập lại mật khẩu</h5>
+                        <p>Bước cuối! Thiết lập lại mật khẩu để hoàn tất </p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 reg-input">
+                    <div class="form-group regis-shop regis-pass">
+                        <input class="form-control input-regis-shop" autocomplete="on" required maxlength="16" minlength="8" type="password" #passwordForgotPass="ngModel" #pass_ForgotPass [(ngModel)]="inputPassword_ForgotPass" name="password_field" id="password_field" placeholder="Mật khẩu"
+                        />
+                        <span (click)="showPass(pass_ForgotPass)" [ngClass]="
+                    pass_ForgotPass.type == 'password'
+                          ? 'fa fa-eye fa-eye-slash field-icon'
+                          : 'fa fa-fw fa-eye field-icon'
+                  "></span>
+                        <p>8-16 ký tự</p>
+                        <!-- <p class="title-warning">Chỉ các chữ cái,số và ký tự phổ biến mới có thể được sử dụng.</p> -->
+                    </div>
+                </div>
+
+                <div class="form-group regis-shop reg-btn">
+                    <button type="button" [disabled]="!RegisFormForgotPass.form.valid" id="btn_nextStep2" (click)="forgotPassword()" class="btn btn-primary btn-smartgap form-control"> Đổi mật khẩu </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 hidden-sx" style="background-image:url(./assets/images/reg-right.png);height:500px;border-bottom-right-radius: 4px;border-top-right-radius: 4px;float:right">
+    </div>
+</form>
+
+<app-modal-login-customer #modalLoginCustomer></app-modal-login-customer>
+

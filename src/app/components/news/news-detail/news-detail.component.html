@@ -1,0 +1,24 @@
+<section class="bread_crumb_page">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">SmartGap </a></li>
+                <!-- <li class="breadcrumb-item"><a href="#">Library</a></li> -->
+                <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- end -->
+<section class="main_page_product">
+    <div class="container">
+        <div class="wrapper_main_page_product">
+            <div class="bg_wrappe p-3 pl-5 pr-5">
+                <h5 class="text-center">{{item.name}}</h5>
+                <div class="list_product_page_category p-3">
+                    <div class="panel-body" [innerHtml]='item.content'></div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

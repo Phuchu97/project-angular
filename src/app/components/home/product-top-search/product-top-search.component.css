@@ -1,0 +1,22 @@
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.is_lock_order {
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    float: right;
+    color: #f98c3b;
+}
+
+@media screen and (max-width: 426px) {
+    .title_top_search h4 {
+        font-size: 16px;
+        margin: 0;
+    }
+}

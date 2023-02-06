@@ -1,0 +1,28 @@
+{
+    "Home": {
+        "RegisShopTraceability": "Regis shop traceability",
+        "Category": "Category",
+        "SuggetToday": "SUGGET TODAY",
+        "TopSearch": "TOP SEARCH",
+        "SpecialArea": "SPECIAL AREA"
+    },
+    "CategoryProduct": {
+        "FilterTitle": "Bộ lọc danh mục sản phẩm",
+        "FilterSubTitle": "Giúp lọc nhanh sản phẩm bạn tìm kiếm",
+        "Region": "Đặc sản vùng miền",
+        "ProductType": "Loại sản phẩm",
+        "Province": "Nơi bán",
+        "ShowMore": "Xem thêm",
+        "Tranform": "Vận chuyển",
+        "Evaluate": "Đánh giá",
+        "From5Star": "từ 5 sao",
+        "From4Star": "từ 4 sao",
+        "From3Star": "từ 3 sao",
+        "From2Star": "từ 2 sao",
+        "From1Star": "từ 1 sao",
+        "Price": "Lọc theo giá",
+        "PriceFromPlaceholder": "Từ...đ",
+        "PriceToPlaceholder": "Đến...đ",
+        "Filter": "Lọc sản phẩm"
+    }
+}

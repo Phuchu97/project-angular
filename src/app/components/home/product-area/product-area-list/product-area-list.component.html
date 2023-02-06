@@ -1,0 +1,92 @@
+<div class="list_product_home">
+  <ul>
+    <ng-container *ngFor="let item of productAreaHome">
+
+      <li class="box_product list_product_home_item">
+        <div class="box_product-special">
+          <div class="box_product-special-content" *ngIf="item.listCategoryStandard[0]?.order === 2">
+            <!-- <span style="padding: 0.2rem;"><i class="fa-regular fa-star"></i></span> -->
+            <span>Smart Mall</span>
+          </div>
+          <div class="box_product-special-content" *ngIf="item.listCategoryStandard[0]?.order === 7" style="background-color: #f1293c !important">
+            <!-- <span style="padding: 0.2rem;"><i class="fa-regular fa-star"></i></span> -->
+            <span>Truy xuất</span>
+          </div>
+        </div>
+        <div class="img_box_product name-product-area">
+          <a (click)="navigateItem(item)">
+            <img
+              loading="lazy"
+              src="{{
+                item.file != null
+                  ? imageUrlBase + item.file?.path
+                  : './assets/images/noimage.png'
+              }}"
+              alt="{{item.name}}"
+            />
+          </a>
+          <!-- <div class="logo_global" *ngIf="item.listCategoryStandard.length > 0">
+            <img
+              loading="lazy"
+              *ngIf="
+                item.listCategoryStandard[0]?.path != null &&
+                item.listCategoryStandard[0]?.path != ''
+              "
+              src="{{ imageUrlBase + item.listCategoryStandard[0]?.path }}"
+              alt=""
+            />
+          </div> -->
+        </div>
+        <div class="content_box_product">
+          <div class="wrapper_content_box_product">
+            <div class="top_content_box_product">
+              <div class="logo_c_b_p_f_s">
+                <ng-container
+                  *ngFor="let st of item.listCategoryStandard; let i = index"
+                >
+                  <img
+                  loading="lazy"
+                    *ngIf="i > 0 && st?.path != null && st?.path != ''"
+                    src="{{ imageUrlBase + st?.path }}"
+                    alt="{{item.name}}"
+                  />
+                </ng-container>
+              </div>
+            </div>
+            <div class="name_product name-product-area">
+              <a (click)="navigateItem(item)" title="{{ item.name }}">{{
+                item.name
+              }}</a>
+            </div>
+            <div class="price_product">
+              <ng-container
+                *ngIf="item.from_price !== item.to_price; else showFromPrice">
+                <span class="pp_price_new">{{ item.from_price | numberFormat }}đ-{{ item.to_price | numberFormat }}đ</span>
+              </ng-container>
+              <ng-template #showFromPrice>
+                <span class="pp_price_new">{{ item.from_price | numberFormat }}đ</span>
+              </ng-template>
+            </div>
+            <div class="star_and_location">
+              <div class="star_product">
+                <ngb-rating
+                  [max]="5"
+                  [rate]="item.ratio"
+                  [readonly]="true"
+                ></ngb-rating>
+              </div>
+              <div *ngIf="item.is_lock_order==true" class="is_lock_order">NGỪNG KINH DOANH</div>
+              <div
+                class="location_product"
+                *ngIf="item.listProvinceOfSales.length > 0"
+              >
+                {{ item.listProvinceOfSales[0].province_name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+
+</div>

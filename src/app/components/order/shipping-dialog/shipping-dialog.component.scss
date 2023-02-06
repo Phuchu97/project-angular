@@ -1,0 +1,80 @@
+.dialog-header {
+  h2 {
+    padding: 1rem 0 1rem 0;
+  }
+  span {
+    padding-left: 1rem;
+  }
+}
+
+.content-items {
+  background: #F7F7F7;
+  margin-top: 0.5rem;
+  padding: 1rem;
+
+  &.active {
+    border-left: solid 4px #6DB746;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .main-info {
+    div {
+      padding: 0.1rem;
+    }
+    .item-name {
+      color: #5A6B6A;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+
+      .item-fee {
+        color: #6DB746;
+        text-transform: none;
+        margin-left: 2rem;
+      }
+    }
+  }
+}
+.dialog-button {
+  margin: 1rem 0 1rem 0;
+  display: flex;
+  justify-content: end;
+  padding: 0;
+
+  button {
+    margin-left: 1rem;
+    padding: 0.4rem 2rem 0.4rem 2rem;
+    border: none;
+    &.cancel-button {
+      background: #EAEAEA;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #5A6B6A;
+    }
+    &.confirm-button {
+      background: #6DB746;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #FFFFFF;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog-header {
+    h2 {
+      font-size: 1.2rem !important;
+    }
+    span {
+      padding-left: 0rem;
+    }
+  }
+
+  .wrap-ship {
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .item-name{
+    font-size: 1rem !important;
+  }
+}

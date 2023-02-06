@@ -1,0 +1,10 @@
+<div class="shop_one_page filter_price">
+    <h3>{{'CategoryProduct.Price' | translate}}</h3>
+    <div class="row_fìlter_input">
+        <input [(ngModel)]="priceFrom" type="text" name="" placeholder="{{'CategoryProduct.PriceFromPlaceholder' | translate}}">
+        <input [(ngModel)]="priceTo" type="text" name="" placeholder="{{'CategoryProduct.PriceToPlaceholder' | translate}}">
+    </div>
+    <div class="btn_filter_price">
+        <button (click)="onFilterClick()">{{'CategoryProduct.Filter' | translate}}</button>
+    </div>
+</div>

@@ -1,0 +1,210 @@
+<div class="wrapper_content_vocher">
+  <div class="tab-wrapper-vocher">
+    <ul class="nav nav-tabs tab-vocher">
+      <li>
+        <a class="nav-link active" data-toggle="tab" href="#tab1">Tất cả</a>
+      </li>
+      <li>
+        <a class="nav-link" data-toggle="tab" href="#tab2">Chờ duyệt</a>
+      </li>
+      <li>
+        <a class="nav-link" data-toggle="tab" href="#tab3">Đã duyệt</a>
+      </li>
+      <li>
+        <a class="nav-link" data-toggle="tab" href="#tab4">Đang giao hàng</a>
+      </li>
+      <li>
+        <a class="nav-link" data-toggle="tab" href="#tab5">Đã giao</a>
+      </li>
+      <li>
+        <a class="nav-link" data-toggle="tab" href="#tab6">Đơn hủy</a>
+      </li>
+      <li>
+        <a class="nav-link" data-toggle="tab" href="#tab7"
+          >Trả hàng/Hoàn tiền</a
+        >
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div
+        class="tab-pane fade active show tab-item-vocher container"
+        id="tab1"
+      >
+        <ng-container *ngTemplateOutlet="templateRef; context: templateDataAll">
+        </ng-container>
+      </div>
+      <div class="tab-pane container fade" id="tab2">
+        <ng-container
+          *ngTemplateOutlet="templateRef; context: templateDataChoDuyet"
+        >
+        </ng-container>
+      </div>
+      <div class="tab-pane container fade" id="tab3">
+        <ng-container
+          *ngTemplateOutlet="templateRef; context: templateDataDaDuyet"
+        >
+        </ng-container>
+      </div>
+      <div class="tab-pane container fade" id="tab4">
+        <ng-container
+          *ngTemplateOutlet="templateRef; context: templateDataDangGiaoHang"
+        >
+        </ng-container>
+      </div>
+      <div class="tab-pane container fade" id="tab5">
+        <ng-container
+          *ngTemplateOutlet="templateRef; context: templateDataDaGiao"
+        >
+        </ng-container>
+      </div>
+      <div class="tab-pane container fade" id="tab6">
+        <ng-container
+          *ngTemplateOutlet="templateRef; context: templateDataDonHuy"
+        >
+        </ng-container>
+      </div>
+      <div class="tab-pane container fade" id="tab7">
+        <ng-container
+          *ngTemplateOutlet="templateRef; context: templateDataTraHangHoanTien"
+        >
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <ng-template #templateRef let-orderList="data" let-status_id="status_id">
+    <div class="status_vocher">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend" (click)="search(status_id)" style="cursor: pointer">
+          <span class="input-group-text order-customer-search">
+            <i class="fa fa-search"></i
+          ></span>
+        </div>
+        <input
+          type="text"
+          class="form-control order-customer-search"
+          placeholder="Tìm kiếm theo tên Shop, ID đơn hàng hoặc Tên Sản Phẩm"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="keyword"
+          (keyup.enter)="search(status_id)"
+        />
+      </div>
+    </div>
+    <div *ngFor="let order of orderList" class="order-items">
+      <div class="row box-shop">
+        <div class="box-customer-order">
+          <div class="col-md-6">
+            <img loading="lazy" src="./assets/images/imgs/store.png" /> {{ order.shop_name }}
+
+            <span
+              class="box-shop-name-chat"
+              (click)="navigateToShop(order.shop_id)"
+            >
+              <a href="javascript:void(0);">
+                <img loading="lazy" src="./assets/images/imgs/store.png" /> Xem shop</a
+              >
+            </span>
+          </div>
+          <div class="col-md-6 text-right">
+            <img loading="lazy" src="./assets/images/imgs/fi_truck.png" />
+            {{ orderStatusName[order.status_id] }}
+            <img loading="lazy" src="./assets/images/imgs/question.png" />
+          </div>
+        </div>
+      </div>
+      <div
+        class="row box-shop cursor-pointer"
+        (click)="order.selectd = !order.selectd"
+      >
+        <div *ngFor="let product of order.details" class="box-customer-product">
+          <div class="col-md-8 order-customer-product">
+            <span class="cursor-pointer" (click)="navigateProduct(product)">
+              <img loading="lazy" [src]="product.product_img | imageUrl" />
+            </span>
+            <p
+              class="name-product cursor-pointer"
+              (click)="navigateProduct(product)"
+            >
+              {{ product.product_name }}
+            </p>
+            <p>x{{ product.quantity }}</p>
+            <p>Định lượng: {{ product.product_quantification_name }}</p>
+          </div>
+          <div class="col-md-4 text-right">
+            {{ product.quantity * product.price | numberFormat }} đ
+          </div>
+        </div>
+        <div *ngIf="order.selectd" class="col-12 py-3 order-detail">
+          <span><strong>Mã đơn hàng:</strong> {{ order.code }}</span>
+          <span
+            ><strong>Đơn vị vận chuyển:</strong>
+            {{ shippingCompany[order.shipping_company] }}</span
+          >
+          <span
+            ><strong>Thời gian giao hàng dự kiến:</strong>
+            {{
+              order.estimated_delivery_date
+                ? (order.estimated_delivery_date | date : "dd-MM-yyyy")
+                : "Chưa xác định"
+            }}</span
+          >
+          <span
+            ><strong>Phí giao hàng:</strong>
+            {{ order.shipping_cost | numberFormat }} đ</span
+          >
+          <span *ngIf="order.voucher_cost > 0"
+            ><strong>Giảm giá Voucher:</strong>
+            {{
+              order.voucher_cost + order.shop_voucher_cost | numberFormat
+            }}
+            đ</span
+          >
+          <span
+            ><strong>Thông tin nhận hàng:</strong> {{ order.recipient_name }} -
+            {{ order.recipient_phone }} - {{ order.recipient_adress }}</span
+          >
+          <span
+            ><strong>Thông tin thanh toán:</strong>
+            {{ paymentMothodName[order.payment_method_id] }} -
+            {{ paymentStatusName[order.payment_status_id] }}</span
+          >
+          <span><strong>Lời nhắn:</strong> {{ order.description }}</span>
+        </div>
+      </div>
+      <div class="row box-total">
+        <div class="col-md-12 text-right">
+          <span style="font-weight: 700">Tổng số tiền:</span>
+          <span class="total-price">
+            {{ order.total_amount | numberFormat }} đ
+          </span>
+        </div>
+        <div
+          class="col-md-12 d-flex justify-content-between align-items-center mt-3"
+        >
+          <div
+            class="right-content d-flex justify-content-end align-items-center order-button-group"
+          >
+            <button
+              class="btn-re-order"
+              *ngIf="
+                order.status_id === orderStatus.DaGiaoHang ||
+                order.status_id === orderStatus.DonHuy
+              "
+              (click)="reOrder(order)"
+            >
+              Mua lại
+            </button>
+            <button
+              class="btn-cancel-order"
+              *ngIf="order.status_id === orderStatus.ChuaXacNhan"
+              (click)="cancelOrder(order)"
+            >
+              Hủy đơn
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

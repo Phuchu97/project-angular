@@ -1,0 +1,139 @@
+<div class="wrap-voucher">
+  <div class="header">
+    <div id="smartgapvoucher" class="tab-pane active">
+      <div class="row m-0 tab-content-container">
+        <div class="col-12 tab-content-items">
+          <div class="info-img">
+            <img
+            style="border-radius: 50%"
+            loading="lazy"
+              *ngIf="dataObject[0].type != 0"
+              [src]="
+                dataObject[1]?.avatar && dataObject[1]?.avatar?.path
+                  ? (dataObject[1].avatar.path | imageUrl)
+                  : 'assets/images/smart-gap.png'
+              "
+              alt=""
+            />
+            <img
+            loading="lazy"
+              *ngIf="dataObject[0].type == 0"
+              [src]="'assets/images/imgs/Group 351.png'"
+              alt=""
+            />
+            <div *ngIf="dataObject[0].quantity" class="tag_vocher">
+              Số lượng có hạn
+            </div>
+          </div>
+          <div class="main-info">
+            <div
+              class="action"
+              [class.visibility]="dataObject[0].disable"
+              (click)="selectedVoucher(dataObject[0])"
+            >
+              Dùng ngay>
+            </div>
+            <span *ngIf="dataObject[0].disable" class="action disable">
+              Dùng ngay>
+            </span>
+            <div class="title">{{ dataObject[0].name }}</div>
+            <div class="d-flex">
+              <span class="subtitle mr-2"
+                >Đơn tối thiểu:
+                {{ dataObject[0].min_apply_value | numberFormat }}đ</span
+              >
+              <span class="subtitle"
+                >Giảm tối đa:
+                {{
+                  dataObject[0].maxium_reduction
+                    ? (dataObject[0].maxium_reduction | numberFormat) + " đ."
+                    : "Không giới hạn"
+                }}</span
+              >
+            </div>
+            <div class="date">
+              {{ dataObject[0].active_date | date: "dd-MM-yyyy hh:mm" }}
+            </div>
+            <div class="condition">Điều kiện</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="wrap-info">
+      <div class="wrap-info">
+        <b>Mã phiếu giảm giá:</b>
+        <p>{{ dataObject[0].code }}</p>
+      </div>
+      <b>Ưu đãi:</b>
+      <div>
+        <p>
+          Lượt sử dụng tối đa:
+          {{
+            dataObject[0].quantity
+              ? (dataObject[0].quantity | numberFormat) + " lần."
+              : "Không giới hạn."
+          }}
+        </p>
+        <p>
+          Giảm:
+          {{
+            dataObject[0].reduction_rate
+              ? dataObject[0].reduction_rate + " %."
+              : (dataObject[0].reduction_price | numberFormat) + " đ."
+          }}
+        </p>
+        <p>
+          Đơn Tối Thiểu: {{ dataObject[0].min_apply_value | numberFormat }} đ.
+        </p>
+        <p>
+          Giảm tối đa:
+          {{
+            dataObject[0].maxium_reduction
+              ? (dataObject[0].maxium_reduction | numberFormat) + " đ."
+              : "Không giới hạn"
+          }}
+        </p>
+      </div>
+    </div>
+    <div class="wrap-info">
+      <b>Thời gian có hiệu lực:</b>
+      <p>
+        {{ dataObject[0].active_date | date: "dd-MM-yyyy hh:mm a" }} ---
+        {{ dataObject[0].end_date | date: "dd-MM-yyyy hh:mm a" }}
+      </p>
+    </div>
+    <div class="wrap-info">
+      <b>Sản phẩm:</b>
+      <p>
+        <ng-container *ngIf="dataObject[0].type_category == 0">
+          Cho tất cả sản phẩm
+        </ng-container>
+        <ng-container *ngIf="dataObject[0].type_category == 1">
+         Áp dụng cho một số loại sản phẩm tham gia chương trình
+        </ng-container>
+        <ng-container *ngIf="dataObject[0].type_category == 2">
+          Áp dụng cho một số loại shop tham gia chương trình
+        </ng-container>
+        <ng-container *ngIf="dataObject[0].type_category == 3">
+          Áp dụng cho một số sản phẩm tham gia chương trình
+        </ng-container>
+      </p>
+    </div>
+    <div class="wrap-info">
+      <b>Thanh toán:</b>
+      <p>Tất cả hình thức thanh toán</p>
+    </div>
+    <div class="wrap-info">
+      <b>Đơn vị vận chuyển:</b>
+      <p>Tất cả các đơn vị vận chuyển</p>
+    </div>
+    <div
+      class="col-12 dialog-button"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <button class="confirm-button" (click)="close()">Quay lại</button>
+    </div>
+  </div>
+</div>

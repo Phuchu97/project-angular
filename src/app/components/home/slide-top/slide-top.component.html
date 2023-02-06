@@ -1,0 +1,69 @@
+<div class="wrap" style="background: none; padding-top: 15px;">
+  <div class="slide-wrap">
+    <div class="container">
+      <div class="row" style="background-color: #e5e5e5;">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 slide-top-left" style="padding: 0 2px">
+          <div class="slider slider_home">
+            <swiper [config]="config1" #usefulSwiper>
+              <div class="swiper-wrapper">
+                <ng-container *ngFor="let item of listBannerSlide">
+                  <div class="swiper-slide">
+                    <div class="item_slider_home">
+                      <div class="container" style="padding-left: 0; padding-right: 0">
+                        <a routerLink="{{ url }}" class="item">
+                          <div class="wrap-image">
+                            <img loading="lazy" src="{{
+                                item.path != null
+                                  ? imageUrlBase + item.path
+                                  : ''
+                              }}" alt="{{item.name}}" />
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+              <div class="swiper-pagination"></div>
+              <div *ngIf="listBannerSlide?.length>1">
+                <div class="swiper-button-next">
+                  <i class="fa fa-angle-right" style="font-size: 30px" aria-hidden="true"></i>
+                </div>
+
+                <div class="swiper-button-prev">
+                  <i class="fa fa-angle-left" style="font-size: 30px" aria-hidden="true"></i>
+                </div>
+              </div>
+            </swiper>
+          </div>
+        </div>
+        <div class="col-lg-3 slide-top-right" style="padding: 0 2px" [class.none]="mobileStatus">
+          <div class="slider slider_home">
+            <swiper [config]="config2">
+              <div class="swiper-wrapper">
+                <ng-container *ngFor="let item of listSlideTop2">
+                  <div class="swiper-slide">
+                    <div class="item_slider_home">
+                      <div class="container" style="padding: 0 !important">
+                        <a routerLink="{{ url2 }}">
+                          <div class="wrap-image">
+                            <img loading="lazy" src="{{
+                                item.path != null
+                                  ? imageUrlBase + item.path
+                                  : ''
+                              }}" alt="{{item.name}}" />
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+              <div class="swiper-pagination"></div>
+            </swiper>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

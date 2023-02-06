@@ -1,0 +1,134 @@
+<div class="container">
+    <section class="section-flash-sale shop-voucher">
+
+        <div class="flash-sale">
+            <div class="title_flash_sale">
+                <h3><img loading="lazy" src="./assets/images/imgs/icon_flash_sale.png" alt=""> Flash sale</h3>
+            </div>
+            <div class="time_set_flash_sale flash-time">
+                <div><i class="fa fa-clock-o" aria-hidden="true"></i> KẾT THÚC TRONG</div>
+                <div id="clockdiv">
+                    <div>
+                        <span class="days" id="days"></span>
+                    </div>
+                    <div>
+                        <span class="hours" id="hours"></span>
+                    </div>
+                    <div>
+                        <span class="mins" id="mins"></span>
+                    </div>
+                    <div>
+                        <span class="seconds" id="seconds"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="banner-flash-sale">
+        <div>
+            <img loading="lazy" src="../assets/images/flashsale/banner-flash-sale.png">
+        </div>
+    </section>
+    <section class="flash-sale-processing">
+        <ul class="nav nav-tabs nav-flashsale">
+            <li>
+                <a class="active" data-toggle="tab" href="#f1">
+                    <p>Đang diễn ra</p>
+                </a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#f2">
+                    <p>Sắp diễn ra</p>
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content tab-flashsale-content">
+            <div id="f1" class="tab-pane active">
+                <div class="list_product_page_category">
+                    <ul>
+                        <li *ngIf="productFlashSale==undefined">Chưa có sản phẩm nào đăng ký flashsale</li>
+                        <li class="box_product_flash_sale" *ngFor="let item of productFlashSale">
+                            <div class="img_box_product_flash_sale">
+                                <!-- <img loading="lazy" src="./assets/images/imgs/product_1.png" alt=""> -->
+                                <a (click)="navigateItem(item)">
+                                    <img loading="lazy" src="{{item.files!=null?imageUrlBase+item.files.path:'./assets/images/noimage.png'}}" alt="">
+                                </a>
+                                <div class="logo_global">
+                                    <img loading="lazy" src="./assets/images/imgs/global_gap.png" alt="">
+                                </div>
+                            </div>
+                            <div class="content_box_product_flash_sale">
+                                <div class="logo_c_b_p_f_s">
+                                    <img loading="lazy" src="./assets/images/imgs/icon_vietgap.png" alt="">
+                                    <img loading="lazy" src="./assets/images/imgs/icon_ocop.png" alt="">
+                                </div>
+                                <div class="name_product_sale">
+                                    <a href="#" title="{{item.product_name}}">{{item.product_name}}</a>
+                                </div>
+                                <div class="price_product_sale">
+                                    <span class="pps_price_old">{{item.base_price| numberFormat}}đ</span>
+                                    <span class="pps_price_new">{{PriceAffterDiscount(item.base_price,item.percent_discount)| numberFormat}}đ</span>
+                                </div>
+
+                                <div class="sold_product">
+                                    <div [ngStyle]="{'width':progessSold(item.sale_quantity,item.sold_quantity)}" class="sold_product_green"></div>
+                                </div>
+                                <div class="number_sold">
+                                    Đã bán {{item.sold_quantity}}
+                                </div>
+                            </div>
+                            <div class="tag_percent">
+                                <p>Deal hot</p>
+                                <h3>{{item.percent_discount}}%</h3>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="f2" class="tab-pane">
+                <div class="list_product_page_category">
+                    <ul>
+                        <li *ngIf="productFlashSaleFuture==undefined">Chưa có sản phẩm nào đăng ký flashsale</li>
+                        <li class="box_product_flash_sale" *ngFor="let item of productFlashSaleFuture">
+                            <div class="img_box_product_flash_sale">
+                                <!-- <img loading="lazy" src="./assets/images/imgs/product_1.png" alt=""> -->
+                                <a (click)="navigateItem(item)">
+                                    <img loading="lazy" src="{{item.files!=null?imageUrlBase+item.files.path:'./assets/images/noimage.png'}}" alt="">
+                                </a>
+                                <div class="logo_global">
+                                    <img loading="lazy" src="./assets/images/imgs/global_gap.png" alt="">
+                                </div>
+                            </div>
+                            <div class="content_box_product_flash_sale">
+                                <div class="logo_c_b_p_f_s">
+                                    <img loading="lazy" src="./assets/images/imgs/icon_vietgap.png" alt="">
+                                    <img loading="lazy" src="./assets/images/imgs/icon_ocop.png" alt="">
+                                </div>
+                                <div class="name_product_sale">
+                                    <a href="#" title="{{item.product_name}}">{{item.product_name}}</a>
+                                </div>
+                                <div class="price_product_sale">
+                                    <span class="pps_price_old">{{item.base_price| numberFormat}}đ</span>
+                                    <span class="pps_price_new">{{PriceAffterDiscount(item.base_price,item.percent_discount)| numberFormat}}đ</span>
+                                </div>
+
+                                <div class="sold_product">
+                                    <div [ngStyle]="{'width':progessSold(item.sale_quantity,item.sold_quantity)}" class="sold_product_green"></div>
+                                </div>
+                                <div class="number_sold">
+                                    Đã bán {{item.sold_quantity}}
+                                </div>
+                            </div>
+                            <div class="tag_percent">
+                                <p>Deal hot</p>
+                                <h3>{{item.percent_discount}}%</h3>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>

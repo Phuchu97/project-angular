@@ -1,0 +1,983 @@
+<section class="bread_crumb_page">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">SmartGap </a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+          {{ productInfo?.category_product_name }}
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="details_product details_product_truyxuat">
+  <div class="container">
+    <div class="wrapper_details_product">
+      <div class="row">
+        <div class="col-lg-4 col-md-12 col-12">
+          <div class="box_img_details_pro">
+            <!--                        <gallery gallerize="gallery-0" #galleryComponent [itemTemplate]="itemTemplate"></gallery>-->
+            <!-- <ngx-gallery *ngIf="galleryImages.length > 0" #ngxGalleryComponent [options]="galleryOptions" [images]="galleryImages " class="ngx-gallery"></ngx-gallery> -->
+            <div class="showElement_img_big">
+              <div style="height: 450px; width: 100%">
+                <lib-ngx-image-zoom *ngIf="currentImg" [thumbImage]="currentImg" [fullImage]="currentImg"
+                  [magnification]="1"></lib-ngx-image-zoom>
+              </div>
+              <div class="carousel-detail-product">
+                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+                  (afterChange)="afterChange($event)">
+                  <div ngxSlickItem *ngFor="let slide of galleryImages" class="slide" style="padding: 0px 0.5vw">
+                    <img loading="lazy" src="{{ slide.small }}" alt="" width="100%"
+                      style="max-height: 75px; object-fit: contain" />
+                  </div>
+                </ngx-slick-carousel>
+              </div>
+            </div>
+            <div class="showElement_img_slick">
+              <div style="height: 450px; width: 100%">
+                <div class="slider">
+                  <swiper [config]="config1" #swiperdetail (touchmove)="onTouchMove($event)">
+                    <div class="swiper-wrapper">
+                      <ng-container *ngFor="let item of galleryImages">
+                        <div class="swiper-slide">
+                          <div class="item_slider_home">
+                            <div class="container" style="padding-left: 0; padding-right: 0">
+                              <div class="wrap-image">
+                                <img loading="lazy" src="{{item.small}}"
+                                  style="height: 445px !important; width: 100% !important" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div *ngIf="galleryImages.length>1">
+                      <div class="swiper-button-next">
+                        <i class="fa fa-angle-right" style="font-size: 30px" aria-hidden="true"></i>
+                      </div>
+
+                      <div class="swiper-button-prev">
+                        <i class="fa fa-angle-left" style="font-size: 30px" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </swiper>
+                </div>
+              </div>
+              <div class="carousel-detail-product">
+                <!-- <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+                (afterChange)="afterChange($event)">
+                <div ngxSlickItem *ngFor="let slide of galleryImages" class="slide" style="padding: 0px 0.5vw">
+                  <img loading="lazy" src="{{ slide.small }}" alt="" width="100%"
+                    style="max-height: 75px; object-fit: contain" />
+                </div>
+              </ngx-slick-carousel> -->
+              </div>
+            </div>
+
+            <div *ngIf="productStandard[0] && productStandard[0]?.path" class="tieuchuan_sanpham">
+              <div class="logo_tieuchuan">
+                <img loading="lazy" [src]="productStandard[0] | imageUrl" alt="" />
+              </div>
+              <div class="name_tieuchuan">
+                {{ productStandard[0].category_standard_name }}
+              </div>
+            </div>
+          </div>
+          <!-- end -->
+          <div class="share_and_like_product_details">
+            <div class="share_pro_details">
+              Chia sẻ:
+              <a href="https://www.facebook.com/sharer.php?u={{ urlCurrent }}" target="_blank"><img
+                  src="./assets/images/imgs/Facebook - Original.png" alt="" /></a>
+              <a href="https://twitter.com/intent/tweet?url={{ urlCurrent }}" target="_blank"><img
+                  src="./assets/images/imgs/twitter 2.png" alt="" /></a>
+              <a href="https://telegram.me/share/url?url={{ urlCurrent }}" target="_blank"><img
+                  src="./assets/images/imgs/Telegram - Original.png" alt="" /></a>
+            </div>
+            <div class="like_pro_details">
+              <a href="javascript:void(0)" (click)="followProduct()"><i [ngClass]="
+                    productId && isFollowProduct
+                      ? 'fa fa-heart'
+                      : 'fa fa-heart-o'
+                  " aria-hidden="true"></i>
+                Đã thích ({{ productInfo?.count_like || 0 }})</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-12 col-12">
+          <div class="row h-50vh">
+            <div class="col-lg-7 col-md-12 col-12">
+              <div class="content_details_pro">
+                <h2>{{ productInfo?.name }}</h2>
+                <div class="logo_chatluong_details_pro" *ngIf="productStandard && productStandard.length > 1">
+                  <ng-container *ngFor="let st of productStandard; let i = index">
+                    <img loading="lazy" *ngIf="i > 0 && st?.path" [src]="st | imageUrl" alt="" />
+                  </ng-container>
+                </div>
+                <div class="vote_sold_details_product">
+                  <!-- <span class="number_star">{{ productInfo?.ratio }}
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <ngb-rating [max]="4" [rate]="productInfo?.ratio || 0" [readonly]="true"></ngb-rating>
+                  </span>
+                  <span>|</span>
+                  <span class="vote_details_pro">{{ productInfo?.amount }} Đánh giá</span>
+                  <span>|</span> -->
+                  <span class="sold_details_product">{{ productInfo?.quantity_sold }} Đã bán</span>
+                </div>
+                <!-- end -->
+                <div class="box_price_details_product">
+                  <div *ngIf="productFlashSale" class="flash-sale-content">
+                    <div class="flash-sale-title">
+                      <img loading="lazy" src="assets/images/flash_sale_icon.png" alt="" />
+                      FLASH SALES
+                    </div>
+                    <div class="count-down">
+                      Kết thúc trong:
+                      <span class="time_flash_sale">
+                        <countdown #cd class="custom-style" [config]="countdownConfig" (event)="handleEvent($event)">
+                        </countdown>
+                      </span>
+                    </div>
+                  </div>
+                  <table class="">
+                    <tr class="">
+                      <th class="p-2 text-left table-text">Số lượng:</th>
+                      <th class="p-2 text-left table-text" *ngFor="
+                          let quantity of productPriceByQuantity;
+                          let i = index
+                        ">
+                        {{
+                        quantity.to_quantity !== 0
+                        ? quantity.from_quantity +
+                        " - " +
+                        quantity.to_quantity
+                        : " ≥ " + quantity.from_quantity
+                        }}
+                        sản phẩm
+                      </th>
+                    </tr>
+                    <tr class="" *ngFor="
+                        let quantification of productQuantification;
+                        let i = index
+                      ">
+                      <td class="p-2 text-left table-text">
+                        {{ quantification.quantitative | numberFormat
+                        }}{{ quantification.category_unit_name }}/{{
+                        quantification.category_packing_name
+                        }}:
+                      </td>
+                      <td *ngFor="let quantity of productPriceByQuantity" class="p-2 text-left table-text">
+                        {{
+                        quantity.productPriceRangeQuantities[i]?.price
+                        | numberFormat
+                        }}đ
+                        <span class="sale-rate" *ngIf="
+                            quantity.productPriceRangeQuantities[i]
+                              ?.percent_discount
+                          ">-{{
+                          quantity.productPriceRangeQuantities[i]
+                          ?.percent_discount
+                          }}%</span>
+                        <span class="sale-price" *ngIf="
+                            quantity.productPriceRangeQuantities[i]?.base_price
+                          ">{{
+                          quantity.productPriceRangeQuantities[i]?.base_price
+                          | numberFormat
+                          }}đ</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div class="transport_product">
+                  <span>Xuất xứ:</span>
+                  <div class="right_transport">
+                    <div class="right_transport_img">
+                      <span>Việt Nam</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- end -->
+
+                <div *ngIf="!productInfo?.is_lock_order" class="quantity_product_details">
+                  <span class="quantity_product_title">Định lượng:</span>
+                  <div *ngFor="let item of listProductOrderModel" class="cart-plus-minus row p-1"
+                    style="width: 100%; margin: 0 !important">
+                    <div [class.mobile_status]="mobileStatus" class="quantiy col-lg-2 col-xl-2 pr-0">
+                      {{ item.product_quantification
+                      }}{{ item.category_unit_name }}/{{
+                      item.category_packing_name
+                      }}
+                    </div>
+                    <div [class.mobile_status]="mobileStatus" class="quantiy col-lg-3 col-xl-3 text-center">
+                      {{ item.price * item.quantity | numberFormat }}đ
+                    </div>
+                    <div class="col-md-3 col-xs-4 col-mb">
+                      <button class="dec qtybutton" (click)="minusProduct(item)">
+                        -
+                      </button>
+                      <input class="cart-plus-minus-box" type="number" name="qtybutton" [min]="0"
+                        [max]="item.quantity_stock" [value]="item.quantity" (keyup)="changeQuantity($event, item)" />
+                      <button class="inc qtybutton" (click)="addProduct(item)">
+                        +
+                      </button>
+                    </div>
+
+                    <div [class.add]="mobileStatus" class="quantiy col-md-4 col-xs-8">
+                      {{ item.quantity_stock }} Sản phẩm có sẵn
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!!productInfo?.is_lock_order" class="is_lock_orderdetail">
+                  NGỪNG KINH DOANH
+                </div>
+
+                <div *ngIf="!productInfo?.is_lock_order" class="btn_add_buy_product">
+                  <a href="javascript:void(0)" class="btn_add_cart_details" (click)="addToCart()"><img
+                      src="./assets/images/imgs/cart.png" /> Thêm vào giỏ
+                    hàng</a>
+                  <a href="javascript:void(0)" class="btn_buy_product" (click)="buyNow()">Mua ngay</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-12">
+              <div class="box_find_shop row m-0">
+                <div class="col-2 m-0 p-0 logo_box_find_shop">
+                  <img loading="lazy" [src]="shopInfo?.avatar | imageUrl" />
+                </div>
+                <div class="col-10 p-0 pl-3 content_box_find_shop">
+                  <h3>{{ shopInfo?.name }}</h3>
+                  <div class="c_b_f_s_location">
+                    <div class="c_b_f_s_location_img">
+                      <img loading="lazy" src="./assets/images/imgs/Vector.png" alt="" />
+                    </div>
+                    <p>
+                      <span *ngIf="shopInfo !== undefined && shopInfo !== null">
+                        <span *ngIf="shopInfo.shop_address.length > 0">
+                          <span>{{ shopInfo.shop_address[0].address }}</span>
+                          <span *ngIf="shopInfo.shop_address[0].wards_name != ''">,{{shopInfo.shop_address[0].wards_name }}</span>
+                          <span *ngIf="shopInfo.shop_address[0].district_name != ''">,{{ shopInfo.shop_address[0].district_name }}</span>
+                          <span *ngIf="shopInfo.shop_address[0].province_name != ''">,{{ shopInfo.shop_address[0].province_name }}</span>
+                        </span>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-12 row_vote_fl_chat">
+                  <ul>
+                    <li class="row_vote_fl_chat_1" style="text-align: center">
+                      <b style="display: flex; justify-content: center">{{ shopInfo?.ratio }}/5
+                        <i class="fa fa-star" aria-hidden="true"></i></b>
+                      <p>Đánh giá</p>
+                    </li>
+                    <li class="row_vote_fl_chat_2">
+                      <b>{{ shopInfo?.count_follow }}</b>
+                      <p>Người theo dõi</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-12 list_btn_find_shop">
+                  <a href="/shops/{{ shopInfo?.id }}">
+                    <img loading="lazy" src="./assets/images/imgs/find_shop_1.png" alt="" />
+                    {{ !isProducNomal ? "Xem hồ sơ" : "Xem Shop" }}</a>
+                  <a href="javascript:void(0)" (click)="followShop()">
+                    <i class="mr-1" [ngClass]="
+                        shopID && isFollowShop ? 'fal fa-check' : 'fal fa-plus'
+                      "
+                    ></i
+                    >{{shopID && isFollowShop ? "Bỏ theo dõi" : "Theo dõi"}}</a
+                  >
+                </div>
+              </div>
+              <!-- end -->
+              <div *ngIf="!isShopNomal" class="info_find_shop">
+                <div *ngIf="productMaterialArea && productMaterialArea.length > 0" class="box_info_find_shop">
+                  <h3>Vùng nguyên liệu</h3>
+                  <ul>
+                    <li><b>Tên vùng:</b> {{ productMaterialArea[0]?.name }}</li>
+                    <li>
+                      <b>Địa chỉ:</b> {{ productMaterialArea[0]?.address }}
+                      <a href="javascript:void(0)" (click)="viewMap(productMaterialArea[0])">Xem map</a>
+                    </li>
+                    <li><b>Mã Vùng: </b> {{ productMaterialArea[0]?.code }}</li>
+                    <li>
+                      <b>Diện tích:</b> {{ productMaterialArea[0]?.acreage }}
+                    </li>
+                    <li>
+                      <b>Sản lượng:</b> {{ productMaterialArea[0]?.quantity }}
+                    </li>
+                  </ul>
+                  <a data-toggle="tab" href="#shopsaddress" *ngIf="productMaterialArea.length > 1"
+                    class="text-green cursor-pointer" (click)="activeTab()">Xem thêm</a>
+                </div>
+                <div *ngIf="productFactory && productFactory.length > 0" class="box_info_find_shop">
+                  <h3>Xưởng sản xuất</h3>
+                  <ul>
+                    <li><b>Tên xưởng:</b> {{ productFactory[0]?.name }}</li>
+                    <li>
+                      <b>Địa chỉ:</b> {{ productFactory[0]?.address }}
+                      <a href="javascript:void(0)" (click)="viewMap(productFactory[0])">Xem map</a>
+                    </li>
+                    <li><b>Mã Vùng: </b> {{ productFactory[0]?.code }}</li>
+                    <li><b>Diện tích:</b> {{ productFactory[0]?.acreage }}</li>
+                    <li><b>Công suất:</b> {{ productFactory[0]?.wattage }}</li>
+                  </ul>
+                  <a data-toggle="tab" href="#shopsaddress" *ngIf="productFactory.length > 1"
+                    class="text-green cursor-pointer" (click)="activeTab()">Xem thêm</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end -->
+          <div class="chinhsach_details_product">
+            <div *ngIf="!isShopNomal" class="item_cs_details_product">
+              <img loading="lazy" src="./assets/images/imgs/Artboard 48 1.png" alt="" />
+              <span [class.mobile_status]="mobileStatus">
+                Truy xuất nguồn gốc
+              </span>
+            </div>
+            <div *ngIf="!isShopNomal || categoryShop" class="item_cs_details_product">
+              <img loading="lazy" src="./assets/images/imgs/Group 106.png" alt="" />
+              <span [class.mobile_status]="mobileStatus">Tiêu chuẩn chất lượng GAP</span>
+            </div>
+            <ng-container *ngFor="let st of productStandard; let i = index">
+              <div *ngIf="
+                  st?.path &&
+                  st.category_standard_code !=
+                    category_standard_code_truyxuat &&
+                  st.category_standard_code != category_standard_code_smartmall
+                " class="item_cs_details_product">
+                <ng-container>
+                  <img loading="lazy" [src]="st | imageUrl" alt="" />
+                  <span [class.mobile_status]="mobileStatus">{{
+                    st.category_standard_quality
+                    }}</span>
+                </ng-container>
+              </div>
+            </ng-container>
+            <div *ngIf="isShopNomal" class="item_cs_details_product">
+              <img loading="lazy" src="./assets/images/imgs/chung_nhan_attp.png" alt="" />
+              <span [class.mobile_status]="mobileStatus">
+                Chứng nhận ATTP
+              </span>
+            </div>
+            <div class="item_cs_details_product">
+              <img loading="lazy" src="./assets/images/imgs/tich1.png" alt="" />
+              <span [class.mobile_status]="mobileStatus">
+                Kiểm định chất lượng
+              </span>
+            </div>
+            <div *ngIf="!isShopNomal" class="item_cs_details_product">
+              <img loading="lazy" src="./assets/images/imgs/tcsp.png" alt="" />
+              <span [class.mobile_status]="mobileStatus">Nhật ký sản xuất</span>
+            </div>
+            <div *ngIf="categoryShop == 'smartmall'" class="item_cs_details_product">
+              <img loading="lazy" src="./assets/images/imgs/money-back-1537590098 1.png" alt="" />
+              <span [class.mobile_status]="mobileStatus">
+                Hàng chính hãng 100%</span>
+            </div>
+            <div *ngIf="categoryShop == 'smartmall'" class="item_cs_details_product">
+              <img loading="lazy" src="./assets/images/imgs/reward_like 1.png" alt="" />
+              <span [class.mobile_status]="mobileStatus">
+                Sản phẩm giá gốc
+              </span>
+            </div>
+            <div class="item_cs_details_product">
+              <img loading="lazy" src="./assets/images/imgs/Group 351.png" alt="" />
+              <span [class.mobile_status]="mobileStatus">
+                Vận chuyển nhanh
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end -->
+<section class="description_product des_product_truyxuat">
+  <div class="container">
+    <div class="row m-0 w-100">
+      <div class="col-md-12 col-12 p-0 col-lg-12">
+        <div class="tab-wrapper-des">
+          <ul class="nav nav-tabs tab-des ul-nav" [ngClass]="{ truyxuat: !isShopNomal }" style="padding: 5px">
+            <li [class.mobile_status]="mobileStatus">
+              <a id="tabmotasanpham" class="tab-items active" data-toggle="tab" href="#motasanpham">Mô tả sản phẩm
+              </a>
+            </li>
+            <li [class.mobile_status]="mobileStatus" *ngIf="
+                !isProducNomal && productProcess && productProcess.length > 0
+              ">
+              <a class="tab-items" data-toggle="tab" href="#nhatkysanxuat">Nhật ký sản xuất</a>
+            </li>
+            <li
+              *ngIf="productInfo?.url_live_video"
+              [class.mobile_status]="mobileStatus"
+            >
+              <a class="tab-items" data-toggle="tab" href="#camlive"
+                >Theo dõi trực tiếp</a
+              >
+            </li>
+            <li [class.mobile_status]="mobileStatus" *ngIf="
+                (!isProducNomal &&
+                productCertificate &&
+                productCertificate.length > 0)||productInfo.certification.length>0
+              ">
+              <a class="tab-items" data-toggle="tab" href="#certificate">Chứng nhận, chứng chỉ</a>
+            </li>
+
+            <li [class.mobile_status]="mobileStatus" *ngIf="
+                !isShopNomal &&
+                ((productMaterialArea && productMaterialArea.length > 0) ||
+                  (productFactory && productFactory.length > 0))
+              ">
+              <a id="tabshopsaddress" class="tab-items" data-toggle="tab" href="#shopsaddress">Vùng nguyên liệu/Xưởng
+                chế biến</a>
+            </li>
+
+            <li [class.mobile_status]="mobileStatus" *ngIf="
+                !isProducNomal &&
+                productSeedMeterial &&
+                productSeedMeterial.length > 0
+              ">
+              <a class="tab-items" data-toggle="tab" href="#congiong">Con giống, nguyên liệu</a>
+            </li>
+            <li [class.mobile_status]="mobileStatus" *ngIf="
+                !isProducNomal &&
+                productTechnicalProcess &&
+                productTechnicalProcess.length > 0
+              ">
+              <a class="tab-items" data-toggle="tab" href="#quytrinhkythuat">Quy trình kỹ thuật</a>
+            </li>
+            <li [class.mobile_status]="mobileStatus" *ngIf="
+                !isProducNomal && productMeterial && productMeterial.length > 0
+              ">
+              <a class="tab-items" data-toggle="tab" href="#vattu">Vật tư sản xuất</a>
+            </li>
+          </ul>
+
+          <div class="tab-content tab-content-des">
+            <div id="motasanpham" class="tab-pane active" [innerHTML]="productInfo?.note | safeHtml"></div>
+            <div *ngIf="
+                !isProducNomal && productProcess && productProcess.length > 0
+              " id="nhatkysanxuat" class="tab-pane">
+              <div class="row">
+                <div class="col-12" style="overflow: auto">
+                  <table [class.hide]="mobileStatus" class="w-100 table_history">
+                    <tr>
+                      <th class="p-1">Tên quy trình</th>
+                      <th class="p-1">Ngày bắt đầu</th>
+                      <th class="p-1">Ngày kết thúc</th>
+                      <th class="p-1">Trạng thái</th>
+                      <th class="p-1">Chi tiết quy trình</th>
+                      <th class="p-1">Chi tiết nhật ký</th>
+                    </tr>
+                    <tr *ngFor="let process of productProcess">
+                      <td class="p-1">{{ process.name }}</td>
+                      <td class="p-1">
+                        {{ process.start_date | date : "d/M/yyyy" }}
+                      </td>
+                      <td class="p-1">
+                        {{ process.end_date | date : "d/M/yyyy" }}
+                      </td>
+                      <td class="p-1" [ngClass]="{
+                          'text-green':
+                            process.is_active == true,
+                          'text-red':
+                            process.is_active == false
+                        }">
+                        {{
+                        process?.is_active == true
+                        ? "Đang sản xuất"
+                        : "Đã kết thúc"
+                        }}
+                      </td>
+                      <td class="p-1">
+                        <img loading="lazy" (click)="showHirory(process)" src="assets/images/imgs/nhat_ky.png" alt="" />
+                      </td>
+                      <td class="p-1">
+                        <img loading="lazy" (click)="showDetailHistory(process)" src="assets/images/imgs/nhat_ky.png"
+                          alt="" />
+                      </td>
+                    </tr>
+                  </table>
+                  <ng-container *ngFor="let process of productProcess; let i = index">
+                    <table class="w-100 table_history" [class.hide]="!mobileStatus">
+                      <tr>
+                        <th class="p-1">Tên quy trình</th>
+                        <td class="p-1">{{ process.name }}</td>
+                      </tr>
+                      <tr>
+                        <th class="p-1">Ngày bắt đầu</th>
+                        <td class="p-1">
+                          {{ process.start_date | date : "d/M/yyyy" }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="p-1">Ngày kết thúc</th>
+                        <td class="p-1">
+                          {{ process.end_date | date : "d/M/yyyy" }}
+
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <th class="p-1">Trạng thái</th>
+                        <td class="p-1" [ngClass]="{
+                            'text-green':
+                            process.is_active == true,
+                            'text-red':
+                            process.is_active == false
+                          }">
+                          {{
+                            process?.is_active == true
+                          ? "Đang sản xuất"
+                          : "Đã kết thúc"
+                          }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="p-1">Chi tiết quy trình</th>
+                        <td class="p-1">
+                          <img loading="lazy" (click)="showHirory(process)" src="assets/images/imgs/nhat_ky.png"
+                            alt="" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="p-1">Chi tiết nhật ký</th>
+                        <td class="p-1">
+                          <img loading="lazy" (click)="showDetailHistory(process)" src="assets/images/imgs/nhat_ky.png"
+                            alt="" />
+                        </td>
+                      </tr>
+                    </table>
+                    <div *ngIf="!isDetailHistory && selectedProductProcess" class="col-12 mt-3 hide processMobile"
+                      [class.show]="mobileStatus && process.name == processName">
+                      <table class="mobile w-100 table_history_process">
+                        <tr>
+                          <td class="w-25" style="min-width: 130px">
+                            Tên quy trình
+                          </td>
+                          <td>{{ selectedProductProcess.name }}</td>
+                        </tr>
+                        <tr>
+                          <td>Thời gian</td>
+                          <!-- <td>{{selectedProductProcess.estimated_date | date: 'd/M/yyyy'}}</td> -->
+                          <td>
+                            {{
+                            selectedProductProcess.start_date
+                            | date : "d/M/yyyy"
+                            }}-{{
+                            selectedProductProcess.end_date
+                            | date : "d/M/yyyy"
+                            }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Mã lô sản xuất</td>
+                          <td>{{ selectedProductProcess.code }}</td>
+                        </tr>
+                        <tr>
+                          <td>Mã vùng nguyên liệu</td>
+                          <td>
+                            {{ selectedProductProcess.raw_material_area_code }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Mã xưởng sản xuất</td>
+                          <td>{{ selectedProductProcess.factory_code }}</td>
+                        </tr>
+                        <!-- <tr>
+                        <td>Tên cây trồng vật nuôi</td>
+                        <td>{{ selectedProductProcess.material }}</td>
+                      </tr> -->
+                        <tr>
+                          <td>Ngày bắt đầu</td>
+                          <td>
+                            {{
+                            selectedProductProcess.start_date
+                            | date : "d/M/yyyy"
+                            }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Ngày kết thúc</td>
+                          <td>
+                            {{
+                            selectedProductProcess.end_date
+                            | date : "d/M/yyyy"
+                            }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Sản lượng dự kiến</td>
+                          <td>
+                            {{ selectedProductProcess.estimated_quantity }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Chuẩn áp dụng</td>
+                          <td>{{ selectedProductProcess.standard }}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </ng-container>
+                </div>
+                <div *ngIf="!isDetailHistory && selectedProductProcess" class="col-12 mt-3 processMobile"
+                  [class.hide]="mobileStatus">
+                  <table class="mobile w-100 table_history_process">
+                    <tr>
+                      <td class="w-25" style="min-width: 130px">
+                        Tên quy trình
+                      </td>
+                      <td>{{ selectedProductProcess.name }}</td>
+                    </tr>
+                    <tr>
+                      <td>Thời gian</td>
+                      <!-- <td>{{selectedProductProcess.estimated_date | date: 'd/M/yyyy'}}</td> -->
+                      <td>
+                        {{
+                        selectedProductProcess.start_date | date : "d/M/yyyy"
+                        }}-{{
+                        selectedProductProcess.end_date | date : "d/M/yyyy"
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Mã lô sản xuất</td>
+                      <td>{{ selectedProductProcess.code }}</td>
+                    </tr>
+                    <tr>
+                      <td>Mã vùng nguyên liệu</td>
+                      <td>
+                        {{ selectedProductProcess.raw_material_area_code }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Mã xưởng sản xuất</td>
+                      <td>{{ selectedProductProcess.factory_code }}</td>
+                    </tr>
+                    <!-- <tr>
+                      <td>Tên cây trồng vật nuôi</td>
+                      <td>{{ selectedProductProcess.material }}</td>
+                    </tr> -->
+                    <tr>
+                      <td>Ngày bắt đầu</td>
+                      <td>
+                        {{
+                        selectedProductProcess.start_date | date : "d/M/yyyy"
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Ngày kết thúc</td>
+                      <td>
+                        {{
+                        selectedProductProcess.end_date | date : "d/M/yyyy"
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Sản lượng dự kiến</td>
+                      <td>{{ selectedProductProcess.estimated_quantity }}</td>
+                    </tr>
+                    <tr>
+                      <td>Chuẩn áp dụng</td>
+                      <td>{{ selectedProductProcess.standard }}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div *ngIf="isDetailHistory" class="col-12 row m-0">
+                  <div *ngFor="let log of productProductionLogList"
+                    class="col-12 d-flex justify-content-center mt-4 product-process">
+                    <div class="w-75 circle-timeline">
+                      <span>{{
+                        log.processing_date | date : "dd/MM/yyyy"
+                        }}</span>
+                      <div class="process-box">
+                        <label>{{ log.processing_date | date : "H:mm" }}</label>
+                        <label>{{ log.product_production_log_name }}</label>
+                        <label>Địa điểm:
+                          <span>{{ log.factory_name }} {{ log.raw_material_area_name }} </span>
+                        </label>
+                        <label>Người chịu trách nhiệm:
+                          <span>{{ log.user_processing_name }}</span>
+                        </label>
+                        <label>Mô tả:
+                          <span>{{ log.note }}</span>
+                        </label>
+                        <video controls width="100%" *ngIf="log.url_video">
+                          <source src="{{ log.url_video | imageUrl }}" type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                        <ng-container *ngIf="log.paths.length > 1; else image">
+                          <swiper [config]="config" #usefulSwiper>
+                            <div class="swiper-wrapper product-detail">
+                              <ng-container *ngFor="let path of log.paths">
+                                <div class="swiper-slide">
+                                  <div class="item_slider_home">
+                                    <div class="container" style="padding: 0 !important">
+                                      <a>
+                                        <div class="wrap-image">
+                                          <img loading="lazy" src="{{
+                                              path != null
+                                                ? imageUrlBase + path
+                                                : ''
+                                            }}" />
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </ng-container>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div *ngIf="log.paths.length > 1">
+                              <div class="swiper-button-next" (click)="returnFirstImage(log.paths)">
+                                <i class="fa fa-angle-right" style="font-size: 30px" aria-hidden="true"></i>
+                              </div>
+
+                              <div class="swiper-button-prev">
+                                <i class="fa fa-angle-left" style="font-size: 30px" aria-hidden="true"></i>
+                              </div>
+                            </div>
+                          </swiper>
+                        </ng-container>
+                        <ng-template #image>
+                          <img loading="lazy" style="max-height: 300px" src="{{ log.paths[0] | imageUrl }}" alt="" />
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-center mt-4">
+                    <button *ngIf="productProductionLogListOrigin.length > 3" class="showmore-button"
+                      (click)="showMoreProcess()">
+                      {{ collapse ? "Thu Gọn" : "Xem thêm" }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="productInfo?.url_live_video"
+              id="camlive"
+              class="tab-pane"
+            >
+              <div style="display: flex; flex-wrap: wrap">
+                <iframe
+                  width="100%"
+                  height="500"
+                  [src]="productInfo?.url_live_video"
+                  autoplay
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            
+            <div  id="certificate" class="tab-pane">            
+              <div *ngIf="productCertificate && productCertificate.length > 0" gallerize="gallery" class="row">
+                <div *ngFor="let certificate of productCertificate"
+                  class="col-sm-3 text-center justify-content-center p-2 productCertificate" style="display: flex; flex-wrap: wrap">
+                  <!-- <img loading="lazy" class="m-0 pb-3" [src]="certificate.file | imageUrl" /> -->
+                  <ngx-gallery *ngIf="certificate.listImage?.length > 0" [options]="galleryTabOptions"
+                    [images]="certificate.listImage" class="ngx-gallery-tab"></ngx-gallery>
+                  <span>{{ certificate.name }}</span>
+                </div>
+              </div>
+              <div *ngIf="productInfo.certification.length>0" gallerize="gallery" class="row">
+                <div *ngFor="let certificate of productInfo.certification"
+                  class="col-sm-3 text-center justify-content-center p-2 productCertificate" style="display: flex; flex-wrap: wrap">
+                  <img loading="lazy" class="m-0 pb-3" [src]="certificate| imageUrl" />                 
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="
+                !isShopNomal &&
+                ((productMaterialArea && productMaterialArea.length > 0) ||
+                  (productFactory && productFactory.length > 0))
+              " id="shopsaddress" class="tab-pane">
+              <div class="row">
+                <div class="col-sm-6" *ngIf="productMaterialArea.length > 0">
+                  <div *ngFor="let items of productMaterialArea" class="text-justify mb-4">
+                    <label>{{ items.name }}</label>
+                    <label>Địa chỉ:
+                      <span>{{ items.address }}</span>
+                      <span class="text-green cursor-pointer text-small" href="javascript:void(0)"
+                        (click)="viewMap(items)">
+                        Xem map</span>
+                    </label>
+                    <label>Mã vùng:
+                      <span>{{ items.code }}</span>
+                    </label>
+                    <label>Diện tích:
+                      <span>{{ items.acreage }}</span>
+                    </label>
+                    <label>Sản lượng:
+                      <span>{{ items.quantity }}</span>
+                    </label>
+                    <ngx-gallery *ngIf="items.listimage?.length > 0"
+                      [images]="items.listimage" class="ngx-gallery-tab"></ngx-gallery>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div *ngFor="let items of productFactory" class="text-justify mb-4">
+                    <label>{{ items.name }}</label>
+                    <label>Địa chỉ:
+                      <span>{{ items.address }}</span>
+                      <span class="text-green cursor-pointer text-small" href="javascript:void(0)"
+                        (click)="viewMap(items)">
+                        Xem map</span>
+                    </label>
+                    <label>Mã vùng:
+                      <span>{{ items.code }}</span>
+                    </label>
+                    <label>Diện tích:
+                      <span>{{ items.acreage }}</span>
+                    </label>
+                    <label>Công suất:
+                      <span>{{ items.wattage }}</span>
+                    </label>
+                      <!-- <img loading="lazy" class="m-0 pb-3" [src]="items.file | imageUrl" /> -->
+
+                    <ngx-gallery 
+                      [images]="items.listimage" class="ngx-gallery-tab"></ngx-gallery>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="
+                !isProducNomal &&
+                productSeedMeterial &&
+                productSeedMeterial.length > 0
+              " id="congiong" class="tab-pane">
+              <div class="row">
+                <div *ngFor="let seed of productSeedMeterial" class="col-sm-6 text-justify">
+                  <label>{{ seed.name }}</label>
+                  <label>Nơi cung cấp:
+                    <span>{{ seed.supplier }}</span>
+                  </label>
+                  <label>Địa chỉ:
+                    <span>{{ seed.supplier_address }}</span>
+                  </label>
+                  <label>Mô tả:
+                    <span [innerHTML]="seed.note"></span>
+                  </label>
+                  <img loading="lazy" [src]="seed.files | imageUrl" />
+                </div>
+              </div>
+            </div>
+            <div *ngIf="
+                !isProducNomal &&
+                productTechnicalProcess &&
+                productTechnicalProcess.length > 0
+              " id="quytrinhkythuat" class="tab-pane">
+              <div class="row">
+                <div *ngFor="let productTechnical of productTechnicalProcess" class="col-12 p-3 text-justify">
+                  <h5>
+                    <strong>{{ productTechnical.standard_engineering }}</strong>
+                  </h5>
+                  <h6>
+                    <strong>Tiêu chuẩn: {{ productTechnical.standard_name }}</strong>
+                  </h6>
+                  <div [innerHTML]="productTechnical.note | safeHtml"></div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="
+                !isProducNomal && productMeterial && productMeterial.length > 0
+              " id="vattu" class="tab-pane">
+              <div class="row">
+                <div *ngFor="let material of productMeterial" class="col-sm-6">
+                  <label>{{ material.name }}</label>
+                  <label>Nơi cung cấp:
+                    <span>{{ material.supplier }}</span>
+                  </label>
+                  <label>Địa chỉ:
+                    <span>{{ material.supplier_address }}</span>
+                  </label>
+                  <label>Người cung cấp:
+                    <span>{{ material.supplier_user }}</span>
+                  </label>
+                  <label>Mô tả:
+                    <span [innerHTML]="material.note"></span>
+                  </label>
+                  <img loading="lazy" [src]="material.file | imageUrl" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end -->
+<section class="sec_product_shop">
+  <div class="container">
+    <div class="list_product_shop">
+      <div class="wrapper_product_shop">
+        <div class="title_product_shop">
+          <h3>Sản phẩm liên quan</h3>
+        </div>
+        <div class="start_list_product" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
+          <ul>
+            <li *ngFor="let item of listProduct" class="box_product">
+              <div class="img_box_product">
+                <a (click)="navigateItem(item)">
+                  <img loading="lazy" src="{{ item.file | imageUrl }}" alt="" /></a>
+                <div class="logo_global" *ngIf="item.listCategoryStandard.length > 0">
+                  <img loading="lazy" *ngIf="
+                      item.listCategoryStandard[0]?.path != null &&
+                      item.listCategoryStandard[0]?.path != ''
+                    " [src]="item.listCategoryStandard[0]?.path | imageUrl" alt="" />
+                </div>
+              </div>
+              <div class="content_box_product">
+                <div class="wrapper_content_box_product">
+                  <div class="top_content_box_product">
+                    <div class="logo_c_b_p_f_s" *ngIf="item.listCategoryStandard.length > 1">
+                      <ng-container *ngFor="
+                          let st of item.listCategoryStandard;
+                          let i = index
+                        ">
+                        <img loading="lazy" *ngIf="i > 0 && st?.path != null && st?.path != ''" [src]="st | imageUrl"
+                          alt="" />
+                      </ng-container>
+                    </div>
+                  </div>
+                  <!-- end -->
+                  <div class="name_product w-100">
+                    <a (click)="navigateItem(item)" title="{{ item.name }}">{{
+                      item.name
+                      }}</a>
+                  </div>
+                  <div class="price_product">
+                    <span class="pp_price_new">{{ item.from_price | numberFormat }}đ -
+                      {{ item.to_price | numberFormat }} đ</span>
+                  </div>
+                  <div class="star_and_location">
+                    <div class="star_product">
+                      <ngb-rating [max]="5" [rate]="item.ratio" [readonly]="true"></ngb-rating>
+                    </div>
+                    <div class="location_product" *ngIf="item.listProvinceOfSales.length > 0">
+                      {{ item.listProvinceOfSales[0].province_name }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end -->
+              <!--                            <div class="tag_percent">-->
+              <!--                                <p>Deal hot</p>-->
+              <!--                                <h3>40%</h3>-->
+              <!--                            </div>-->
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

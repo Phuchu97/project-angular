@@ -1,0 +1,51 @@
+<div class="top_header_regis_shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-9 col-10">
+                <div class="left_top_header">
+                    <div class="logo_page">
+                        <a href="#"><img loading="lazy" src="./assets/images/logos/logo-smartgap2.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-3 col-2">
+                <div class="right_top_header_regis text-right">
+                    <div ngbDropdown>
+                        <button class="btn_language" id="dropdownLang" ngbDropdownToggle> <img loading="lazy" src="{{flagLanguage}}" alt=""></button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownLang">
+                            <ng-container *ngFor="let item of languageList">
+                                <a href="javascript:;" (click)="switchLang(item.code)" data-language="en" class="dropdown-item">
+                                    <img loading="lazy" src="{{item.note}}" alt="flag" class="langimg mr-2">
+                                    <span class="font-small-3">{{item.name}}</span></a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-regis-shop">
+    <div class="container">
+        <div class="row form-regis">
+            <div class="col-lg-2 col-md-2 col-2">
+            </div>
+            <div class="col-lg-4 col-md-4 col-4">
+                <p class="regis-title">Bán hàng nông sản cùng SmartGap</p>
+                <p class="regis-image">
+                    <img loading="lazy" src="./assets/images/right-register.png" />
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-4">
+                <div class="regis-body">
+                    <router-outlet></router-outlet>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<site-footer></site-footer>

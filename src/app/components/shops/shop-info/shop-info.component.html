@@ -1,0 +1,88 @@
+<div class="shop-info" *ngIf="shopType==shopTypeConstant.TruyXuat">
+    <div class="col-md-6 shop-left">
+        <p class="">
+            <span class="shop-logo">
+                      <img loading="lazy" [src]="shopInfo?.file | imageUrl">
+                  </span>
+            <span class="shop-name">{{shopInfo?.name}}</span>
+            <span class="shop-active"></span>
+        </p>
+        <p class="shop-actived" *ngIf="shopInfo?.is_active===true">Đang hoạt động</p>
+        <p class="shop-actived" *ngIf="shopInfo?.is_active===false" style="color: red;">Dừng hoạt động</p>
+
+        <p class="shop-i">MÃ TRUY XUẤT: {{shopInfo?.code}}</p>
+        <p class="shop-i">Địa chỉ:{{shopInfo?.address}}, {{shopInfo?.ward_name}}, {{shopInfo?.district_name}}, {{shopInfo?.province_name}}</p>
+        <p class="shop-i">
+            Người đại diện: {{shopInfo?.surrogate}}
+        </p>
+        <p class="shop-i">
+            MST: {{shopInfo?.taxcode}}
+        </p>
+        <p class="shop-i">
+            Email: {{shopInfo?.email}}
+        </p>
+        <p class="shop-i">
+            Website: {{shopInfo?.website}}
+        </p>
+        <p class="shop-i">
+            Ngành nghề kinh doanh chính: {{shopInfo?.business}}
+        </p>
+    </div>
+    <div class="col-md-3 shop-right">
+        <p class="shop-i">Đánh giá: {{shopInfo?.ratio}}/5 <i class="fa fa-star star" aria-hidden="true"></i></p>
+        <p class="shop-i">Số sản phẩm: {{shopInfo?.landline_number}}</p>
+        <p class="shop-i">Lượt xem: {{shopInfo?.count_view}}</p>
+        <p class="shop-i">Năm thành lập: {{shopInfo?.founding_date|date:'dd-MM-yyyy'}}</p>
+        <p class="shop-i">Theo dõi: {{shopInfo?.count_are_follow}} người</p>
+        <p class="shop-i">Đang theo dõi: {{shopInfo?.count_follow}} người</p>
+        <button class="btn btn-sm btn-smart" (click)="chatNow()">
+                  <i class="fa fa-comment-o" aria-hidden="true"></i>
+                  Chat ngay</button>
+        <button class="btn btn-sm btn-smart-normal" (click)="followShop()">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    Theo dõi</button>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-search-smart" type="button" (search)="searchShopProduct()"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+            <input [(ngModel)]="keywordSearch" type="text" class="form-control input-seach" placeholder="Tìm kiếm tên sản phẩm" aria-label="" aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+</div>
+
+<div class="shop-info" *ngIf="shopType==shopTypeConstant.Thuong">
+    <div class="col-md-4 shop-left">
+        <p class="">
+            <!-- <span class="shop-logo">
+                  <img loading="lazy" [src]="shopInfo?.file | imageUrl">
+              </span> -->
+            <span class="shop-name">{{shopInfo?.name}}</span>
+            <span class="shop-active"></span>
+        </p>
+        <p class="shop-actived" *ngIf="shopInfo?.is_active===true">Đang hoạt động</p>
+        <p class="shop-actived" *ngIf="shopInfo?.is_active===false" style="color: red;">Dừng hoạt động</p>
+
+    </div>
+    <div class="col-md-2">
+        <p class="shop-i">Đánh giá: {{shopInfo?.ratio}}/5<i class="fa fa-star star" aria-hidden="true"></i></p>
+        <p class="shop-i">Số sản phẩm: {{shopInfo?.landline_number}}</p>
+        <p class="shop-i">Lượt xem: {{shopInfo?.count_view}}</p>
+    </div>
+    <div class="col-md-3">
+        <p class="shop-i">Năm thành lập: {{shopInfo?.founding_date | date: 'dd-MM-yyyy'}}</p>
+        <p class="shop-i">Địa chỉ:{{shopInfo?.address}}</p>
+    </div>
+    <div class="col-md-3">
+        <p class="shop-i">Theo dõi: {{shopInfo?.count_are_follow}} người</p>
+        <p class="shop-i">Đang theo dõi: {{shopInfo?.count_follow}} người</p>
+        <div class="input-group mb-3 search-shop">
+            <div class="input-group-prepend">
+                <button class="btn btn-search-smart" type="button" (search)="searchShopProduct()"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+            <input [(ngModel)]="keywordSearch" type="text" class="form-control input-seach" placeholder="Tìm kiếm tên sản phẩm" aria-label="" aria-describedby="basic-addon1">
+        </div>
+    </div>
+</div>

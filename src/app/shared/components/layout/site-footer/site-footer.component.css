@@ -1,0 +1,37 @@
+.app_store img{
+  border-radius: 10px;
+}
+.icon img{
+  height: 140px !important;
+}
+.ship img{
+  height: 130px !important;
+}
+.ship .grab{
+  height: 54px !important;
+  width: 160px!important;
+}
+.col_chungnhan img{
+  width: 130px !important;
+}
+@media only screen and (max-width: 320px) {
+  .ship img{
+    height: 80px !important;
+  }
+  .col_chungnhan img{
+    width: 100px !important;
+  }
+  .ship .grab{
+    height: 30px !important;
+    width: 100px !important;
+  }
+  .icon img{
+    height: 75px !important;
+  }
+}
+@media  (max-width:767px){
+  .col_thanhtoan {
+    height: 178px;
+}
+  
+}

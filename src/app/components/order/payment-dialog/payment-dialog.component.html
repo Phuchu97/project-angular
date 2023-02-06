@@ -1,0 +1,40 @@
+<div class="row m-0 px-3">
+  <div class="col-12 dialog-header pt-3 px-0">
+    <h2>PHƯƠNG THỨC THANH TOÁN</h2>
+  </div>
+  <div class="col-12 p-0">
+    <div class="tab-wrapper-des">
+      <ul class="nav nav-tabs tab-des">
+        <!-- <li (click)="selectItem('VDT')">
+          <a id="tabvidientu" class="tab-items" data-toggle="tab" href="#vidientu">
+            <img loading="lazy" class="payment-icon" src="assets/images/vidientu.png" alt="">
+            <span class="payment-name">Ví điện tử</span>
+          </a>
+        </li> -->
+        <li (click)="selectItem('VNPay')">
+          <a id="tabvnpay" class="tab-items" [class.active]="dataObject.id == 1" data-toggle="tab" href="#vnpay">
+            <img loading="lazy" class="payment-icon" src="assets/images/thetindung.png" alt="">
+            <span class="payment-name">Thanh toán qua VNPAY</span>
+          </a>
+        </li>
+        <li (click)="selectItem('COD')">
+          <a id="tabshipcod" class="tab-items" [class.active]="dataObject.id == 0" data-toggle="tab" href="#shipcod">
+            <img loading="lazy" class="payment-icon" src="assets/images/shipcod.png" alt="">
+            <span class="payment-name">Thanh toán khi nhận hàng</span>
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content tab-content-des">
+        <!-- <div id="vidientu" class="tab-pane">Ví điện tử</div> -->
+        <div id="vnpay" class="tab-pane">Thanh toán qua VNPAY</div>
+        <div id="shipcod" class="tab-pane active">
+          Thanh toán khi nhận hàng. Phí thu hộ: 0 Đ. Ưu đãi về phí vận chuyển (nếu có) áp dụng cả với phí thu hộ.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 dialog-button">
+    <button class="cancel-button" (click)="close()">Trở lại</button>
+    <button class="confirm-button" (click)="confirm()">Chọn</button>
+  </div>
+</div>

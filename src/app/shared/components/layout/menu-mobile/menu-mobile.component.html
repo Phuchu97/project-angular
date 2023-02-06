@@ -1,0 +1,36 @@
+<div id="menu_toggle" class="menu_toggle" (click)="toggleMenu()"></div>
+<div id="mobile-main-menu" class="mobile-main-menu">
+    <div class="drawer-header" (click)="toggleMenu()">
+        <div class="drawer-header--auth">
+            <div class="_object" (click)="userInfo();$event.stopPropagation()"> <img loading="lazy" src="./assets/images/imgs/user.svg" alt="" /> </div>
+            <div class="_body">
+              <ng-container *ngIf="!username">
+                <a (click)="openSignUp(); $event.stopPropagation()">Đăng ký</a>/
+                <a (click)="openSignIn(); $event.stopPropagation()">Đăng nhập</a>
+                <br> Nhận nhiều ưu đãi hơn
+              </ng-container>
+              <ng-container *ngIf="username">
+                <a class="text-no-transform" (click)="userInfo(); $event.stopPropagation()">{{username}}</a>
+                <br>
+                <a class="text-no-transform" (click)="logOut(); $event.stopPropagation()">Đăng xuất</a>
+              </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="la-scroll-fix-infor-user">
+        <div class="la-nav-menu-items">
+            <ul class="la-nav-list-items ul-b">
+                <li *ngFor="let item of listMenu" class="ng-has-child1">
+                    <a (click)="navigateItem(item)">{{item.name}}
+                      <i [ngClass]="item.selected ? 'fa fa-angle-down fa1' : 'fa fa-angle-right fa1'" (click)="item.selected = !item.selected; $event.stopPropagation()"></i>
+                    </a>
+                    <ul class="ul-has-child1 ul-b" [ngClass]="{'open': item.selected}">
+                        <li *ngFor="let child of item.products" class="ng-scope ng-has-child2">
+                          <a (click)="navigateItem(child)">{{child.name}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

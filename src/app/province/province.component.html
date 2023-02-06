@@ -1,0 +1,12 @@
+<div *ngIf="loading">
+    Loading...
+  </div>
+  <div *ngIf="error">
+    Error :(
+  </div>
+  <div *ngIf="provinces">
+    <div *ngFor="let province of provinces">
+      <p>{{ province.city }}</p>
+    </div>
+  </div>
+  

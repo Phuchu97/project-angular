@@ -1,0 +1,42 @@
+<div class="header_content_taikhoan p-3">
+  <h2 class="address_title">Địa chỉ</h2>
+  <button class="close-button" (click)="close()"><i class="fas fa-close"></i></button>
+</div>
+<div class="content_my_address">
+  <div *ngFor="let item of dataObject" class="my-address row m-0" [ngClass]="{'selected': item.selected}">
+    <div class="col-1">
+      <img loading="lazy" src="./assets/images/imgs/address.png" alt="">
+    </div>
+    <div class="col-7">
+      <div class="row_form_my_profile row_my_address">
+        <label>Họ & Tên</label>
+        <span>{{item.receiver}}</span>
+      </div>
+      <div class="row_form_my_profile row_my_address">
+        <label>Số điện thoại</label>
+        <span>{{item.phone}}</span>
+      </div>
+      <div class="row_form_my_profile row_my_address">
+        <label>Địa chỉ</label>
+        <span>{{item.address}}<span>
+        </span> <br> {{item.ward_name}} <span>
+        </span> <br> {{item.district_name}} <span>
+        </span> <br> {{item.province_name}}</span>
+      </div>
+    </div>
+    <div class="col-3 d-flex">
+      <span *ngIf="item.is_default" class="default_address">Mặc định</span>
+      <span *ngIf="!item.is_default" class="non_default_address">Địa chỉ lấy hàng</span>
+    </div>
+    <div class="col-1 address-action-group d-flex">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+          <span class="address-action"><a href="javascript:void(0)" (click)="selectAddress(item)">Chọn</a></span>
+        </div>
+<!--        <div class="col-12 d-flex justify-content-end">-->
+<!--          <button [disabled]="item.is_default" (click)="setDefaultAddress(item)">Thiết lập mặc định</button>-->
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+</div>

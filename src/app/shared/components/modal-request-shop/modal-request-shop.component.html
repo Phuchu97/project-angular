@@ -1,0 +1,63 @@
+<div bsModal #modalRequestShop="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg modal-regis-shop" role="document">
+        <div class="modal-content">
+            <button type="button" class="close reg-close" (click)="close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+            <form id="form_regis_shop" #RegisRequestForm="ngForm" method="post" novalidate>
+                <div class="col-md-7">
+
+                    <div class="modal-body">
+                        <h5 class="title-regis-shop">Đăng ký làm truy xuất nguồn gốc sản phẩm</h5>
+                        <div class="col-md-12">
+                            <div class="form-group regis-shop">
+                                <input name="CompanyName" #CompanyName="ngModel" [(ngModel)]="requesShop.company_name" id="CompanyName" type="text" placeholder="Tên đơn vị" required class="form-control input-regis-shop" />
+                                <div *ngIf="CompanyName.invalid && (CompanyName.dirty || CompanyName.touched)" class="text-error">
+
+                                    <div *ngIf="CompanyName.errors?.['required']">
+                                        Tên đơn vị không được trống !
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group regis-shop">
+
+                                <input (keypress)="checkPrefix()" #Phone="ngModel" [(ngModel)]="requesShop.phone" name="Phone" maxlength="10" type="text" id="Phone" placeholder="Số điện thoại" required pattern="^([0-9]{10}$)$" class="form-control input-regis-shop" />
+                                <div *ngIf="Phone.invalid && (CompanyName.dirty || Phone.touched)" class="text-error">
+                                    <div *ngIf="Phone.errors?.['pattern']">
+                                        Số điện thoại chưa đúng !
+                                    </div>
+                                </div>
+                                <div *ngIf="msgPrefix" class="text-error">
+                                    Đầu số điện thoại chưa đúng !
+                                </div>
+                            </div>
+                            <div class="form-group regis-shop">
+                                <input #Address="ngModel" [(ngModel)]="requesShop.address" name="Address" id="Address" type="text" placeholder="Địa chỉ" required class="form-control input-regis-shop" />
+                            </div>
+                            <div class="form-group regis-shop">
+
+                                <input #Name="ngModel" [(ngModel)]="requesShop.contact" name="Name" type="text" id="Name" placeholder="Tên người đại diện" required class="form-control input-regis-shop" />
+
+                            </div>
+                           
+                            <div class="form-group regis-shop-button">
+
+                                <button (click)="saveRequestShop();" type="button" [disabled]="!RegisRequestForm.form.valid" class="btn btn-primary btn-smartgap form-control">Đăng ký</button>
+
+                            </div>
+                            <div class="form-group regis-shop">
+                                <p><strong>Hoặc liên hệ bộ phận hỗ trợ</strong></p>
+                                <p>Hotline: 1900 077779</p>
+                                <p>support@smartgap.vn</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 hidden-sx" style="background-image:url(./assets/images/reg-right.png);height:500px;border-bottom-right-radius: 4px;border-top-right-radius: 4px;float:right">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

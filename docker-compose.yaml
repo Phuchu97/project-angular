@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  ecom-web:
+    container_name: ecom-web
+    image: smartgapjsc/ecom-web:tag
+    networks:
+      - smartgapjsc-ecom-network
+    ports:
+      - target: 80
+        published: 8313
+    labels:
+      service: ecom-web
+      env: ${ENVIRONMENT}
+      project: ecom
+    environment:
+      - API_URL=${API_URL}
+      - API_URL_COMMON=${API_URL_COMMON}
+      - API_URL_SHOP=${API_URL_SHOP}
+networks:
+  smartgapjsc-ecom-network:
+    external:
+      name: smartgapjsc-ecom-network

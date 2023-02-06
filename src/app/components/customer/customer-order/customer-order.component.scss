@@ -1,0 +1,35 @@
+.order-button-group {
+  button {
+    padding: 0.25rem 1rem;
+    background: #6DB746;
+    border: solid 1px #6DB746;
+    border-radius: 1px;
+    color: #FFFFFF;
+
+    &.btn-cancel-order {
+      background: #6DB746;
+      border: solid 1px #6DB746;
+      border-radius: 1px;
+      color: #FFFFFF;
+    }
+
+    &.btn-contact {
+      background: #FFFFFF;
+      border: 1px solid #CBCBCB;
+      border-radius: 2px;
+      color: #5A6B6A;
+    }
+  }
+}
+
+.order-detail {
+  background: #F6FFF1;
+  span {
+    display: block;
+  }
+}
+
+.order-items {
+  
+  margin-left: 42px !important;
+}

@@ -1,0 +1,14 @@
+<div class="shop_one_page">
+    <h3>{{"CategoryProduct.Province" | translate}}</h3>
+    <ul class="listform_filter">
+        <li *ngFor="let item of listFilter">
+            <label>
+              <input type="checkbox" name="checkbox" (change)="onClick($event, item)">
+              <span></span>{{item.city}}
+           </label>
+        </li>
+        <li *ngIf="isShowMore">
+            <a href="javascript:void(0);" class="shop_one_page_all" (click)="showMore()">{{"CategoryProduct.ShowMore" | translate}}</a>
+        </li>
+    </ul>
+</div>

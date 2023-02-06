@@ -1,0 +1,44 @@
+<section class="sec_product">
+  <div style="background-color: #e5e5e5;">
+    <div class="container" style="background-color: #f6fff1;border-radius: 5px;">
+      <div class="list_tab">
+        <div class="wrap">
+          <div class="title_sec_product">
+            <h3 class="home-title-css" style="margin: 0 !important;">{{ "Home.SpecialArea" | translate }}</h3>
+          </div>
+          <ul class="nav nav-area">
+            <ng-container *ngFor="let item of categoryArea; let i = index">
+              <li>
+                <a
+                  data-toggle="tab"
+                  [ngClass]="i == 0 ? 'active' : ''"
+                  href="#area{{ i }}"
+                  >{{ item.name }}</a
+                >
+              </li>
+            </ng-container>
+  
+            <li>
+              <a href="/area-all"
+                >Tất cả <i aria-hidden="true" class="fa fa-angle-right"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+  
+        
+        <div class="tab-content tab-shop-content tab-content-area" >
+          <ng-container *ngFor="let item of categoryArea; let i = index">
+            <div
+              id="area{{ i }}"
+              class="tab-pane"
+              [ngClass]="i == 0 ? 'active' : ''"
+            >
+              <app-product-area-list [area]="item.id"></app-product-area-list>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

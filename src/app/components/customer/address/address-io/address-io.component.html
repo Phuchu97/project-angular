@@ -1,0 +1,101 @@
+<div class="container-fluid p-3">
+  <div class="header_content_taikhoan">
+    <h2>{{dataObject?.id ? "Sửa địa chỉ" : "Thêm mới địa chỉ"}}</h2>
+  </div>
+  <div class="content_my_profile">
+    <div class="form_group">
+      <form [formGroup]="form">
+        <div class="row row_form_my_profile">
+          <div class="col-12 item-form-group">
+            <label>Họ & Tên</label>
+            <input type="text" name="" class="form-control" formControlName="receiver">
+          </div>
+          <span *ngIf="onSubmited && form.controls['receiver'].errors?.['required']"
+                class="alert-danger">{{errorMessege.receiver.required}}</span>
+        </div>
+        <div class="row row_form_my_profile">
+          <div class="col-12 item-form-group">
+            <label>Số điện thoại</label>
+            <input type="text" name="" class="form-control" formControlName="phone">
+          </div>
+          <span *ngIf="onSubmited && form.controls['phone'].errors?.['required']"
+                class="alert-danger">{{errorMessege.phone.required}}</span>
+          <span *ngIf="onSubmited && form.controls['phone'].errors?.['pattern']"
+                class="alert-danger">{{errorMessege.phone.pattern}}</span>
+        </div>
+        <div class="row row_form_my_profile">
+          <div class="col-12 item-form-group">
+            <label>Tỉnh/Thành phố</label>
+            <ng-select class="component-form-control from_city prefix-css" [items]="listProvince"
+                       (change)="getDistrict($event)" (clear)="clearSelect()"
+                       bindLabel="city"
+                       bindValue="id"
+                       formControlName="province_id">
+            </ng-select>
+          </div>
+
+          <span *ngIf="onSubmited && form.controls['province_id'].errors?.['required']"
+                class="alert-danger span_tinh">{{errorMessege.province_id.required}}</span>
+        </div>
+
+
+        <div class="row row_form_my_profile">
+          <div class="col-12 item-form-group">
+            <label>Quận/Huyện</label>
+            <ng-select class="component-form-control from_city" [items]="listDistrict"
+                       (change)="getWard($event)" (clear)="clearSelect()"
+                       bindLabel="name"
+                       bindValue="id"
+                       formControlName="district_id">
+            </ng-select>
+
+          </div>
+          <span class="quanhuyen" *ngIf="onSubmited && form.controls['district_id'].errors?.['required']"
+                class="alert-danger">{{errorMessege.district_id.required}}</span>
+        </div>
+        <div class="row row_form_my_profile">
+          <div class="col-12 item-form-group ">
+            <label>Phường/Xã</label>
+            <ng-select class="component-form-control from_city" [items]="listWard"
+                       (change)="changeWard($event)"
+                       bindLabel="name"
+                       bindValue="id"
+                       formControlName="ward_id">
+
+            </ng-select>
+          </div>
+
+          <span *ngIf="onSubmited && form.controls['ward_id'].errors?.['required']"
+                class="alert-danger">{{errorMessege.ward_id.required}}</span>
+        </div>
+        <div class="row row_form_my_profile">
+          <div class="col-12 item-form-group">
+            <label>Địa chỉ</label>
+            <input type="text" name="" class="form-control" formControlName="address">
+          </div>
+          <span *ngIf="onSubmited && form.controls['address'].errors?.['required']"
+                class="alert-danger">{{errorMessege.address.required}}</span>
+        </div>
+        <div class="row row_form_my_profile">
+          <div class="col-12 item-form-group">
+            <label></label>
+            <img loading="lazy" class="icon-address" src="assets/images/imgs/address.png" (click)="selectMap()">
+            <input type="text" readonly name="" class="form-control pl-5" formControlName="latlong" placeholder="Chọn vị trí trên bản đồ" (click)="selectMap()">
+          </div>
+          <span *ngIf="onSubmited && form.controls['latlong'].errors?.['required']"
+                class="alert-danger">{{errorMessege.latlong.required}}</span>
+        </div>
+        <div class="row row_form_my_profile">
+          <div class="col-12 item-form-group">
+            <label>Là địa chỉ mặc định</label>
+            <input type="checkbox" name="" formControlName="is_default">
+          </div>
+        </div>
+        <div class="btn_gui_form">
+          <button class="cancel-button mr-3" (click)="decline()">Hủy bỏ</button>
+          <button (click)="save()">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

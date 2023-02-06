@@ -1,0 +1,20 @@
+<div class="shop_one_page">
+    <h3>{{"Home.Category" | translate}}</h3>
+    <ul class="listform_filter">
+        <li>
+            <label>
+            <input type="checkbox" name="checkbox" [checked]="isCheckAll" (change)="onClickAll($event)">
+            <span></span>Tất cả danh mục
+          </label>
+        </li>
+        <li *ngFor="let item of listFilter">
+            <label>
+          <input type="checkbox" name="checkbox" [checked]="isCheckAll" (change)="onClick($event, item)">
+          <span></span>{{item.name}}
+            </label>
+        </li>
+        <li *ngIf="isShowMore">
+            <a href="javascript:void(0);" class="shop_one_page_all" (click)="showMore()">{{"CategoryProduct.ShowMore" | translate}}</a>
+        </li>
+    </ul>
+</div>
